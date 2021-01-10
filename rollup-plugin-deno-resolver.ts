@@ -51,7 +51,9 @@ function parse(
 ): URL | null {
   try {
     return new URL(source);
-  } catch (_) {}
+  } catch {
+    // Suppress
+  }
 
   try {
     const base = getBase(importer);
@@ -75,15 +77,18 @@ async function loadUrl(
   fetchOpts?: RequestInit,
 ): Promise<string> | never {
   switch (url.protocol) {
-    case "file:":
+    case "file:": {
       return await Deno.readTextFile(url);
+    }
     case "http:":
-    case "https:":
+    case "https:": {
       const res = await fetch(url.href, fetchOpts);
 
       return await res.text();
-    default:
+    }
+    default: {
       return notImplemented(url.protocol);
+    }
   }
 }
 
@@ -168,7 +173,7 @@ export function denoResolver(
         return null;
       }
 
-      let code = await loadUrl(url, fetchOpts);
+      const code = await loadUrl(url, fetchOpts);
 
       if (isTypescript(extname(url.href))) {
         const { [id]: { source } } = await Deno.transpileOnly(
