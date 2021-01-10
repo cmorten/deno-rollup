@@ -36,7 +36,7 @@ This library extends Rollup so that it can be used within Deno scripts to bundle
 ## Getting Started
 
 ```ts
-import { rollup } from "https://deno.land/x/rollup@2.36.1/mod.ts";
+import { rollup } from "https://deno.land/x/rollup@2.36.1+0.1.0/mod.ts";
 
 const options = {
   input: "./mod.ts",
@@ -60,7 +60,7 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import deno-rollup straight into your project:
 
 ```ts
-import { rollup } from "https://deno.land/x/rollup@2.36.1/mod.ts";
+import { rollup } from "https://deno.land/x/rollup@2.36.1+0.1.0/mod.ts";
 ```
 
 ## Documentation
