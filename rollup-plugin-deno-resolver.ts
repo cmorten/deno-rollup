@@ -1,4 +1,4 @@
-import type { Plugin } from "./rollup.ts";
+import type { Plugin } from "./mod.ts";
 import {
   dirname,
   extname,

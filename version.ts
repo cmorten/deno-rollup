@@ -1,4 +1,4 @@
-import { VERSION } from "./rollup.ts";
+import { VERSION } from "./mod.ts";
 
 export const coreRollupVersion = VERSION;
 export const denoRollupVersion = "0.1.0";

@@ -1,9 +1,9 @@
 .PHONY: build ci fmt fmt-check lint typedoc
 
-FILES_TO_FORMAT = ./example/src ./example/rollup.build.ts ./example/rollup.config.ts ./rollup.ts ./rollup-plugin-deno-resolver.ts
+FILES_TO_FORMAT = ./example/src ./example/rollup.build.ts ./example/rollup.config.ts ./mod.ts ./rollup-plugin-deno-resolver.ts
 
 build:
-	@deno run --unstable --reload rollup.ts
+	@deno run --unstable --reload mod.ts
 
 ci:
 	@make fmt-check

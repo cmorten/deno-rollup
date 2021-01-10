@@ -1,4 +1,4 @@
-import { rollup } from "../rollup.ts";
+import { rollup } from "../mod.ts";
 import options from "./rollup.config.ts";
 
 const bundle = await rollup(options);
