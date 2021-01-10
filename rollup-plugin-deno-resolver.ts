@@ -1,27 +1,16 @@
-/**
- * Derived from rollup-plugin-url-resolve (https://github.com/mjackson/rollup-plugin-url-resolve)
- * 
- * Licensed as follows:
- * 
- * Copyright 2019 Michael Jackson
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- * 
- */
-
 import type { Plugin } from "./rollup.ts";
 import {
   dirname,
+  extname,
   isAbsolute,
   join,
   resolve,
   sep,
   toFileUrl,
 } from "https://deno.land/std@0.83.0/path/mod.ts";
+
+const RE_URL = /^(https?|file):\/\//;
+const RE_TS = /^\.tsx?$/;
 
 /**
  * notImplemented
@@ -99,6 +88,17 @@ async function loadUrl(
 }
 
 /**
+ * isTypescript
+ * 
+ * @param {string} source 
+ * @returns {boolean}
+ * @private
+ */
+function isTypescript(source: string): boolean {
+  return RE_TS.test(source);
+}
+
+/**
  * isUrl
  * 
  * @param {string} source 
@@ -106,27 +106,61 @@ async function loadUrl(
  * @private
  */
 function isUrl(source: string): boolean {
-  return /^(https?|file):\/\//.test(source);
+  return RE_URL.test(source);
 }
+
+/**
+ * resolveId
+ * 
+ * @param {string} source 
+ * @param {string} [importer]
+ * @returns {string}
+ * @private
+ */
+function resolveId(source: string, importer?: string): string {
+  if (isUrl(source) || isAbsolute(source)) {
+    return source;
+  }
+
+  return importer ? join(dirname(importer), source) : source;
+}
+
+/**
+ * @public
+ */
+export type DenoResolverOptions = {
+  fetchOpts?: RequestInit;
+  compilerOpts?: Deno.CompilerOptions;
+};
 
 /**
  * denoResolver
  * 
- * @param {RequestInit} [fetchOpts] 
+ * Resolver plugin for Deno. Handles relative, absolute
+ * and URL imports. Typescript files are detected automatically
+ * by extension matching, and transpiled using the
+ * `Deno.transpileOnly()` API.
+ * 
+ * Accepts fetch options to pass to `fetch()` when requesting
+ * remote URL imports, compiler options to pass to
+ * `Deno.transpileOnly()` when transpiling typescript imports.
+ * 
+ * @param {DenoResolverOptions} [opts] 
+ * @param {RequestInit} [opts.fetchOpts] 
+ * @param {Deno.CompilerOptions} [opts.compilerOpts] 
  * @returns {Plugin}
  * @public
  */
-export function denoResolver(fetchOpts?: RequestInit): Plugin {
+export function denoResolver(
+  { fetchOpts, compilerOpts }: DenoResolverOptions = {},
+): Plugin | never {
   return {
     name: "rollup-plugin-deno-resolver",
     resolveId(source: string, importer?: string) {
-      if (isUrl(source) || isAbsolute(source)) {
-        return source;
-      }
-
-      return importer ? join(dirname(importer), source) : source;
+      return resolveId(source, importer);
     },
     async load(source: string, importer?: string) {
+      const id = resolveId(source, importer);
       const url = parse(source, importer);
 
       // Unable to resolve the import url
@@ -134,8 +168,17 @@ export function denoResolver(fetchOpts?: RequestInit): Plugin {
         return null;
       }
 
-      const code = await loadUrl(url, fetchOpts);
-      
+      let code = await loadUrl(url, fetchOpts);
+
+      if (isTypescript(extname(url.href))) {
+        const { [id]: { source } } = await Deno.transpileOnly(
+          { [id]: code },
+          compilerOpts,
+        );
+
+        return source;
+      }
+
       // URL import source maps not supported
       if (isUrl(source)) {
         return { code, map: { mappings: "" } };

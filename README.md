@@ -1,3 +1,3 @@
-# rollup
+# deno-rollup
 
 Port of rollup to Deno.

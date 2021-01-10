@@ -1,7 +1,7 @@
 export default {
-  input: "./src/mod.js",
+  input: "./src/mod.ts",
   output: {
-    file: "./dist/mod.js",
+    dir: "./dist",
     format: "es" as "es",
     sourcemap: true,
   },
