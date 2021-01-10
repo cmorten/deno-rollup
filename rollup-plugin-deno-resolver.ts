@@ -22,6 +22,7 @@ import {
   sep,
   toFileUrl,
 } from "https://deno.land/std@0.83.0/path/mod.ts";
+
 /**
  * notImplemented
  * 
@@ -37,12 +38,14 @@ function notImplemented(msg?: string): never {
 /**
  * getBase
  * 
- * @param {string} [parent] 
+ * @param {string} [importer] 
  * @returns {string | undefined}
  * @private
  */
-function getBase(parent?: string): string {
-  return parent ? resolve(join(dirname(parent), sep)) : join(Deno.cwd(), sep);
+function getBase(importer?: string): string {
+  return importer
+    ? resolve(join(dirname(importer), sep))
+    : join(Deno.cwd(), sep);
 }
 
 /**
@@ -55,36 +58,18 @@ function getBase(parent?: string): string {
  */
 function parse(
   source: string,
-  parent?: string,
+  importer?: string,
 ): URL | null {
   try {
     return new URL(source);
   } catch (_) {}
 
   try {
-    const base = getBase(parent);
+    const base = getBase(importer);
 
     return new URL(source, toFileUrl(base));
   } catch (_) {
     return null;
-  }
-}
-
-/**
- * resolveUrl
- * 
- * @param {URL} url 
- * @returns {string}
- * @private
- */
-function resolveUrl(url: URL): string {
-  switch (url.protocol) {
-    case "file:":
-    case "http:":
-    case "https:":
-      return url.pathname;
-    default:
-      throw new Error(`Cannot resolve protocol: ${url.protocol}`);
   }
 }
 
@@ -99,7 +84,7 @@ function resolveUrl(url: URL): string {
 async function loadUrl(
   url: URL,
   fetchOpts?: RequestInit,
-): Promise<string | null> | never {
+): Promise<string> | never {
   switch (url.protocol) {
     case "file:":
       return await Deno.readTextFile(url);
@@ -107,25 +92,10 @@ async function loadUrl(
     case "https:":
       const res = await fetch(url.href, fetchOpts);
 
-      if (res.status === 404) {
-        return null;
-      }
-
       return await res.text();
     default:
       return notImplemented(url.protocol);
   }
-}
-
-/**
- * getRelativeBase
- * 
- * @param {string} parent
- * @returns {string}
- * @private
- */
-function getRelativeBase(parent: string): string {
-  return `.${sep}${join(dirname(parent), sep)}`;
 }
 
 /**
@@ -136,7 +106,7 @@ function getRelativeBase(parent: string): string {
  * @private
  */
 function isUrl(source: string): boolean {
-  return /^(https?|file):\/\/.*$/.test(source);
+  return /^(https?|file):\/\//.test(source);
 }
 
 /**
@@ -149,18 +119,29 @@ function isUrl(source: string): boolean {
 export function denoResolver(fetchOpts?: RequestInit): Plugin {
   return {
     name: "rollup-plugin-deno-resolver",
-    resolveId(source: string, parent?: string) {
-      // Needs to return value reflective of source, i.e. absolute, relative or URL.
+    resolveId(source: string, importer?: string) {
       if (isUrl(source) || isAbsolute(source)) {
         return source;
       }
 
-      return parent ? join(getRelativeBase(parent), source) : source;
+      return importer ? join(dirname(importer), source) : source;
     },
-    load: async function (source: string, parent?: string) {
-      const url = parse(source, parent);
+    async load(source: string, importer?: string) {
+      const url = parse(source, importer);
 
-      return url ? await loadUrl(url, fetchOpts) : null;
+      // Unable to resolve the import url
+      if (!url) {
+        return null;
+      }
+
+      const code = await loadUrl(url, fetchOpts);
+      
+      // URL import source maps not supported
+      if (isUrl(source)) {
+        return { code, map: { mappings: "" } };
+      }
+
+      return code;
     },
   };
 }

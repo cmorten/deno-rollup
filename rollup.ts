@@ -4,7 +4,6 @@ import {
   VERSION,
 } from "https://unpkg.com/rollup@2.36.1/dist/es/rollup.browser.js";
 import type {
-  OutputChunk,
   OutputOptions,
   RollupBuild,
   RollupOptions,
@@ -15,6 +14,7 @@ import {
   join,
   resolve,
 } from "https://deno.land/std@0.83.0/path/mod.ts";
+import { denoResolver } from "./rollup-plugin-deno-resolver.ts";
 
 /**
  * getTargetDir
@@ -23,7 +23,7 @@ import {
  * @returns {string}
  * @private
  */
-function getTargetDir(options: OutputOptions): string {
+function getTargetDir(options: OutputOptions): string | never {
   const { dir, file } = options;
 
   if (dir) {
@@ -32,7 +32,9 @@ function getTargetDir(options: OutputOptions): string {
     return resolve(dirname(file));
   }
 
-  return Deno.cwd();
+  throw new Error(
+    `You must specify "output.file" or "output.dir" for the build.`,
+  );
 }
 
 /**
@@ -49,6 +51,7 @@ async function write(
 ): Promise<RollupOutput> {
   const rollupOutput = await this.generate(options);
   const targetDirectory = getTargetDir(options);
+
   await Deno.mkdir(targetDirectory, { recursive: true });
 
   for (const outputFile of rollupOutput.output) {
@@ -99,6 +102,16 @@ async function write(
  * @private
  */
 async function rollupProxy(options: RollupOptions): Promise<RollupBuild> {
+  options = {
+    ...options,
+    plugins: options.plugins
+      ? [
+        ...options.plugins,
+        denoResolver(),
+      ]
+      : [denoResolver()],
+  };
+
   const bundle = await rollup(options);
 
   return new Proxy(bundle, {

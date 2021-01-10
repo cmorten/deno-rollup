@@ -1,5 +1,6 @@
 import foo from "./foo.js";
 
 export default () => {
-  console.log(sep, foo);
+  console.log(foo);
+  console.log(Deno.cwd());
 };
