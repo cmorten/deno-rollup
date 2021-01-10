@@ -6,6 +6,7 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 <p align="center">
    <a href="https://github.com/cmorten/deno-rollup/tags/"><img src="https://img.shields.io/github/tag/cmorten/deno-rollup" alt="Current version" /></a>
    <img src="https://github.com/cmorten/deno-rollup/workflows/Test/badge.svg" alt="Current test status" />
+   <a href="https://doc.deno.land/https/deno.land/x/drollup/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="Deno docs" /></a>
    <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs are welcome" /></a>
    <a href="https://github.com/cmorten/deno-rollup/issues/"><img src="https://img.shields.io/github/issues/cmorten/deno-rollup" alt="deno-rollup issues" /></a>
    <img src="https://img.shields.io/github/stars/cmorten/deno-rollup" alt="deno-rollup stars" />
@@ -36,7 +37,7 @@ This library extends Rollup so that it can be used within Deno scripts to bundle
 ## Getting Started
 
 ```ts
-import { rollup } from "https://deno.land/x/rollup@2.36.1+0.1.0/mod.ts";
+import { rollup } from "https://deno.land/x/drollup@2.36.1+0.1.0/mod.ts";
 
 const options = {
   input: "./mod.ts",
@@ -60,7 +61,7 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import deno-rollup straight into your project:
 
 ```ts
-import { rollup } from "https://deno.land/x/rollup@2.36.1+0.1.0/mod.ts";
+import { rollup } from "https://deno.land/x/drollup@2.36.1+0.1.0/mod.ts";
 ```
 
 ## Documentation
