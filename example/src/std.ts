@@ -1,1 +1,3 @@
-export default "This is a standard import";
+const myString: string = "This is a standard import!";
+
+export default myString;
