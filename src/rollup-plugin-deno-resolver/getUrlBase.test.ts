@@ -11,8 +11,10 @@ function assertUrlMatch(test: URL, expected: URL): void | never {
 
 describe("getUrlBase", () => {
   it("getUrlBase: when no importer is provided: should return the CWD as a file URL", () => {
+    console.log({ cwd: Deno.cwd(), sep, furl: `file://${Deno.cwd()}${sep}` });
     const expected = new URL(`file://${Deno.cwd()}${sep}`);
     const urlBase = getUrlBase();
+    console.log({ expected, urlBase });
 
     assertUrlMatch(urlBase, expected);
   });
@@ -34,7 +36,9 @@ describe("getUrlBase", () => {
 
   it("getUrlBase: when an sibling relative path importer is provided: should return the directory path of the importer as a file URL", () => {
     const importer = "./test.ts";
-    const expected = new URL(`file://${join(Deno.cwd(), dirname(importer))}${sep}`);
+    const expected = new URL(
+      `file://${join(Deno.cwd(), dirname(importer))}${sep}`,
+    );
     const urlBase = getUrlBase(importer);
 
     assertUrlMatch(urlBase, expected);
@@ -42,7 +46,9 @@ describe("getUrlBase", () => {
 
   it("getUrlBase: when a parent relative path importer is provided: should return the directory path of the importer as a file URL", () => {
     const importer = "../test.ts";
-    const expected = new URL(`file://${join(Deno.cwd(), dirname(importer))}${sep}`);
+    const expected = new URL(
+      `file://${join(Deno.cwd(), dirname(importer))}${sep}`,
+    );
     const urlBase = getUrlBase(importer);
 
     assertUrlMatch(urlBase, expected);
@@ -50,7 +56,9 @@ describe("getUrlBase", () => {
 
   it("getUrlBase: when a child relative path importer is provided: should return the directory path of the importer as a file URL", () => {
     const importer = "./test-path/test.ts";
-    const expected = new URL(`file://${join(Deno.cwd(), dirname(importer))}${sep}`);
+    const expected = new URL(
+      `file://${join(Deno.cwd(), dirname(importer))}${sep}`,
+    );
     const urlBase = getUrlBase(importer);
 
     assertUrlMatch(urlBase, expected);
