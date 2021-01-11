@@ -9,9 +9,11 @@ export const TEST_TIMEOUT = 3000;
  * @param name 
  * @param fn 
  */
-export async function describe(_name: string, fn: () => void | Promise<void>) {
+export function describe(_name: string, fn: () => void | Promise<void>) {
   fn();
 }
+
+export type Done = (err?: Error) => void;
 
 /**
  * An _it_ wrapper around `Deno.test`.
@@ -19,14 +21,15 @@ export async function describe(_name: string, fn: () => void | Promise<void>) {
  * @param name 
  * @param fn 
  */
-export async function it(
+export function it(
   name: string,
-  fn: (done?: any) => void | Promise<void>,
+  fn: (done?: Done) => void | Promise<void>,
 ) {
   Deno.test(name, async () => {
-    let done: any = (err?: any) => {
+    let done: Done = (err?: Error) => {
       if (err) throw err;
     };
+
     let race: Promise<unknown> = Promise.resolve();
 
     if (fn.length === 1) {
@@ -50,7 +53,7 @@ export async function it(
         donePromise,
       ]);
 
-      done = (err?: any) => {
+      done = (err?: Error) => {
         clearTimeout(timeoutId);
         resolve();
         if (err) throw err;
@@ -61,3 +64,17 @@ export async function it(
     await race;
   });
 }
+
+export const after = (count: number, done: Done) => {
+  let _count = 0;
+
+  return (err?: Error) => {
+    _count++;
+
+    if (err) {
+      done(err);
+    } else if (_count >= count) {
+      done();
+    }
+  };
+};

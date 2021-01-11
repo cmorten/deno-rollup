@@ -19,7 +19,7 @@ export function resolveId(source: string, importer?: string): string {
       return new URL(source, importer).href;
     }
 
-    return join(dirname(importer), source)
+    return join(dirname(importer), source);
   }
 
   return source;
