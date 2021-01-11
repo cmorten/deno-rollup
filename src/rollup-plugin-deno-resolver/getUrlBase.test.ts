@@ -32,6 +32,14 @@ describe("getUrlBase", () => {
     assertUrlMatch(urlBase, expected);
   });
 
+  it("getUrlBase: when a remote URL path importer is provided: should return the directory path of the importer as a file URL", () => {
+    const importer = "https://github.com/cmorten/deno-rollup/test.ts";
+    const expected = new URL(join(dirname(importer), sep));
+    const urlBase = getUrlBase(importer);
+
+    assertUrlMatch(urlBase, expected);
+  });
+
   it("getUrlBase: when an sibling relative path importer is provided: should return the directory path of the importer as a file URL", () => {
     const importer = "./test.ts";
     const expected = toFileUrl(join(Deno.cwd(), dirname(importer), sep));

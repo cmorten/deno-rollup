@@ -14,5 +14,13 @@ export function resolveId(source: string, importer?: string): string {
     return source;
   }
 
-  return importer ? join(dirname(importer), source) : source;
+  if (importer) {
+    if (isUrl(importer)) {
+      return new URL(source, importer).href;
+    }
+
+    return join(dirname(importer), source)
+  }
+
+  return source;
 }

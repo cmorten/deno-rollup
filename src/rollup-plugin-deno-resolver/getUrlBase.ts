@@ -1,4 +1,5 @@
 import { dirname, isAbsolute, join, sep, toFileUrl } from "../../deps.ts";
+import { isUrl } from "./isUrl.ts";
 
 /**
  * getUrlBase
@@ -11,7 +12,9 @@ export function getUrlBase(importer?: string): URL {
   let path: string;
 
   if (importer) {
-    if (isAbsolute(importer)) {
+    if (isUrl(importer)) {
+      return new URL(join(dirname(importer), sep));
+    } else if (isAbsolute(importer)) {
       path = dirname(importer);
     } else {
       path = dirname(join(Deno.cwd(), importer));
