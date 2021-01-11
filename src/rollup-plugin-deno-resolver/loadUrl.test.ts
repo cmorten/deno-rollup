@@ -1,5 +1,5 @@
 import { expect } from "../../test/deps.ts";
-import { dirname, join, sep, toFileUrl } from "../../deps.ts";
+import { resolve, toFileUrl } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { loadUrl } from "./loadUrl.ts";
 
@@ -30,5 +30,24 @@ describe("loadUrl", () => {
     if (error) {
       throw error;
     }
+  });
+
+  it("loadUrl: when passed a remote HTTP URL: it should return the contents", async () => {
+    const path = resolve("./test/fixtures/msg.txt");
+    const contents = await Deno.readTextFile(path);
+    const url =
+      "http://raw.githubusercontent.com/cmorten/deno-rollup/main/test/fixtures/msg.txt";
+
+    expect(await loadUrl(new URL(url))).toEqual(contents);
+  });
+
+  it("loadUrl: when passed a remote HTTPS URL: it should return the contents", async () => {
+    const path = resolve("./test/fixtures/msg.txt");
+    console.log(path);
+    const contents = await Deno.readTextFile(path);
+    const url =
+      "https://raw.githubusercontent.com/cmorten/deno-rollup/main/test/fixtures/msg.txt";
+
+    expect(await loadUrl(new URL(url))).toEqual(contents);
   });
 });
