@@ -35,3 +35,4 @@ jobs:
         with:
           deno-version: ${{ matrix.deno-version }}
       - run: make build
+      - run: make test
