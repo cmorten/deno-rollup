@@ -12,7 +12,9 @@ export {
 export {
   bold,
   cyan,
+  dim,
   green,
+  red,
   underline,
 } from "https://deno.land/std@0.83.0/fmt/colors.ts";
 // @deno-types="https://unpkg.com/rollup@2.36.1/dist/rollup.d.ts"

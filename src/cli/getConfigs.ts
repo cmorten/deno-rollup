@@ -10,7 +10,7 @@ export async function getConfigs(
   if (program.options.config) {
     const configFile = await getConfigPath(program.options.config);
 
-    return loadAndParseConfigFile(configFile, program.options);
+    return await loadAndParseConfigFile(configFile, program.options);
   }
 
   return loadConfigFromCommand(program.options);

@@ -1,4 +1,5 @@
 import type { IParseResult } from "../../deps.ts";
+import { handleError } from "../logging.ts";
 import { getAliasName } from "./getAliasName.ts";
 import { environment } from "./environment.ts";
 import { getConfigs } from "./getConfigs.ts";
@@ -9,7 +10,10 @@ export async function run(program: IParseResult) {
   let inputSource;
   if (program.args.length) {
     if (program.options.input) {
-      throw new Error("either use --input, or pass input path as argument");
+      handleError({
+        code: "DUPLICATE_IMPORT_OPTIONS",
+        message: "either use --input, or pass input path as argument",
+      });
     }
 
     inputSource = program.args;
@@ -39,9 +43,6 @@ export async function run(program: IParseResult) {
     }
   }
 
-  // TODO: deno run -A --unstable ../src/cli/cli.ts
-  // Uncaught (in promise) Error: You must supply options.input to rollup
-
   if (program.options.watch) {
     return notImplemented("-w, --watch option");
   }
@@ -51,9 +52,13 @@ export async function run(program: IParseResult) {
 
   environment(program);
 
-  const { options } = await getConfigs(program);
+  try {
+    const { options } = await getConfigs(program);
 
-  for (const inputOptions of options) {
-    await build(inputOptions, program.options.silent);
+    for (const inputOptions of options) {
+      await build(inputOptions, program.options.silent);
+    }
+  } catch (err) {
+    handleError(err);
   }
 }

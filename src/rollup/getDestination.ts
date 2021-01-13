@@ -1,5 +1,6 @@
 import type { OutputOptions } from "./mod.ts";
 import { dirname, resolve } from "../../deps.ts";
+import { handleError } from "../logging.ts";
 
 /**
  * getDestination
@@ -8,7 +9,9 @@ import { dirname, resolve } from "../../deps.ts";
  * @returns {string}
  * @private
  */
-export function getDestination(options: OutputOptions): string | never {
+export function getDestination(
+  options: OutputOptions,
+): string | never {
   const { dir, file } = options;
 
   if (dir) {
@@ -17,7 +20,9 @@ export function getDestination(options: OutputOptions): string | never {
     return resolve(dirname(file));
   }
 
-  throw new Error(
-    `You must specify "output.file" or "output.dir" for the build.`,
+  handleError(
+    {
+      message: `You must specify "output.file" or "output.dir" for the build.`,
+    },
   );
 }

@@ -1,19 +1,29 @@
 import type { MergedRollupOptions } from "../rollup/mod.ts";
 import { bold, cyan, green, ms } from "../../deps.ts";
-import { relativeId } from "./relativeId.ts";
+import { relativeId } from "../relativeId.ts";
 import { SOURCEMAPPING_URL } from "../rollup/write.ts";
 import { rollup } from "../rollup/mod.ts";
 import { printTimings } from "./printTimings.ts";
+import { handleError, logInfo, logOutput } from "../logging.ts";
 
-const encoder = new TextEncoder();
+const decoder = new TextDecoder();
 
 export async function build(
   inputOptions: MergedRollupOptions,
   silent = false,
 ): Promise<unknown> {
+  const input = inputOptions.input;
+
+  if (!input?.length) {
+    handleError({
+      code: "MISSING_IMPORT_OPTION",
+      message: "you must supply options.input to rollup",
+    });
+  }
+
   const outputOptions = inputOptions.output;
+
   const useStdout = !outputOptions[0].file && !outputOptions[0].dir;
-  const start = Date.now();
   const files = useStdout
     ? ["stdout"]
     : outputOptions.map((t) => relativeId(t.file || t.dir!));
@@ -33,18 +43,20 @@ export async function build(
         .join(", ");
     }
 
-    console.info(cyan(`\n${bold(inputFiles!)} → ${bold(files.join(", "))}...`));
+    logInfo(cyan(`${bold(inputFiles!)} → ${bold(files.join(", "))}...`));
   }
 
+  const start = Date.now();
   const bundle = await rollup(inputOptions);
 
   if (useStdout) {
     const output = outputOptions[0];
 
     if (output.sourcemap && output.sourcemap !== "inline") {
-      throw new Error(
-        "only inline sourcemaps are supported when bundling to stdout",
-      );
+      handleError({
+        code: "ONLY_INLINE_SOURCEMAPS",
+        message: "only inline sourcemaps are supported when bundling to stdout",
+      });
     }
 
     const { output: outputs } = await bundle.generate(output);
@@ -63,14 +75,14 @@ export async function build(
       }
 
       if (outputs.length > 1) {
-        console.info(`\n${cyan(bold(`//→ ${file.fileName}:`))}\n`);
+        logInfo(`\n${cyan(bold(`//→ ${file.fileName}:`))}\n`);
       }
 
-      if (typeof source === "string") {
-        source = encoder.encode(source);
+      if (typeof source !== "string") {
+        source = decoder.decode(source);
       }
 
-      Deno.stdout.write(source);
+      logOutput(source);
     }
 
     return;
@@ -80,7 +92,7 @@ export async function build(
   await bundle.close();
 
   if (!silent) {
-    console.info(
+    logInfo(
       green(
         `created ${bold(files.join(", "))} in ${bold(ms(Date.now() - start))}`,
       ),

@@ -1,4 +1,4 @@
-import { isAbsolute, relative } from "../../deps.ts";
+import { isAbsolute, relative } from "../deps.ts";
 
 export function relativeId(id: string): string {
   if (!isAbsolute(id)) {

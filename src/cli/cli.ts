@@ -6,7 +6,7 @@ const program = await new Command()
   .name("rollup")
   .version(version)
   .description("Next-generation ES module bundler for Deno")
-  .arguments("[entrypoint] [options]")
+  .arguments("[entrypoint]")
   .option(
     "-c, --config [filename]",
     "Use this config file (if argument is used but value is unspecified, defaults to rollup.config.js)",
@@ -97,10 +97,6 @@ const program = await new Command()
     "Do not generate code to support live bindings",
   )
   .option(
-    "--failAfterWarnings",
-    "Exit with an error if the build produced warnings",
-  )
-  .option(
     "--footer <text>",
     "Code to insert at end of bundle (outside wrapper)",
   )
@@ -138,21 +134,18 @@ const program = await new Command()
   )
   .option("--preserveSymlinks", "Do not follow symlinks when resolving files")
   .option("--shimMissingExports", "Create shim variables for missing exports")
-  .option("--silent", "Don't print warnings")
+  .option("--silent", "Don't print info and warnings")
   .option(
     "--sourcemapExcludeSources",
     "Do not include source code in source maps",
   )
   .option("--sourcemapFile <file>", "Specify bundle position for source maps")
-  .option("--stdin=ext", "Specify file extension used for stdin input")
+  .option("--stdin", "Specify file extension used for stdin input")
   .option("--no-stdin", 'Do not read "-" from stdin')
   .option("--no-strict", 'Don\'t emit `"use strict";` in the generated modules')
-  .option("--strictDeprecations", "Throw errors for deprecated features")
   .option("--systemNullSetters", "Replace empty SystemJS setters with `null`")
   .option("--no-treeshake", "Disable tree-shaking optimisations")
   .option("--waitForBundleInput", "Wait for bundle input files")
   .parse(Deno.args);
 
 run(program);
-
-// TODO: how to most elegantly throw errors and warnings

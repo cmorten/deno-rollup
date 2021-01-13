@@ -1,5 +1,6 @@
 import type { GenericConfigObject } from "./types.ts";
 import { toFileUrl } from "../../deps.ts";
+import { handleError } from "../logging.ts";
 
 export async function loadConfigFile(
   fileName: string,
@@ -20,9 +21,12 @@ async function getConfigList(
     : configFileExport;
 
   if (Object.keys(config).length === 0) {
-    throw new Error(
-      "config file must export an commandOptions object, or an array of commandOptions objects https://rollupjs.org/guide/en/#configuration-file",
-    );
+    handleError({
+      code: "MISSING_CONFIG",
+      message:
+        "config file must export an options object, or an array of options objects",
+      url: "https://rollupjs.org/guide/en/#configuration-files",
+    });
   }
 
   return Array.isArray(config) ? config : [config];
