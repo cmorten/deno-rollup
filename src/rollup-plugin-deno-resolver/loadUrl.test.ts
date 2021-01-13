@@ -43,7 +43,6 @@ describe("loadUrl", () => {
 
   it("loadUrl: when passed a remote HTTPS URL: it should return the contents", async () => {
     const path = resolve("./test/fixtures/msg.txt");
-    console.log(path);
     const contents = await Deno.readTextFile(path);
     const url =
       "https://raw.githubusercontent.com/cmorten/deno-rollup/main/test/fixtures/msg.txt";

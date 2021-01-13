@@ -1,6 +1,8 @@
-import type { OutputOptions, RollupBuild, RollupOutput } from "../../deps.ts";
+import type { OutputOptions, RollupBuild, RollupOutput } from "./mod.ts";
 import { join } from "../../deps.ts";
 import { getDestination } from "./getDestination.ts";
+
+export const SOURCEMAPPING_URL = "sourceMappingURL";
 
 /**
  * write
@@ -44,7 +46,7 @@ export async function write(
         }
 
         if (options.sourcemap !== "hidden") {
-          source += `//# sourceMappingURL=${url}\n`;
+          source += `//# ${SOURCEMAPPING_URL}=${url}\n`;
         }
       }
     }

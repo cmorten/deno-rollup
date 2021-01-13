@@ -1,4 +1,4 @@
-import type { OutputOptions } from "../../deps.ts";
+import type { OutputOptions } from "./mod.ts";
 import { dirname, resolve } from "../../deps.ts";
 
 /**

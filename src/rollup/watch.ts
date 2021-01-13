@@ -1,4 +1,4 @@
-import type { RollupWatcher, RollupWatchOptions } from "../../deps.ts";
+import type { RollupWatcher, RollupWatchOptions } from "./mod.ts";
 import { notImplemented } from "../notImplemented.ts";
 
 export function watch(

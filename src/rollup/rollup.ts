@@ -1,4 +1,4 @@
-import type { RollupBuild, RollupOptions } from "../../deps.ts";
+import type { RollupBuild, RollupOptions } from "./mod.ts";
 import { rollup as _rollup } from "../../deps.ts";
 import { write } from "./write.ts";
 import { denoResolver } from "../rollup-plugin-deno-resolver/mod.ts";
