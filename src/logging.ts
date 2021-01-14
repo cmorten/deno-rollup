@@ -2,20 +2,17 @@ import type { RollupError } from "./rollup/mod.ts";
 import { bold, cyan, dim, red } from "../deps.ts";
 import { relativeId } from "./relativeId.ts";
 
-// Log to logError to keep rollup main.js > bundle.js` from breaking
+// Log to stderr to keep rollup main.js > bundle.js from breaking
 export const logInfo = console.error.bind(console);
 export const logError = console.error.bind(console);
 export const logOutput = console.log.bind(console);
 
 export function handleError(err: RollupError): never {
-  let description = err.message || err;
+  let message = err.message || err;
 
   if (err.name) {
-    description = `${err.name}: ${description}`;
+    message = `${err.name}: ${message}`;
   }
-
-  const message =
-    (err.plugin ? `(plugin ${err.plugin}) ${description}` : description) || err;
 
   logError(bold(red(`[!] ${bold(message.toString())}`)));
 

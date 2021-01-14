@@ -2,11 +2,13 @@
 
 This is a basic example to show Rollup usage withing Deno.
 
-The Rollup configu is defined in the `./rollup.config.ts` file, and specifies that we wish to created ES bundles from our code in the `./src` directory, including source maps.
+The Rollup config is defined in the `./rollup.config.ts` file, and specifies that we wish to created ES bundles from our code in the `./src` directory, including source maps.
 
 The code in `./src` is fairly trivial, but makes use of typescript, dynamic imports, URL imports (from the std library) and the Deno namespace, in order to demonstrate the bundling capabilities of Rollup with Deno.
 
 ## Usage
+
+### Script
 
 To invoke Rollup to bundle files in the `./src` directory, from this directory run:
 
@@ -20,4 +22,22 @@ To execute your newly bundled code run:
 
 ```console
 deno run --allow-read="./" ./dist/mod.js
+```
+
+### CLI
+
+Alternatively you can use the Rollup CLI to bundle files.
+
+Install the CLI:
+
+```console
+$ deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/drollup@2.36.1+0.2.0/rollup.ts
+```
+
+And follow any suggestions to update your `PATH` environment variable.
+
+You can then bundle the files using the `rollup.config.ts` with:
+
+```console
+rollup -c
 ```
