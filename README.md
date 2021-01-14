@@ -21,7 +21,6 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 ## Table of Contents
 
 - [Overview](#overview)
-- [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Documentation](#documentation)
 - [Example](#example)
@@ -34,7 +33,30 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 
 This library extends Rollup so that it can be used within Deno scripts to bundle Deno code.
 
-## Getting Started
+## Installation
+
+deno-rollup can be used either through a [command line interface (CLI)](https://rollupjs.org/guide/en/#command-line-reference) with an optional configuration file, or else through its [JavaScript API](https://rollupjs.org/guide/en/#javascript-api).
+
+### CLI
+
+To install the CLI run:
+
+```console
+deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/drollup@2.36.1+0.2.0/rollup.ts
+```
+
+And follow any suggestions to update your `PATH` environment variable.
+
+You can then use the CLI to bundle your modules:
+
+```console
+# compile to an ESM
+rollup main.js --format es --name "myBundle" --file bundle.js
+```
+
+### JavaScript API
+
+You can import deno-rollup straight into your project to bundle your modules:
 
 ```ts
 import { rollup } from "https://deno.land/x/drollup@2.36.1+0.2.0/mod.ts";
@@ -50,18 +72,6 @@ const options = {
 
 const bundle = await rollup(options);
 await bundle.write(options.output);
-```
-
-## Installation
-
-This is a [Deno](https://deno.land/) module available to import direct from this repo and via the [Deno Registry](https://deno.land/x).
-
-Before importing, [download and install Deno](https://deno.land/#installation).
-
-You can then import deno-rollup straight into your project:
-
-```ts
-import { rollup } from "https://deno.land/x/drollup@2.36.1+0.2.0/mod.ts";
 ```
 
 ## Documentation
