@@ -1,15 +1,31 @@
 import { expect } from "../../test/deps.ts";
-import { resolve, toFileUrl } from "../../deps.ts";
+import { bold, red, resolve, toFileUrl } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { loadUrl } from "./loadUrl.ts";
 
-describe("loadUrl", () => {
-  it("loadUrl: when the protocol is not supported", () => {
-    const url = new URL("data://123abc");
+const denoRunCommandPrefix = ["deno", "run", "--unstable"];
+const decoder = new TextDecoder();
 
-    expect(loadUrl(url)).rejects.toMatch(
-      "Error: Not implemented: support for protocol 'data:'",
+describe("loadUrl", () => {
+  it("loadUrl: when the protocol is not supported", async () => {
+    const scriptPath = "./test/fixtures/loadUrlDataProtocol.ts";
+    const expectedMessage = `${
+      bold(red(`[!] ${bold("Not implemented: support for protocol 'data:'")}`))
+    }\n\n`;
+
+    const process = await Deno.run({
+      cmd: [...denoRunCommandPrefix, scriptPath],
+      stdout: "piped",
+      stderr: "piped",
+    });
+
+    expect(await process.status()).toEqual({ code: 1, success: false });
+    expect(decoder.decode(await process.output())).toEqual("");
+    expect(decoder.decode(await process.stderrOutput())).toMatch(
+      expectedMessage,
     );
+
+    await process.close();
   });
 
   it("loadUrl: when passed a file URL: it should return the file contents", async () => {

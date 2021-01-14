@@ -21,4 +21,4 @@ lint:
 	@deno lint --unstable $(FILES_TO_FORMAT)
 
 test:
-	@deno test --allow-read --allow-write --allow-net ./src
+	@deno test --allow-read --allow-write --allow-net --allow-run --unstable ./src
