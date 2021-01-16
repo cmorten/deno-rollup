@@ -1,10 +1,12 @@
+import type { RollupWatcherEvent } from "../../deps.ts";
 import { VERSION } from "../../deps.ts";
 import { rollup } from "./rollup.ts";
+import { watch } from "./watch.ts";
 
 /**
  * @public
  */
-export { rollup, VERSION };
+export { rollup, VERSION, watch };
 
 /**
  * Prevent `warning: Compiled module not found` by re-exporting
@@ -92,7 +94,6 @@ export type {
   RollupOptions,
   RollupOutput,
   RollupWarning,
-  RollupWatcher,
   RollupWatcherEvent,
   RollupWatchOptions,
   SequentialPluginHooks,
@@ -113,4 +114,38 @@ export type {
   WarningHandlerWithDefault,
   WatchChangeHook,
   WatcherOptions,
-} from "https://unpkg.com/rollup@2.36.1/dist/rollup.d.ts";
+} from "../../deps.ts";
+
+interface TypedEventEmitter<
+  // deno-lint-ignore no-explicit-any
+  T extends { [event: string]: (...args: any) => any },
+> {
+  addListener<K extends keyof T>(event: K, listener: T[K]): this;
+  emit<K extends keyof T>(event: K, ...args: Parameters<T[K]>): boolean;
+  eventNames(): Array<keyof T>;
+  getMaxListeners(): number;
+  listenerCount(type: keyof T): number;
+  listeners<K extends keyof T>(event: K): Array<T[K]>;
+  off<K extends keyof T>(event: K, listener: T[K]): this;
+  on<K extends keyof T>(event: K, listener: T[K]): this;
+  once<K extends keyof T>(event: K, listener: T[K]): this;
+  prependListener<K extends keyof T>(event: K, listener: T[K]): this;
+  prependOnceListener<K extends keyof T>(event: K, listener: T[K]): this;
+  rawListeners<K extends keyof T>(event: K): Array<T[K]>;
+  removeAllListeners<K extends keyof T>(event?: K): this;
+  removeListener<K extends keyof T>(event: K, listener: T[K]): this;
+  setMaxListeners(n: number): this;
+}
+
+/**
+ * @public
+ */
+export interface RollupWatcher extends
+  TypedEventEmitter<{
+    change: (id: string, change: { event: string }) => void;
+    close: () => void;
+    event: (event: RollupWatcherEvent) => void;
+    restart: () => void;
+  }> {
+  close(): void;
+}

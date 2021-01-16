@@ -9,5 +9,5 @@ import { handleError } from "./logging.ts";
  */
 export function notImplemented(msg?: string): never {
   const message = msg ? `Not implemented: ${msg}` : "Not implemented";
-  handleError({ message });
+  throw handleError({ message });
 }

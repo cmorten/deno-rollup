@@ -1,5 +1,9 @@
 import type { IParseResult } from "../../deps.ts";
 
+// TODO: the browser version of rollup won't be doing anything
+// with these, so we should check if there is any expected
+// behaviour for certain env vars that we need to polyfill.
+
 export function environment(program: IParseResult) {
   if (program.options.environment) {
     for (const pair of program.options.environment) {

@@ -20,7 +20,7 @@ export function getDestination(
     return resolve(dirname(file));
   }
 
-  handleError(
+  throw handleError(
     {
       message: `You must specify "output.file" or "output.dir" for the build.`,
     },

@@ -10,7 +10,7 @@ import type {
   RollupCache,
   WarningHandler,
   WarningHandlerWithDefault,
-} from "../rollup/mod.ts";
+} from "./rollup/mod.ts";
 import { ensureArray } from "./ensureArray.ts";
 
 export const onWarn: WarningHandler = (warning) =>

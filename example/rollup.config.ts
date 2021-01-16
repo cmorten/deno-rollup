@@ -13,4 +13,7 @@ export default {
     format,
     sourcemap: true,
   },
+  watch: {
+    include: ["src/**"],
+  },
 };

@@ -7,7 +7,7 @@ export const logInfo = console.error.bind(console);
 export const logError = console.error.bind(console);
 export const logOutput = console.log.bind(console);
 
-export function handleError(err: RollupError): never {
+export function handleError(err: RollupError, recover = false) {
   let message = err.message || err;
 
   if (err.name) {
@@ -40,5 +40,7 @@ export function handleError(err: RollupError): never {
 
   logError("");
 
-  Deno.exit(1);
+  if (!recover) {
+    Deno.exit(1);
+  }
 }
