@@ -33,7 +33,7 @@ Alternatively you can use the Rollup CLI to bundle files.
 Install the CLI:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/drollup@2+0.3./rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/drollup@2.36.2+0.3.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.

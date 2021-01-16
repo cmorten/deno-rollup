@@ -28,11 +28,11 @@ export { EventEmitter } from "https://deno.land/std@0.83.0/node/events.ts";
  * Rollup
  */
 
-// @deno-types="https://unpkg.com/rollup@2/dist/rollup.d.ts"
+// @deno-types="https://unpkg.com/rollup@2.36.2/dist/rollup.d.ts"
 export {
   rollup,
   VERSION,
-} from "https://unpkg.com/rollup@2/dist/es/rollup.browser.js";
+} from "https://unpkg.com/rollup@2.36.2/dist/es/rollup.browser.js";
 export type {
   AddonHook,
   AddonHookFunction,
@@ -133,7 +133,7 @@ export type {
   WarningHandlerWithDefault,
   WatchChangeHook,
   WatcherOptions,
-} from "https://unpkg.com/rollup@2/dist/rollup.d.ts";
+} from "https://unpkg.com/rollup@2.36.2/dist/rollup.d.ts";
 
 /**
  * deno.land/x

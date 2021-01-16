@@ -42,7 +42,7 @@ deno-rollup can be used either through a [command line interface (CLI)](https://
 To install the CLI run:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/drollup@2+0.3./rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --unstable https://deno.land/x/drollup@2.36.2+0.3.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
@@ -59,13 +59,13 @@ rollup main.js --format es --name "myBundle" --file bundle.js
 You can import deno-rollup straight into your project to bundle your modules:
 
 ```ts
-import { rollup } from "https://deno.land/x/drollup@2+0.3./mod.ts";
+import { rollup } from "https://deno.land/x/drollup@2.36.2+0.3.0/mod.ts";
 
 const options = {
   input: "./mod.ts",
   output: {
     dir: "./dist",
-    format: "es" as "es",
+    format: "es" as const,
     sourcemap: true,
   },
 };
@@ -74,11 +74,64 @@ const bundle = await rollup(options);
 await bundle.write(options.output);
 ```
 
+Or using the `watch` API:
+
+```ts
+import { watch } from "https://deno.land/x/drollup@2.36.2+0.3.0/mod.ts";
+
+const options = {
+  input: "./src/mod.ts",
+  output: {
+    dir: "./dist",
+    format: "es" as const,
+    sourcemap: true,
+  },
+  watch: {
+    include: ["src/**"],
+  },
+};
+
+const watcher = await watch(options);
+
+watcher.on("event", (event) => {
+  // event.code can be one of:
+  //   START        — the watcher is (re)starting
+  //   BUNDLE_START — building an individual bundle
+  //                  * event.input will be the input options object if present
+  //                  * event.outputFiles cantains an array of the "file" or
+  //                    "dir" option values of the generated outputs
+  //   BUNDLE_END   — finished building a bundle
+  //                  * event.input will be the input options object if present
+  //                  * event.outputFiles cantains an array of the "file" or
+  //                    "dir" option values of the generated outputs
+  //                  * event.duration is the build duration in milliseconds
+  //                  * event.result contains the bundle object that can be
+  //                    used to generate additional outputs by calling
+  //                    bundle.generate or bundle.write. This is especially
+  //                    important when the watch.skipWrite option is used.
+  //                  You should call "event.result.close()" once you are done
+  //                  generating outputs, or if you do not generate outputs.
+  //                  This will allow plugins to clean up resources via the
+  //                  "closeBundle" hook.
+  //   END          — finished building all bundles
+  //   ERROR        — encountered an error while bundling
+  //                  * event.error contains the error that was thrown
+});
+
+// This will make sure that bundles are properly closed after each run
+watcher.on("event", (event) => {
+  if (event.code === "BUNDLE_END") {
+    event.result.close();
+  }
+});
+
+// stop watching
+watcher.close();
+```
+
 ## Documentation
 
 Please refer to the official [Rollup Documentation](https://rollupjs.org). Specifically, please refer to the [JavaScript API](https://rollupjs.org/guide/en/#javascript-api) which this library extends to provide Deno compatibility.
-
-> Note: currently this library only supports the `rollup` method, it does not yet have support for the `watch` method.
 
 ## Example
 
