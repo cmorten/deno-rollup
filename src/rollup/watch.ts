@@ -4,10 +4,6 @@ import { Watcher } from "./watcher.ts";
 import { ensureArray } from "../ensureArray.ts";
 import { handleError } from "../logging.ts";
 
-// TODO: watch.clearScreen  -- TBD
-// TODO: watch.chokidar     -- unless chokidar gets Denoified this won't be supported,
-//                             but can consider Deno.watchFs options?
-
 class WatchEmitter extends EventEmitter {
   constructor() {
     super();

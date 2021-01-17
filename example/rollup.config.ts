@@ -15,5 +15,6 @@ export default {
   },
   watch: {
     include: ["src/**"],
+    clearScreen: true,
   },
 };

@@ -173,7 +173,9 @@ export class Task {
     this.options = mergeOptions(config);
     this.outputs = this.options.output;
 
-    this.outputFiles = this.outputs.map(getDestination);
+    this.outputFiles = this.outputs.map(getDestination).filter(
+      Boolean,
+    ) as string[];
 
     const watchOptions: WatcherOptions = this.options.watch || {};
     this.filter = createFilter(watchOptions.include, watchOptions.exclude);

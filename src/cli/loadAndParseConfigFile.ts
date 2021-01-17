@@ -1,7 +1,7 @@
 import type { MergedRollupOptions } from "../rollup/mod.ts";
-import type { GenericConfigObject } from "./types.ts";
+import type { GenericConfigObject } from "../types.ts";
 import { loadConfigFile } from "./loadConfigFile.ts";
-import { mergeOptions } from "./mergeOptions.ts";
+import { mergeOptions } from "../mergeOptions.ts";
 
 export async function loadAndParseConfigFile(
   fileName: string,

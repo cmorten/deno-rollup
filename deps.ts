@@ -59,7 +59,6 @@ export type {
   GlobalsOption,
   HasModuleSideEffects,
   InputOption,
-  InputOptions,
   InternalModuleFormat,
   InteropType,
   IsExternal,
@@ -114,7 +113,6 @@ export type {
   RollupOutput,
   RollupWarning,
   RollupWatcherEvent,
-  RollupWatchOptions,
   SequentialPluginHooks,
   SerializablePluginCache,
   SerializedTimings,
@@ -132,7 +130,6 @@ export type {
   WarningHandler,
   WarningHandlerWithDefault,
   WatchChangeHook,
-  WatcherOptions,
 } from "https://unpkg.com/rollup@2.36.2/dist/rollup.d.ts";
 
 /**

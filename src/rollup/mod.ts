@@ -1,4 +1,16 @@
-import type { RollupWatcherEvent } from "../../deps.ts";
+// deno-lint-ignore-file ban-types
+import type {
+  ExternalOption,
+  InputOption,
+  ManualChunksOption,
+  OutputOptions,
+  Plugin,
+  PreserveEntrySignaturesOption,
+  RollupCache,
+  RollupWatcherEvent,
+  TreeshakingOptions,
+  WarningHandlerWithDefault,
+} from "../../deps.ts";
 import { VERSION } from "../../deps.ts";
 import { rollup } from "./rollup.ts";
 import { watch } from "./watch.ts";
@@ -40,7 +52,6 @@ export type {
   GlobalsOption,
   HasModuleSideEffects,
   InputOption,
-  InputOptions,
   InternalModuleFormat,
   InteropType,
   IsExternal,
@@ -95,7 +106,6 @@ export type {
   RollupOutput,
   RollupWarning,
   RollupWatcherEvent,
-  RollupWatchOptions,
   SequentialPluginHooks,
   SerializablePluginCache,
   SerializedTimings,
@@ -113,7 +123,6 @@ export type {
   WarningHandler,
   WarningHandlerWithDefault,
   WatchChangeHook,
-  WatcherOptions,
 } from "../../deps.ts";
 
 interface TypedEventEmitter<
@@ -148,4 +157,54 @@ export interface RollupWatcher extends
     restart: () => void;
   }> {
   close(): void;
+}
+
+/**
+ * @public
+ */
+export interface InputOptions {
+  acorn?: Object;
+  acornInjectPlugins?: Function | Function[];
+  cache?: false | RollupCache;
+  context?: string;
+  experimentalCacheExpiry?: number;
+  external?: ExternalOption;
+  /** @deprecated Use the "inlineDynamicImports" output option instead. */
+  inlineDynamicImports?: boolean;
+  input?: InputOption;
+  /** @deprecated Use the "manualChunks" output option instead. */
+  manualChunks?: ManualChunksOption;
+  moduleContext?: ((id: string) => string | null | undefined) | {
+    [id: string]: string;
+  };
+  onwarn?: WarningHandlerWithDefault;
+  perf?: boolean;
+  plugins?: Plugin[];
+  preserveEntrySignatures?: PreserveEntrySignaturesOption;
+  /** @deprecated Use the "preserveModules" output option instead. */
+  preserveModules?: boolean;
+  preserveSymlinks?: boolean;
+  shimMissingExports?: boolean;
+  strictDeprecations?: boolean;
+  treeshake?: boolean | TreeshakingOptions;
+  watch?: WatcherOptions | false;
+}
+
+/**
+ * @public
+ */
+export interface WatcherOptions {
+  buildDelay?: number;
+  clearScreen?: boolean;
+  exclude?: string | RegExp | (string | RegExp)[];
+  include?: string | RegExp | (string | RegExp)[];
+  skipWrite?: boolean;
+}
+
+/**
+ * @public
+ */
+export interface RollupWatchOptions extends InputOptions {
+  output?: OutputOptions | OutputOptions[];
+  watch?: WatcherOptions | false;
 }

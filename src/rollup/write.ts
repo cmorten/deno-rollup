@@ -1,6 +1,7 @@
 import type { OutputOptions, RollupBuild, RollupOutput } from "./mod.ts";
 import { join } from "../../deps.ts";
 import { getDestination } from "./getDestination.ts";
+import { handleError } from "../logging.ts";
 
 export const SOURCEMAPPING_URL = "sourceMappingURL";
 
@@ -18,6 +19,14 @@ export async function write(
 ): Promise<RollupOutput> {
   const rollupOutput = await this.generate(options);
   const destination = getDestination(options);
+
+  if (!destination) {
+    throw handleError(
+      {
+        message: `you must specify "output.file" or "output.dir" for the build`,
+      },
+    );
+  }
 
   await Deno.mkdir(destination, { recursive: true });
 

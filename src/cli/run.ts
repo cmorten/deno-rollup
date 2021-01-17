@@ -8,6 +8,7 @@ import { notImplemented } from "../notImplemented.ts";
 
 export async function run(program: IParseResult) {
   let inputSource;
+
   if (program.args.length) {
     if (program.options.input) {
       handleError({
@@ -43,22 +44,26 @@ export async function run(program: IParseResult) {
     }
   }
 
-  if (program.options.watch) {
-    return notImplemented("-w, --watch option");
-  }
   if (program.options.plugin) {
+    // TODO: remove from the types + code elsewhere
     return notImplemented("-p, --plugin option");
   }
 
   environment(program);
 
-  try {
-    const { options } = await getConfigs(program);
+  if (program.options.watch) {
+    const { watch } = await import("./watch.ts");
 
-    for (const inputOptions of options) {
-      await build(inputOptions, program.options.silent);
+    watch(program);
+  } else {
+    try {
+      const { options } = await getConfigs(program);
+
+      for (const inputOptions of options) {
+        await build(inputOptions, program.options.silent);
+      }
+    } catch (err) {
+      handleError(err);
     }
-  } catch (err) {
-    handleError(err);
   }
 }

@@ -1,6 +1,6 @@
 import type { MergedRollupOptions } from "../rollup/mod.ts";
-import type { GenericConfigObject } from "./types.ts";
-import { mergeOptions } from "./mergeOptions.ts";
+import type { GenericConfigObject } from "../types.ts";
+import { mergeOptions } from "../mergeOptions.ts";
 
 const stdinName = "-";
 

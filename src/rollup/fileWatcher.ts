@@ -17,10 +17,6 @@ export class FileWatcher {
     const cwd = Deno.cwd();
     const watcher = Deno.watchFs([cwd]);
 
-    const handleChange = ({ path, kind }: { path: string; kind: string }) => {
-      this.task.invalidate({ path, kind });
-    };
-
     for await (const { kind, paths } of watcher) {
       if (this.closed) {
         break;
@@ -30,7 +26,7 @@ export class FileWatcher {
 
       for (const path of paths) {
         if (this.task.filter(path)) {
-          handleChange({ path, kind });
+          this.task.invalidate({ path, kind });
         }
       }
     }

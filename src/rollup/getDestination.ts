@@ -6,12 +6,12 @@ import { handleError } from "../logging.ts";
  * getDestination
  * 
  * @param {OutputOptions} options
- * @returns {string}
+ * @returns {string|null}
  * @private
  */
 export function getDestination(
   options: OutputOptions,
-): string | never {
+): string | null {
   const { dir, file } = options;
 
   if (dir) {
@@ -20,9 +20,5 @@ export function getDestination(
     return resolve(dirname(file));
   }
 
-  throw handleError(
-    {
-      message: `You must specify "output.file" or "output.dir" for the build.`,
-    },
-  );
+  return null;
 }

@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.36.2+0.4.0] - 17-01-2020
+
+- Initial port of Rollup CLI `--watch` flag.
+
 ## [2.36.2+0.3.0] - 16-01-2020
 
 - Initial port of Rollup `watch` method.

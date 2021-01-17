@@ -1,4 +1,4 @@
-import type { GenericConfigObject } from "./types.ts";
+import type { GenericConfigObject } from "../types.ts";
 import { toFileUrl } from "../../deps.ts";
 import { handleError } from "../logging.ts";
 
@@ -7,7 +7,8 @@ export async function loadConfigFile(
   commandOptions: GenericConfigObject,
 ): Promise<GenericConfigObject[]> {
   const filePath = toFileUrl(fileName).href;
-  const configFileExport = (await import(filePath)).default;
+  const configFileExport =
+    (await import(`${filePath}?cachebust=${+(new Date())}`)).default;
 
   return getConfigList(configFileExport, commandOptions);
 }
