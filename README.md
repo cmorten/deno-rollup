@@ -138,7 +138,7 @@ watcher.close();
 
 ## Documentation
 
-Please refer to the official [Rollup Documentation](https://rollupjs.org). Specifically, please refer to the [JavaScript API](https://rollupjs.org/guide/en/#javascript-api) which this library extends to provide Deno compatibility.
+Please refer to the official [Rollup Documentation](https://rollupjs.org).
 
 ## Example
 
