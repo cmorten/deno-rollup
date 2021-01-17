@@ -10,7 +10,7 @@ import { isUrl } from "./isUrl.ts";
  * @private
  */
 export function resolveId(source: string, importer?: string): string {
-  if (isUrl(source) || isAbsolute(source)) {
+  if (isUrl(source)) {
     return source;
   }
 

@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.36.2+0.4.1] - 17-01-2021
+
+- fix: id resolution for absolute paths from url importers
+
 ## [2.36.2+0.4.0] - 17-01-2021
 
 - Initial port of Rollup CLI `--watch` flag.
