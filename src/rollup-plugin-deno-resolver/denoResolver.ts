@@ -40,23 +40,25 @@ export function denoResolver(
       return resolveId(source, importer);
     },
     async load(source: string, importer?: string) {
-      const id = resolveId(source, importer);
       const url = parse(source, importer);
 
       if (!url) {
         return null;
       }
 
-      const code = await loadUrl(url, fetchOpts);
-
       if (isTypescript(url.href)) {
-        const { [id]: { source } } = await Deno.transpileOnly(
-          { [id]: code },
-          compilerOpts,
+        const outputUrlHref = url.href + ".js";
+        const { files: { [outputUrlHref]: output } } = await Deno.emit(
+          url,
+          {
+            check: false,
+            compilerOptions: compilerOpts,
+          },
         );
 
-        return source;
+        return output;
       }
+      const code = await loadUrl(url, fetchOpts);
 
       // TODO: URL import source maps not yet supported
       if (isUrl(source)) {
