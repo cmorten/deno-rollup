@@ -58,6 +58,8 @@ export function denoResolver(
 
         return output;
       }
+      
+      const code = await loadUrl(url, fetchOpts);
 
       // TODO: URL import source maps not yet supported
       if (isUrl(source)) {
