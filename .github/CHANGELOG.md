@@ -1,8 +1,14 @@
 # ChangeLog
 
+## [2.37.1+0.5.1] - 20-01-2021
+
+- feat: perf improvements
+
+`Deno.emit(...)` appears to a bottleneck somewhere when resolving remote modules resulting in very long compilation time. Retrieving the module manually and passing as a source appears far more performant at the moment.
+
 ## [2.37.1+0.5.0] - 20-01-2021
 
--  fix: Deno.transpileOnly is being replaced by Deno.emit (#1)
+- fix: Deno.transpileOnly is being replaced by Deno.emit (#1)
 
 ## [2.36.2+0.4.1] - 17-01-2021
 
