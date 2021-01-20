@@ -42,7 +42,7 @@ deno-rollup can be used either through a [command line interface (CLI)](https://
 To install the CLI run:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.36.2+0.4.1/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.37.1+0.5.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
@@ -66,7 +66,7 @@ rollup -c --watch
 You can import deno-rollup straight into your project to bundle your modules:
 
 ```ts
-import { rollup } from "https://deno.land/x/drollup@2.36.2+0.4.1/mod.ts";
+import { rollup } from "https://deno.land/x/drollup@2.37.1+0.5.0/mod.ts";
 
 const options = {
   input: "./mod.ts",
@@ -84,7 +84,7 @@ await bundle.write(options.output);
 Or using the `watch` API:
 
 ```ts
-import { watch } from "https://deno.land/x/drollup@2.36.2+0.4.1/mod.ts";
+import { watch } from "https://deno.land/x/drollup@2.37.1+0.5.0/mod.ts";
 
 const options = {
   input: "./src/mod.ts",

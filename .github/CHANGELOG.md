@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.37.1+0.5.0] - 20-01-2021
+
+-  fix: Deno.transpileOnly is being replaced by Deno.emit (#1)
+
 ## [2.36.2+0.4.1] - 17-01-2021
 
 - fix: id resolution for absolute paths from url importers
