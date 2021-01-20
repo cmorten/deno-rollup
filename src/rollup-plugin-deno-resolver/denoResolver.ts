@@ -46,8 +46,6 @@ export function denoResolver(
         return null;
       }
 
-      const code = await loadUrl(url, fetchOpts);
-
       if (isTypescript(url.href)) {
         const outputUrlHref = url.href + ".js";
         const { files: { [outputUrlHref]: output } } = await Deno.emit(
