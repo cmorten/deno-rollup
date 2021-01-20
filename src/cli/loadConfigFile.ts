@@ -1,5 +1,6 @@
 import type { GenericConfigObject } from "../types.ts";
 import { toFileUrl } from "../../deps.ts";
+import { ensureArray } from "../ensureArray.ts";
 import { handleError } from "../logging.ts";
 
 export async function loadConfigFile(
@@ -30,5 +31,5 @@ async function getConfigList(
     });
   }
 
-  return Array.isArray(config) ? config : [config];
+  return ensureArray(config);
 }

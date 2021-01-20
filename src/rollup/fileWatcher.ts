@@ -1,4 +1,4 @@
-import { Task } from "./watcher.ts";
+import { Task } from "./task.ts";
 
 export class FileWatcher {
   private task: Task;

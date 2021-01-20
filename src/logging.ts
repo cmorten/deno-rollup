@@ -2,7 +2,6 @@ import type { RollupError } from "./rollup/mod.ts";
 import { bold, cyan, dim, red } from "../deps.ts";
 import { relativeId } from "./relativeId.ts";
 
-// Log to stderr to keep rollup main.js > bundle.js from breaking
 export const logInfo = console.error.bind(console);
 export const logError = console.error.bind(console);
 export const logOutput = console.log.bind(console);
