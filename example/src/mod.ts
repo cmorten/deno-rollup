@@ -1,5 +1,5 @@
 import std from "./std.ts";
-import { basename } from "https://deno.land/std@0.84.0/path/mod.ts";
+import { basename } from "https://deno.land/std@0.83.0/path/mod.ts";
 
 export async function main(): Promise<void> {
   console.log(std);

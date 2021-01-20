@@ -46,20 +46,23 @@ export function denoResolver(
         return null;
       }
 
+      const code = await loadUrl(url, fetchOpts);
+
       if (isTypescript(url.href)) {
-        const outputUrlHref = url.href + ".js";
+        const outputUrlHref = `${url.href}.js`;
         const { files: { [outputUrlHref]: output } } = await Deno.emit(
           url,
           {
             check: false,
             compilerOptions: compilerOpts,
+            sources: {
+              [url.href]: code,
+            },
           },
         );
 
         return output;
       }
-
-      const code = await loadUrl(url, fetchOpts);
 
       // TODO: URL import source maps not yet supported
       if (isUrl(source)) {

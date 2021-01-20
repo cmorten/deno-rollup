@@ -17,4 +17,6 @@ export default {
     include: ["src/**"],
     clearScreen: true,
   },
+  // Suppress circular dependency warnings about Deno's std library!
+  onwarn: () => {},
 };
