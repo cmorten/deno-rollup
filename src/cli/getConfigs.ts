@@ -1,5 +1,4 @@
-import type { IParseResult } from "../../deps.ts";
-import type { MergedRollupOptions } from "../rollup/mod.ts";
+import type { IParseResult, MergedRollupOptions } from "../../deps.ts";
 import { getConfigPath } from "./getConfigPath.ts";
 import { loadAndParseConfigFile } from "./loadAndParseConfigFile.ts";
 import { loadConfigFromCommand } from "./loadConfigFromCommand.ts";

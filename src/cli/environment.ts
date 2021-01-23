@@ -1,6 +1,6 @@
 import type { IParseResult } from "../../deps.ts";
 
-// TODO: the browser version of rollup won't be doing anything
+// TODO: the browser version of rollup probably isn't doing anything
 // with these, so we should check if there is any expected
 // behaviour for certain env vars that we need to polyfill.
 

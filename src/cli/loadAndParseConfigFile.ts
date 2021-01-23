@@ -1,4 +1,4 @@
-import type { MergedRollupOptions } from "../rollup/mod.ts";
+import type { MergedRollupOptions } from "../../deps.ts";
 import type { GenericConfigObject } from "../types.ts";
 import { loadConfigFile } from "./loadConfigFile.ts";
 import { mergeOptions } from "../mergeOptions.ts";

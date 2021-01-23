@@ -45,7 +45,7 @@ export async function run(program: IParseResult) {
   }
 
   if (program.options.plugin) {
-    // TODO: remove from the types + code elsewhere
+    // TODO: remove from the types + code elsewhere or implement
     return notImplemented("-p, --plugin option");
   }
 

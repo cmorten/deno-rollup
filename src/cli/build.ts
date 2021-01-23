@@ -1,4 +1,4 @@
-import type { MergedRollupOptions } from "../rollup/mod.ts";
+import type { MergedRollupOptions } from "../../deps.ts";
 import { bold, cyan, green, ms } from "../../deps.ts";
 import { relativeId } from "../relativeId.ts";
 import { SOURCEMAPPING_URL } from "../rollup/write.ts";

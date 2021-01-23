@@ -1,5 +1,8 @@
 import { notImplemented } from "../notImplemented.ts";
 
+// TODO: given we are now duplicating loadUrl,
+// we should instead cache and re-using in the
+// load() for the plugin.
 export async function exists(
   url: URL,
   fetchOpts?: RequestInit,
@@ -20,9 +23,6 @@ export async function exists(
         const res = await fetch(url.href, fetchOpts);
 
         // Prevent leaking fetchResponseBody resource
-        // TODO: given we are now duplicating loadUrl,
-        // we should instead cache and re-using in the
-        // load() for the plugin.
         await res.arrayBuffer();
 
         return res.ok;

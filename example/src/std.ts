@@ -1,3 +1,4 @@
-const myString = "This is a standard import!";
+import random from "./nested/random.ts";
 
-export default myString;
+export const myString =
+  `This is a standard import! Here's a randome number: ${random()}`;

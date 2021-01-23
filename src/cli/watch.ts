@@ -1,5 +1,5 @@
-import type { IParseResult } from "../../deps.ts";
-import type { MergedRollupOptions, RollupWatcher } from "../rollup/mod.ts";
+import type { IParseResult, MergedRollupOptions } from "../../deps.ts";
+import type { RollupWatcher } from "../rollup/mod.ts";
 import { VERSION, watch as _watch } from "../rollup/mod.ts";
 import { bold, cyan, green, ms, underline } from "../../deps.ts";
 import { getConfigPath } from "./getConfigPath.ts";

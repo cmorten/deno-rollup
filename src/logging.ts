@@ -1,4 +1,4 @@
-import type { RollupError } from "./rollup/mod.ts";
+import type { RollupError } from "../deps.ts";
 import { bold, cyan, dim, red } from "../deps.ts";
 import { relativeId } from "./relativeId.ts";
 

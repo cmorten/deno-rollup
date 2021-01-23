@@ -1,4 +1,4 @@
-import type { SerializedTimings } from "../rollup/mod.ts";
+import type { SerializedTimings } from "../../deps.ts";
 import { bold, underline } from "../../deps.ts";
 import { logInfo } from "../logging.ts";
 
