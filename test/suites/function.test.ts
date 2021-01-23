@@ -5,7 +5,7 @@
  */
 
 import { ensureUrl } from "../../src/rollup-plugin-deno-resolver/ensureUrl.ts";
-import { basename, join } from "../../deps.ts";
+import { basename } from "../../deps.ts";
 import { rollup } from "../../mod.ts";
 import { runTestSuiteWithSamples } from "../utils.ts";
 import { compareError } from "../compareError.ts";
@@ -85,7 +85,7 @@ await runTestSuiteWithSamples(
       }
 
       const inputOptions = {
-        input: ensureUrl(join(dir, "main.js")),
+        input: ensureUrl(`${dir}/main.js`),
         strictDeprecations: true,
         onwarn: () => {},
         ...config?.options,
