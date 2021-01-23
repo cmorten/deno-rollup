@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.38.0+0.6.0] - 23-01-2021
+
+- feat: extend cli option support (#3)
+- test: add rollup function tests (#2)
+
 ## [2.37.1+0.5.1] - 20-01-2021
 
 - feat: perf improvements
