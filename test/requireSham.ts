@@ -5,9 +5,9 @@ import {
   assert,
   createRequire,
   magicString,
+  posixPath,
   sourceMap,
   url,
-  posixPath,
 } from "./deps.ts";
 import { extname } from "../deps.ts";
 import { ensureUrl } from "../src/rollup-plugin-deno-resolver/ensureUrl.ts";
