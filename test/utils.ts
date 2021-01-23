@@ -35,6 +35,8 @@ async function runSamples(
         directories?.[currentDirectoryIndex]?.[0] || "",
       ).split(`${sep}.`)[0];
 
+      console.log(directories, filePath, currentDirectory)
+
       if (
         excludes.some((exclude) => filePath.includes(exclude))
       ) {
@@ -49,7 +51,7 @@ async function runSamples(
       }
 
       return directories;
-    }, [] as string[][]).slice(0);
+    }, [] as string[][]);
 
   for (const directory of directories) {
     await runTestsInDir(directory, runTest);
@@ -69,8 +71,6 @@ async function runTestsInDir(filePaths: string[], runTest: Test) {
   const configPath = filePaths.find((filePath) =>
     filePath.includes("_config.js")
   );
-
-  console.log(filePaths, configPath);
 
   if (configPath) {
     await loadConfigAndRunTest(join(dirname(configPath), sep), runTest);
