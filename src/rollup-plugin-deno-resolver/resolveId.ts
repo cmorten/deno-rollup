@@ -1,5 +1,5 @@
-import { dirname, isAbsolute, join } from "../../deps.ts";
-import { isUrl } from "./isUrl.ts";
+import { dirname, extname, join } from "../../deps.ts";
+import { ensureUrl } from "./ensureUrl.ts";
 
 /**
  * resolveId
@@ -10,13 +10,17 @@ import { isUrl } from "./isUrl.ts";
  * @private
  */
 export function resolveId(source: string, importer?: string): string {
-  if (isUrl(source)) {
-    return source;
+  const sourceUrl = ensureUrl(source);
+
+  if (sourceUrl) {
+    return sourceUrl;
   }
 
   if (importer) {
-    if (isUrl(importer)) {
-      return new URL(source, importer).href;
+    const importerUrl = ensureUrl(importer);
+
+    if (importerUrl) {
+      return new URL(source, importerUrl).href;
     }
 
     return join(dirname(importer), source);

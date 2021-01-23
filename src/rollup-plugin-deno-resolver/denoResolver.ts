@@ -1,9 +1,11 @@
 import type { Plugin } from "../rollup/mod.ts";
 import { parse } from "./parse.ts";
 import { isTypescript } from "./isTypescript.ts";
-import { isUrl } from "./isUrl.ts";
+import { ensureUrl } from "./ensureUrl.ts";
 import { resolveId } from "./resolveId.ts";
+import { exists } from "./exists.ts";
 import { loadUrl } from "./loadUrl.ts";
+import { handleUnresolvedId } from "./handleUnresolvedId.ts";
 
 /**
  * @public
@@ -36,8 +38,27 @@ export function denoResolver(
 ): Plugin | never {
   return {
     name: "rollup-plugin-deno-resolver",
-    resolveId(source: string, importer?: string) {
-      return resolveId(source, importer);
+    async resolveId(source: string, importer?: string) {
+      let id = resolveId(source, importer);
+      let url = parse(id, importer);
+
+      if (!url) {
+        return handleUnresolvedId(id, importer);
+      }
+
+      if (!(await exists(url, fetchOpts))) {
+        // We assume extensionless imports are from bundling commonjs
+        // as in Deno extensions are compulsory. We assume that the
+        // extensionless commonjs file is JavaScript and not TypeScript.
+        id += ".js";
+        url = new URL(`${url.href}.js`);
+      }
+
+      if (!(await exists(url, fetchOpts))) {
+        return handleUnresolvedId(id, importer);
+      }
+
+      return id;
     },
     async load(source: string, importer?: string) {
       const url = parse(source, importer);
@@ -65,7 +86,7 @@ export function denoResolver(
       }
 
       // TODO: URL import source maps not yet supported
-      if (isUrl(source)) {
+      if (ensureUrl(source)) {
         return { code, map: { mappings: "" } };
       }
 
