@@ -1,4 +1,4 @@
-import type { Plugin } from "../rollup/mod.ts";
+import type { Plugin } from "../../deps.ts";
 import { parse } from "./parse.ts";
 import { isTypescript } from "./isTypescript.ts";
 import { ensureUrl } from "./ensureUrl.ts";
@@ -55,6 +55,7 @@ export function denoResolver(
       }
 
       if (!(await exists(url, fetchOpts))) {
+        id = id.substr(0, id.length - 3);
         return handleUnresolvedId(id, importer);
       }
 

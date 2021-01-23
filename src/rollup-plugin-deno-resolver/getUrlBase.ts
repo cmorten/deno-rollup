@@ -22,8 +22,8 @@ export function getUrlBase(importer?: string): URL {
       path = dirname(join(Deno.cwd(), importer));
     }
   } else {
-    path = Deno.cwd();
+    path = join(Deno.cwd(), sep);
   }
 
-  return toFileUrl(join(path, sep));
+  return toFileUrl(path);
 }

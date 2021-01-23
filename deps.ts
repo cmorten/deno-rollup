@@ -137,7 +137,10 @@ export type {
  */
 
 export { Command } from "https://deno.land/x/cliffy@v0.17.0/command/mod.ts";
-export type { IParseResult } from "https://deno.land/x/cliffy@v0.17.0/command/mod.ts";
+export type {
+  IParseResult,
+  ITypeInfo,
+} from "https://deno.land/x/cliffy@v0.17.0/command/mod.ts";
 
 /**
  * esm.sh

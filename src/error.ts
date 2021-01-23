@@ -1,4 +1,4 @@
-import type { RollupError } from "./rollup/mod.ts";
+import type { RollupError } from "../deps.ts";
 
 export function error(base: Error | RollupError): never {
   if (!(base instanceof Error)) {

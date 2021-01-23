@@ -3,14 +3,14 @@
 import type { CommandConfigObject, GenericConfigObject } from "./types.ts";
 import type {
   ExternalOption,
-  InputOptions,
   MergedRollupOptions,
   OutputOptions,
   Plugin,
   RollupCache,
   WarningHandler,
   WarningHandlerWithDefault,
-} from "./rollup/mod.ts";
+} from "../deps.ts";
+import type { InputOptions } from "./rollup/mod.ts";
 import { ensureArray } from "./ensureArray.ts";
 
 export const onWarn: WarningHandler = (warning) =>

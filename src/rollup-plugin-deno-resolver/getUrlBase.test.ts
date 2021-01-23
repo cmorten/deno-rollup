@@ -24,9 +24,9 @@ describe("getUrlBase", () => {
     assertUrlMatch(urlBase, expected);
   });
 
-  it("getUrlBase: when an absolute path importer is provided: should return the directory path of the importer as a file URL", () => {
+  it("getUrlBase: when an absolute path importer is provided: should return the directory path of the importer as a file URL with no trailing slash", () => {
     const importer = resolve("./getUrlBase.test.ts");
-    const expected = toFileUrl(join(dirname(importer), sep));
+    const expected = toFileUrl(dirname(importer));
     const urlBase = getUrlBase(importer);
 
     assertUrlMatch(urlBase, expected);
@@ -40,25 +40,25 @@ describe("getUrlBase", () => {
     assertUrlMatch(urlBase, expected);
   });
 
-  it("getUrlBase: when an sibling relative path importer is provided: should return the directory path of the importer as a file URL", () => {
+  it("getUrlBase: when an sibling relative path importer is provided: should return the directory path of the importer as a file URL with no trailing slash", () => {
     const importer = "./test.ts";
-    const expected = toFileUrl(join(Deno.cwd(), dirname(importer), sep));
+    const expected = toFileUrl(join(Deno.cwd(), dirname(importer)));
     const urlBase = getUrlBase(importer);
 
     assertUrlMatch(urlBase, expected);
   });
 
-  it("getUrlBase: when a parent relative path importer is provided: should return the directory path of the importer as a file URL", () => {
+  it("getUrlBase: when a parent relative path importer is provided: should return the directory path of the importer as a file URL with no trailing slash", () => {
     const importer = "../test.ts";
-    const expected = toFileUrl(join(Deno.cwd(), dirname(importer), sep));
+    const expected = toFileUrl(join(Deno.cwd(), dirname(importer)));
     const urlBase = getUrlBase(importer);
 
     assertUrlMatch(urlBase, expected);
   });
 
-  it("getUrlBase: when a child relative path importer is provided: should return the directory path of the importer as a file URL", () => {
+  it("getUrlBase: when a child relative path importer is provided: should return the directory path of the importer as a file URL with no trailing slash", () => {
     const importer = "./test-path/test.ts";
-    const expected = toFileUrl(join(Deno.cwd(), dirname(importer), sep));
+    const expected = toFileUrl(join(Deno.cwd(), dirname(importer)));
     const urlBase = getUrlBase(importer);
 
     assertUrlMatch(urlBase, expected);
