@@ -33,7 +33,7 @@ async function runSamples(
       const currentDirectoryIndex = directories.length - 1;
       const currentDirectory = dirname(
         directories?.[currentDirectoryIndex]?.[0] || "",
-      ).split("/.")[0];
+      ).split(`${sep}.`)[0];
 
       if (
         excludes.some((exclude) => filePath.includes(exclude))
@@ -41,7 +41,7 @@ async function runSamples(
         return directories;
       } else if (
         currentDirectory !== "" &&
-        filePath.startsWith(join(currentDirectory, "/"))
+        filePath.startsWith(join(currentDirectory, sep))
       ) {
         directories[currentDirectoryIndex].push(filePath);
       } else {
@@ -69,6 +69,8 @@ async function runTestsInDir(filePaths: string[], runTest: Test) {
   const configPath = filePaths.find((filePath) =>
     filePath.includes("_config.js")
   );
+
+  console.log(filePaths, configPath);
 
   if (configPath) {
     await loadConfigAndRunTest(join(dirname(configPath), sep), runTest);
