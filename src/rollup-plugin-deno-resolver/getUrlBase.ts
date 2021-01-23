@@ -1,5 +1,5 @@
 import { dirname, isAbsolute, join, sep, toFileUrl } from "../../deps.ts";
-import { isUrl } from "./isUrl.ts";
+import { ensureUrl } from "./ensureUrl.ts";
 
 /**
  * getUrlBase
@@ -12,8 +12,10 @@ export function getUrlBase(importer?: string): URL {
   let path: string;
 
   if (importer) {
-    if (isUrl(importer)) {
-      return new URL(join(dirname(importer), sep));
+    const importerUrl = ensureUrl(importer);
+
+    if (importerUrl) {
+      return new URL(join(dirname(importerUrl), sep));
     } else if (isAbsolute(importer)) {
       path = dirname(importer);
     } else {

@@ -2,6 +2,8 @@ import type { RollupBuild, RollupOptions } from "./mod.ts";
 import { rollup as _rollup } from "../../deps.ts";
 import { write } from "./write.ts";
 import { denoResolver } from "../rollup-plugin-deno-resolver/mod.ts";
+import { ensureArray } from "../ensureArray.ts";
+import { error } from "../error.ts";
 
 /**
  * rollup
@@ -28,27 +30,49 @@ import { denoResolver } from "../rollup-plugin-deno-resolver/mod.ts";
 export async function rollup(
   options: RollupOptions,
 ): Promise<RollupBuild> {
+  const denoResolverPlugin = denoResolver();
+
   options = {
     ...options,
     plugins: options.plugins
       ? [
-        ...options.plugins,
-        denoResolver(),
+        ...ensureArray(options.plugins),
+        denoResolverPlugin,
       ]
-      : [denoResolver()],
+      : [denoResolverPlugin],
   };
 
-  const bundle = await _rollup(options);
+  try {
+    const bundle = await _rollup(options);
 
-  return new Proxy(bundle, {
-    get: (target, prop, receiver) => {
-      const value = Reflect.get(target, prop, receiver);
+    return new Proxy(bundle, {
+      get: (target, prop, receiver) => {
+        const value = Reflect.get(target, prop, receiver);
 
-      if (prop === "write") {
-        return write.bind(target);
-      }
+        if (prop === "write") {
+          return write.bind(target);
+        }
 
-      return value;
-    },
-  });
+        return value;
+      },
+    });
+  } catch (err) {
+    // TODO: raise issue / PR for rollup lib
+    //
+    // Workaround for issue with Rollup browser bundle. In the codepath
+    // resolve() is called with no args when returning null from resolveId,
+    // but the bundled browser distribution of rollup throws an error for
+    // it's implementation of resolve when not passed any args.
+    //
+    // REF: https://github.com/rollup/rollup/blob/master/browser/path.ts#L61
+
+    if (err?.plugin === denoResolverPlugin.name) {
+      return error({
+        code: err?.pluginCode,
+        message: err?.message,
+      });
+    }
+
+    throw err;
+  }
 }

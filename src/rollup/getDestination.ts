@@ -1,6 +1,5 @@
 import type { OutputOptions } from "./mod.ts";
 import { dirname, resolve } from "../../deps.ts";
-import { handleError } from "../logging.ts";
 
 /**
  * getDestination
