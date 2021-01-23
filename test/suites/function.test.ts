@@ -85,7 +85,7 @@ await runTestSuiteWithSamples(
       }
 
       const inputOptions = {
-        input: ensureUrl(`${dir}/main.js`),
+        input: ensureUrl(`${dir}main.js`),
         strictDeprecations: true,
         onwarn: () => {},
         ...config?.options,
