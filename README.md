@@ -1,20 +1,19 @@
-<p align="center">
-  <h1 align="center">deno-rollup</h1>
+<p>
+  <h1>deno-rollup</h1>
 </p>
-<p align="center">
+<p>
 Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> ported from <a href="https://github.com/rollup/rollup">Rollup</a>.</p>
-<p align="center">
-   <a href="https://github.com/cmorten/deno-rollup/tags/"><img src="https://img.shields.io/github/tag/cmorten/deno-rollup" alt="Current version" /></a>
-   <img src="https://github.com/cmorten/deno-rollup/workflows/Test/badge.svg" alt="Current test status" />
-   <a href="https://doc.deno.land/https/deno.land/x/drollup/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="Deno docs" /></a>
-   <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs are welcome" /></a>
-   <a href="https://github.com/cmorten/deno-rollup/issues/"><img src="https://img.shields.io/github/issues/cmorten/deno-rollup" alt="deno-rollup issues" /></a>
-   <img src="https://img.shields.io/github/stars/cmorten/deno-rollup" alt="deno-rollup stars" />
-   <img src="https://img.shields.io/github/forks/cmorten/deno-rollup" alt="deno-rollup forks" />
-   <img src="https://img.shields.io/github/license/cmorten/deno-rollup" alt="deno-rollup license" />
-   <a href="https://github.com/cmorten/deno-rollup/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="deno-rollup is maintained" /></a>
-   <a href="http://hits.dwyl.com/cmorten/deno-rollup"><img src="http://hits.dwyl.com/cmorten/deno-rollup.svg" alt="deno-rollup repository visit count" /></a>
-</p>
+
+[![Current version](https://img.shields.io/github/tag/cmorten/deno-rollup)](https://github.com/cmorten/deno-rollup/tags/)
+[![Current test status](https://github.com/cmorten/deno-rollup/workflows/Test/badge.svg)](https://github.com/cmorten/deno-rollup/actions)
+[![Deno docs](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/drollup/mod.ts)
+[![PRs are welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![deno-rollup issues](https://img.shields.io/github/issues/cmorten/deno-rollup)](https://github.com/cmorten/deno-rollup/issues/)
+![deno-rollup stars](https://img.shields.io/github/stars/cmorten/deno-rollup)
+![deno-rollup forks](https://img.shields.io/github/forks/cmorten/deno-rollup)
+![deno-rollup license](https://img.shields.io/github/license/cmorten/deno-rollup)
+[![deno-rollup is maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/cmorten/deno-rollup/graphs/commit-activity)
+[![deno-rollup repository visit count](https://hits.dwyl.com/cmorten/deno-rollup.svg)](https://hits.dwyl.com/cmorten/deno-rollup)
 
 ---
 
