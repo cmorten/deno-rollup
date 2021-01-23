@@ -204,6 +204,6 @@ await runTestSuiteWithSamples(
             throw err;
           }
         });
-    }, { sanitizeOps: false }); // TODO: we should not allow leaking ops. May be some of the samples fire and forget promises?
+    }, { sanitizeOps: false, sanitizeResources: false }); // TODO: we should not allow leaking ops and resources. May be some of the samples fire and forget promises?
   },
 );

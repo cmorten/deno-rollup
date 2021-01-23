@@ -1,4 +1,4 @@
-export { fromFileUrl } from "https://deno.land/std@0.84.0/path/mod.ts";
+export * as posixPath from "https://deno.land/std@0.84.0/path/posix.ts";
 export { createRequire } from "https://deno.land/std@0.84.0/node/module.ts";
 export { expect } from "https://deno.land/x/expect@v0.2.6/mod.ts";
 export { default as assert } from "https://esm.sh/assert@2.0.0";

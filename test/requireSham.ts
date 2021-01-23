@@ -7,6 +7,7 @@ import {
   magicString,
   sourceMap,
   url,
+  posixPath,
 } from "./deps.ts";
 import { extname } from "../deps.ts";
 import { ensureUrl } from "../src/rollup-plugin-deno-resolver/ensureUrl.ts";
@@ -44,7 +45,7 @@ export function requireSham(path: string): any {
   if (path === "assert") {
     return assert;
   } else if (path === "path") {
-    return new Proxy(_require(path), {
+    return new Proxy(posixPath, {
       get: (target, prop, receiver) => {
         const value = Reflect.get(target, prop, receiver);
 
