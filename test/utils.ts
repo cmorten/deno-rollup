@@ -4,7 +4,7 @@
  * Code adapted from https://github.com/rollup/rollup/blob/master/test/utils.js
  */
 
-import { dirname, join, sep } from "../deps.ts";
+import { dirname, join } from "../deps.ts";
 import { listGitHub } from "./deps.ts";
 import { toUrlString } from "./toUrlString.ts";
 import { requireSham } from "./requireSham.ts";
@@ -33,9 +33,7 @@ async function runSamples(
       const currentDirectoryIndex = directories.length - 1;
       const currentDirectory = dirname(
         directories?.[currentDirectoryIndex]?.[0] || "",
-      ).split(`${sep}.`)[0];
-
-      console.log(directories, filePath, currentDirectory)
+      ).split(`/.`)[0];
 
       if (
         excludes.some((exclude) => filePath.includes(exclude))
@@ -43,7 +41,7 @@ async function runSamples(
         return directories;
       } else if (
         currentDirectory !== "" &&
-        filePath.startsWith(join(currentDirectory, sep))
+        filePath.startsWith(`${currentDirectory}/`)
       ) {
         directories[currentDirectoryIndex].push(filePath);
       } else {
@@ -73,7 +71,7 @@ async function runTestsInDir(filePaths: string[], runTest: Test) {
   );
 
   if (configPath) {
-    await loadConfigAndRunTest(join(dirname(configPath), sep), runTest);
+    await loadConfigAndRunTest(`${dirname(configPath)}/`, runTest);
   } else {
     throw new Error("could not find config file");
   }
