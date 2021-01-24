@@ -141,7 +141,17 @@ Please refer to the official [Rollup Documentation](https://rollupjs.org).
 
 ## Example
 
-To run the [example](./example):
+To run the [example](./example) you have a couple of options:
+
+### Direct from repo
+
+1. Run the deno-rollup example directly from the repo:
+
+    ```console
+    deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.37.1+0.5.1/example/rollup.build.ts
+    ```
+
+### Clone
 
 1. Clone the deno-rollup repo locally:
 
@@ -154,14 +164,14 @@ To run the [example](./example):
 
    ```bash
    cd example
-   deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --unstable ./rollup.build.ts
+   deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
    ```
 
 1. Further details are available in the [example README](./example/README.md).
 
 ## Contributing
 
-[Contributing guide](https://github.com/cmorten/rollup/blob/main/.github/CONTRIBUTING.md)
+[Contributing guide](https://github.com/cmorten/deno-rollup/blob/main/.github/CONTRIBUTING.md)
 
 ---
 
