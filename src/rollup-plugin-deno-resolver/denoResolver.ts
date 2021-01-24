@@ -86,11 +86,6 @@ export function denoResolver(
         return output;
       }
 
-      // TODO: URL import source maps not yet supported
-      if (ensureUrl(source)) {
-        return { code, map: { mappings: "" } };
-      }
-
       return code;
     },
   };

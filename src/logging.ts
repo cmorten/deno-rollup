@@ -6,6 +6,13 @@ export const logInfo = console.error.bind(console);
 export const logError = console.error.bind(console);
 export const logOutput = console.log.bind(console);
 
+/**
+ * handleError
+ * 
+ * @param {RollupErr} err
+ * @param {Boolean} recover
+ * @private
+ */
 export function handleError(err: RollupError, recover = false) {
   let message = err.message || err;
 

@@ -1,3 +1,10 @@
+/**
+ * ensureArray
+ * 
+ * @param {any} items
+ * @returns {any[]}
+ * @private
+ */
 export function ensureArray<T>(
   items: (T | null | undefined)[] | T | null | undefined,
 ): T[] {

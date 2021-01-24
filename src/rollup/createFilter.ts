@@ -1,6 +1,14 @@
 import { isAbsolute, join, normalize, pm, resolve } from "../../deps.ts";
 import { ensureArray } from "../ensureArray.ts";
 
+/**
+ * getMatcherString
+ * 
+ * @param {string} id 
+ * @param {string|false|null|undefined} resolutionBase 
+ * @returns {string}
+ * @private
+ */
 function getMatcherString(
   id: string,
   resolutionBase: string | false | null | undefined,
@@ -26,6 +34,15 @@ export type FilterPattern =
 
 export type CreateFilter = (id: string | unknown) => boolean;
 
+/**
+ * createFilter
+ * 
+ * @param {FilterPattern} include 
+ * @param {FilterPattern} exclude 
+ * @param {any} options
+ * @returns {CreateFilter}
+ * @private
+ */
 export function createFilter(
   include?: FilterPattern,
   exclude?: FilterPattern,

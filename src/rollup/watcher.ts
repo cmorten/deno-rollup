@@ -24,6 +24,11 @@ const eventsRewrites: Record<string, Record<string, string | "warn" | null>> = {
   },
 };
 
+/**
+ * Watcher
+ * 
+ * @private
+ */
 export class Watcher {
   emitter: RollupWatcher;
 

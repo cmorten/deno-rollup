@@ -1,5 +1,10 @@
 import { Task } from "./task.ts";
 
+/**
+ * FileWatcher
+ * 
+ * @private
+ */
 export class FileWatcher {
   private task: Task;
   private closed = false;
