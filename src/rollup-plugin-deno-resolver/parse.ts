@@ -5,7 +5,7 @@ import { getUrlBase } from "./getUrlBase.ts";
  * 
  * @param {string} source 
  * @param {string} [importer] 
- * @returns {URL | null}
+ * @returns {URL|null}
  * @private
  */
 export function parse(

@@ -10,7 +10,7 @@ export const logOutput = console.log.bind(console);
  * handleError
  * 
  * @param {RollupErr} err
- * @param {Boolean} recover
+ * @param {boolean} recover
  * @private
  */
 export function handleError(err: RollupError, recover = false) {
