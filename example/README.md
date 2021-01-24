@@ -15,6 +15,10 @@ The code in `./src` is fairly trivial, but makes use of typescript, dynamic impo
 To invoke Rollup to bundle files in the `./src` directory, from this directory run:
 
 ```console
+# Direct from repository
+deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.0+0.6.0/example/rollup.build.ts
+
+# When cloned locally
 deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
 ```
 
@@ -51,6 +55,10 @@ rollup -c
 To watch and rebuild your bundle when it is detected that modules have changed on disk run:
 
 ```console
+# Direct from repository
+deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.0+0.6.0/example/rollup.watch.ts
+
+# When cloned locally
 deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.watch.ts
 ```
 

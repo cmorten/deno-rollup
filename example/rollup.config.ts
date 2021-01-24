@@ -1,12 +1,12 @@
 import type { Plugin } from "../mod.ts";
+import { dirname } from "../deps.ts";
 import { pluginTerserTransform } from "https://deno.land/x/denopack@0.10.0/plugin/terserTransform/mod.ts";
 
+const __dirname = dirname(import.meta.url);
 const format = "es" as const;
 
-console.log(import.meta);
-
 export default {
-  input: "./src/mod.ts",
+  input: new URL("./src/mod.ts", `${__dirname}/`).href,
   plugins: [
     pluginTerserTransform() as Plugin,
   ],

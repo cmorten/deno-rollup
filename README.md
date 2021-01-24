@@ -143,13 +143,15 @@ Please refer to the official [Rollup Documentation](https://rollupjs.org).
 
 To run the [example](./example) you have a couple of options:
 
-### Direct from repo
+### Direct from repository
 
-1. Run the deno-rollup example directly from the repo:
+1. Run the deno-rollup example directly from the repository:
 
     ```console
-    deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.37.1+0.5.1/example/rollup.build.ts
+    deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.0+0.6.0/example/rollup.build.ts
     ```
+
+    This will create a `./dist` directory with the bundled files in your current working directory.
 
 ### Clone
 
@@ -166,6 +168,8 @@ To run the [example](./example) you have a couple of options:
    cd example
    deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
    ```
+
+   This will create a `./dist` directory with the bundled files in the current `./example` directory.
 
 1. Further details are available in the [example README](./example/README.md).
 
