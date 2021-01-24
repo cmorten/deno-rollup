@@ -21,11 +21,11 @@ export type DenoResolverOptions = {
  * Resolver plugin for Deno. Handles relative, absolute
  * and URL imports. Typescript files are detected automatically
  * by extension matching, and transpiled using the
- * `Deno.transpileOnly()` API.
+ * `Deno.emit()` API.
  * 
  * Accepts fetch options to pass to `fetch()` when requesting
  * remote URL imports, compiler options to pass to
- * `Deno.transpileOnly()` when transpiling typescript imports.
+ * `Deno.emit()` when transpiling typescript imports.
  * 
  * @param {DenoResolverOptions} [opts] 
  * @param {RequestInit} [opts.fetchOpts] 
