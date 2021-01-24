@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.38.0+0.7.0] - 24-01-2021
+
+- [#8] Support URL sources in sourcemaps (#9)
+
 ## [2.38.0+0.6.1] - 24-01-2021
 
 - [#5] Make example work remotely (#7)
