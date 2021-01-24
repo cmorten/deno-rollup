@@ -14,6 +14,11 @@ import { mergeOptions } from "../mergeOptions.ts";
 import { handleError } from "../logging.ts";
 import { Watcher } from "./watcher.ts";
 
+/**
+ * Task
+ * 
+ * @private
+ */
 export class Task {
   cache: RollupCache = { modules: [] };
   filter: (id: string) => boolean;

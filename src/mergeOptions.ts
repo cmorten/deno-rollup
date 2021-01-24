@@ -1,5 +1,4 @@
 // deno-lint-ignore-file ban-types
-
 import type { CommandConfigObject, GenericConfigObject } from "./types.ts";
 import type {
   ExternalOption,
@@ -13,9 +12,23 @@ import type {
 import type { InputOptions } from "./rollup/mod.ts";
 import { ensureArray } from "./ensureArray.ts";
 
+/**
+ * onWarn
+ * 
+ * @param {any} warning
+ * @private
+ */
 export const onWarn: WarningHandler = (warning) =>
   console.warn(warning.message || warning);
 
+/**
+ * mergeOptions
+ * 
+ * @param {GenericConfigObject} config
+ * @param {GenericConfigObject} rawCommandOptions
+ * @returns {MergedRollupOptions}
+ * @private
+ */
 export function mergeOptions(
   config: GenericConfigObject,
   rawCommandOptions: GenericConfigObject = { external: [] },
@@ -44,6 +57,13 @@ export function mergeOptions(
   return inputOptions;
 }
 
+/**
+ * getCommandOptions
+ * 
+ * @param {GenericConfigObject} rawCommandOptions
+ * @returns {CommandConfigObject}
+ * @private
+ */
 function getCommandOptions(
   rawCommandOptions: GenericConfigObject,
 ): CommandConfigObject {
@@ -74,6 +94,14 @@ type CompleteInputOptions<U extends keyof InputOptions> = {
   [K in U]: InputOptions[K];
 };
 
+/**
+ * mergeInputOptions
+ * 
+ * @param {GenericConfigObject} config
+ * @param {CommandConfigObject} overrides
+ * @returns {InputOptions}
+ * @private
+ */
 function mergeInputOptions(
   config: GenericConfigObject,
   overrides: CommandConfigObject,
@@ -110,6 +138,14 @@ function mergeInputOptions(
   return inputOptions;
 }
 
+/**
+ * getExternal
+ * 
+ * @param {GenericConfigObject} config
+ * @param {CommandConfigObject} overrides
+ * @returns {ExternalOption}
+ * @private
+ */
 const getExternal = (
   config: GenericConfigObject,
   overrides: CommandConfigObject,
@@ -123,6 +159,14 @@ const getExternal = (
     : ensureArray(configExternal).concat(overrides.external);
 };
 
+/**
+ * getOnWarn
+ * 
+ * @param {GenericConfigObject} config
+ * @param {WarningHandler} defaultOnWarnHandler
+ * @returns {WarningHandler}
+ * @private
+ */
 const getOnWarn = (
   config: GenericConfigObject,
   defaultOnWarnHandler: WarningHandler,
@@ -135,6 +179,15 @@ const getOnWarn = (
       )
     : defaultOnWarnHandler;
 
+/**
+ * getObjectOption
+ * 
+ * @param {GenericConfigObject} config
+ * @param {CommandConfigObject} overrides
+ * @param {string} name
+ * @returns {any}
+ * @private
+ */
 const getObjectOption = (
   config: GenericConfigObject,
   overrides: GenericConfigObject,
@@ -150,12 +203,28 @@ const getObjectOption = (
   return configOption;
 };
 
+/**
+ * getWatch
+ * 
+ * @param {GenericConfigObject} config
+ * @param {GenericConfigObject} overrides
+ * @param {string} name
+ * @returns {any}
+ * @private
+ */
 const getWatch = (
   config: GenericConfigObject,
   overrides: GenericConfigObject,
   name: string,
 ) => config.watch !== false && getObjectOption(config, overrides, name);
 
+/**
+ * normalizeObjectOptionValue
+ * 
+ * @param {any} optionValue
+ * @returns {any}
+ * @private
+ */
 export const normalizeObjectOptionValue = (optionValue: unknown) => {
   if (!optionValue) {
     return optionValue;
@@ -179,6 +248,14 @@ type CompleteOutputOptions<U extends keyof OutputOptions> = {
   [K in U]: OutputOptions[K];
 };
 
+/**
+ * mergeOutputOptions
+ * 
+ * @param {GenericConfigObject} config
+ * @param {GenericConfigObject} overrides
+ * @returns {OutputOptions}
+ * @private
+ */
 function mergeOutputOptions(
   config: GenericConfigObject,
   overrides: GenericConfigObject,

@@ -7,7 +7,7 @@ const decoder = new TextDecoder("utf-8");
  * 
  * @param {URL} url 
  * @param {RequestInit} [fetchOpts] 
- * @returns {Promise<string | null> | never}
+ * @returns {Promise<string>}
  * @private
  */
 export async function loadUrl(

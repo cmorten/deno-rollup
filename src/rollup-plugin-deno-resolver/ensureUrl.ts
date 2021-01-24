@@ -5,7 +5,7 @@ const RE_PATH_MALFORMED_URL = /^((https?|file):\/)([^\/]?)/;
  * ensureUrl
  * 
  * @param {string} source 
- * @returns {boolean}
+ * @returns {string|null}
  * @private
  */
 export function ensureUrl(source: string): string | null {

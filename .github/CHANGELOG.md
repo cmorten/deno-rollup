@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.38.0+0.6.1] - 24-01-2021
+
+- [#5] Make example work remotely (#7)
+
 ## [2.38.0+0.6.0] - 23-01-2021
 
 - feat: extend cli option support (#3)

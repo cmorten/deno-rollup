@@ -1,5 +1,6 @@
 import type { OutputOptions, RollupBuild, RollupOutput } from "./mod.ts";
 import { join } from "../../deps.ts";
+import { supportUrlSources } from "./supportUrlSources.ts";
 import { getDestination } from "./getDestination.ts";
 import { handleError } from "../logging.ts";
 
@@ -17,6 +18,8 @@ export async function write(
   this: RollupBuild,
   options: OutputOptions,
 ): Promise<RollupOutput> {
+  options = supportUrlSources(options);
+
   const rollupOutput = await this.generate(options);
   const destination = getDestination(options);
 
