@@ -3,6 +3,8 @@ import { pluginTerserTransform } from "https://deno.land/x/denopack@0.10.0/plugi
 
 const format = "es" as const;
 
+console.log(import.meta);
+
 export default {
   input: "./src/mod.ts",
   plugins: [
