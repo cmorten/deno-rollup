@@ -1,5 +1,5 @@
 import type { OutputOptions, RollupBuild, RollupOutput } from "./mod.ts";
-import { join } from "../../deps.ts";
+import { dirname, join } from "../../deps.ts";
 import { supportUrlSources } from "./supportUrlSources.ts";
 import { getDestination } from "./getDestination.ts";
 import { handleError } from "../logging.ts";
@@ -31,10 +31,9 @@ export async function write(
     );
   }
 
-  await Deno.mkdir(destination, { recursive: true });
-
   for (const outputFile of rollupOutput.output) {
     const fullPath = join(destination, outputFile.fileName);
+    await Deno.mkdir(dirname(fullPath), { recursive: true });
 
     let source: string | Uint8Array;
 
@@ -52,7 +51,7 @@ export async function write(
           url = `${outputFile.fileName}.map`;
 
           await Deno.writeTextFile(
-            join(destination, `${outputFile.fileName}.map`),
+            `${fullPath}.map`,
             JSON.stringify(outputFile.map),
           );
         }
