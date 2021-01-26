@@ -1,4 +1,4 @@
-import { dirname, join, normalize } from "../../deps.ts";
+import { dirname, isAbsolute, join, normalize } from "../../deps.ts";
 import { ensureUrl } from "./ensureUrl.ts";
 
 /**
@@ -23,6 +23,10 @@ export function resolveId(source: string, importer?: string): string {
 
     if (importerUrl) {
       return new URL(source, importerUrl).href;
+    }
+
+    if (isAbsolute(source)) {
+      return source;
     }
 
     return join(dirname(importer), source);
