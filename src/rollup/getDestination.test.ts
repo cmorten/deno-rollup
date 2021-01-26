@@ -1,6 +1,6 @@
 import { expect } from "../../test/deps.ts";
 import { describe, it } from "../../test/mod.ts";
-import { dirname, resolve } from "../../deps.ts";
+import { resolve } from "../../deps.ts";
 import { getDestination } from "./getDestination.ts";
 
 describe("getDestination", () => {

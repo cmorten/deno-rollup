@@ -1,6 +1,6 @@
 .PHONY: build ci fmt fmt-check lint test
 
-FILES_TO_FORMAT = ./example/src ./example/rollup.build.ts ./example/rollup.config.ts ./src ./test ./deps.ts ./mod.ts ./version.ts
+FILES_TO_FORMAT = ./example/src ./example/rollup.build.ts ./example/rollup.config.ts ./example/rollup.watch.ts ./src ./test ./deps.ts ./mod.ts ./rollup.ts ./version.ts
 
 build:
 	@deno run --unstable --reload mod.ts

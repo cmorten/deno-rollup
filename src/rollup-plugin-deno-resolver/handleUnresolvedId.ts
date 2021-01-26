@@ -28,7 +28,7 @@ export function handleUnresolvedId(
   // REF:
   // - https://github.com/cmorten/deno-rollup/issues/4
   // - https://github.com/rollup/rollup/issues/3934
-  return error({
+  error({
     code: "UNRESOLVED_ENTRY",
     message: `Could not resolve entry module (${relativeId(id)}).`,
   });
