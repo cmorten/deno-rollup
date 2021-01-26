@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.38.0+0.7.2] - 26-01-2021
+
+- fix: remove double resolving of source url from importer (#14) 
+
 ## [2.38.0+0.7.1] - 26-01-2021
 
 - [#11] Support input subdirectories (#13) 
