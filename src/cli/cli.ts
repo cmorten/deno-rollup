@@ -170,7 +170,7 @@ const program = await new Command()
     default: false,
   })
   .option(
-    "--no- noConflict",
+    "--no-noConflict",
     "Do not generate a noConflict method for UMD globals",
   )
   .option(
