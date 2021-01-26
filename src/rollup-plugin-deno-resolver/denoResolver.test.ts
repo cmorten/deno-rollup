@@ -1,5 +1,4 @@
 import { expect } from "../../test/deps.ts";
-import { join, resolve } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { denoResolver } from "./denoResolver.ts";
 

@@ -1,4 +1,4 @@
-import { dirname, extname, join } from "../../deps.ts";
+import { dirname, join, normalize } from "../../deps.ts";
 import { ensureUrl } from "./ensureUrl.ts";
 
 /**
@@ -15,6 +15,8 @@ export function resolveId(source: string, importer?: string): string {
   if (sourceUrl) {
     return sourceUrl;
   }
+
+  source = normalize(source);
 
   if (importer) {
     const importerUrl = ensureUrl(importer);

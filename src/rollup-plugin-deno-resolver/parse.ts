@@ -3,25 +3,21 @@ import { getUrlBase } from "./getUrlBase.ts";
 /**
  * parse
  * 
- * @param {string} source 
- * @param {string} [importer] 
+ * @param {string} id
  * @returns {URL|null}
  * @private
  */
-export function parse(
-  source: string,
-  importer?: string,
-): URL | null {
+export function parse(id: string): URL | null {
   try {
-    return new URL(source);
+    return new URL(id);
   } catch {
     // Not a URL in it's own right, but may be
     // relative to an importer URL or the CWD.
   }
 
   try {
-    return new URL(source, getUrlBase(importer));
-  } catch (_) {
+    return new URL(id, getUrlBase());
+  } catch {
     return null;
   }
 }

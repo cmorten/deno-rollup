@@ -1,5 +1,5 @@
 import { expect } from "../../test/deps.ts";
-import { dirname, join, sep, toFileUrl } from "../../deps.ts";
+import { join, sep, toFileUrl } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { parse } from "./parse.ts";
 
@@ -16,7 +16,7 @@ describe("parse", () => {
     assertUrlMatch(parse(source) as URL, new URL(source));
   });
 
-  it("parse: when a relative source is provided: and no importer is provided: it should return the resolved source from the CWD as a URL instance", () => {
+  it("parse: when a relative source is provided: it should return the resolved source from the CWD as a URL instance", () => {
     const source = "./test-path/test.ts";
 
     assertUrlMatch(
@@ -25,17 +25,7 @@ describe("parse", () => {
     );
   });
 
-  it("parse: when a relative source is provided: and an importer is provided: it should return the resolved source from the importer as a URL instance", () => {
-    const source = "./test/test.ts";
-    const importer = "https://github.com/cmorten/deno-rollup/test.ts";
-
-    assertUrlMatch(
-      parse(source, importer) as URL,
-      new URL(source, join(dirname(importer), sep)),
-    );
-  });
-
-  it("parse: when a source and importer pair that cannot be parsed are provided: it should return null", () => {
-    expect(parse("", "https://://")).toBe(null);
+  it("parse: when a source that cannot be parsed is provided: it should return null", () => {
+    expect(parse("https://://")).toBe(null);
   });
 });
