@@ -78,6 +78,7 @@ const options = {
 
 const bundle = await rollup(options);
 await bundle.write(options.output);
+await bundle.close();
 ```
 
 Or using the `watch` API:
