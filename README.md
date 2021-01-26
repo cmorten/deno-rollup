@@ -41,7 +41,7 @@ deno-rollup can be used either through a [command line interface (CLI)](https://
 To install the CLI run:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.38.0+0.7.2/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.38.0+0.7.3/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
@@ -65,7 +65,7 @@ rollup -c --watch
 You can import deno-rollup straight into your project to bundle your modules:
 
 ```ts
-import { rollup } from "https://deno.land/x/drollup@2.38.0+0.7.2/mod.ts";
+import { rollup } from "https://deno.land/x/drollup@2.38.0+0.7.3/mod.ts";
 
 const options = {
   input: "./mod.ts",
@@ -84,7 +84,7 @@ await bundle.close();
 Or using the `watch` API:
 
 ```ts
-import { watch } from "https://deno.land/x/drollup@2.38.0+0.7.2/mod.ts";
+import { watch } from "https://deno.land/x/drollup@2.38.0+0.7.3/mod.ts";
 
 const options = {
   input: "./src/mod.ts",
@@ -149,7 +149,7 @@ To run the [example](./example) you have a couple of options:
 1. Run the deno-rollup example directly from the repository:
 
     ```console
-    deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.0+0.7.2/example/rollup.build.ts
+    deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.0+0.7.3/example/rollup.build.ts
     ```
 
     This will create a `./dist` directory with the bundled files in your current working directory.

@@ -1,8 +1,13 @@
 # ChangeLog
 
+## [2.38.0+0.7.3] - 26-01-2021
+
+- fix: handle parsing of absolute ids
+- fix: --no-noConflict cli flag
+
 ## [2.38.0+0.7.2] - 26-01-2021
 
-- fix: remove double resolving of source url from importer (#14) 
+- fix: remove double resolving of source url from importer (#14)
 
 ## [2.38.0+0.7.1] - 26-01-2021
 
