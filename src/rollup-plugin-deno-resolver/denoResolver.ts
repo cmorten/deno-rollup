@@ -1,7 +1,6 @@
 import type { Plugin } from "../../deps.ts";
 import { parse } from "./parse.ts";
 import { isTypescript } from "./isTypescript.ts";
-import { ensureUrl } from "./ensureUrl.ts";
 import { resolveId } from "./resolveId.ts";
 import { exists } from "./exists.ts";
 import { loadUrl } from "./loadUrl.ts";
@@ -40,7 +39,7 @@ export function denoResolver(
     name: "rollup-plugin-deno-resolver",
     async resolveId(source: string, importer?: string) {
       let id = resolveId(source, importer);
-      let url = parse(id, importer);
+      let url = parse(id);
 
       if (!url) {
         return handleUnresolvedId(id, importer);
@@ -56,13 +55,14 @@ export function denoResolver(
 
       if (!(await exists(url, fetchOpts))) {
         id = id.substr(0, id.length - 3);
+
         return handleUnresolvedId(id, importer);
       }
 
       return id;
     },
-    async load(source: string, importer?: string) {
-      const url = parse(source, importer);
+    async load(id: string) {
+      const url = parse(id);
 
       if (!url) {
         return null;

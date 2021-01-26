@@ -1,5 +1,5 @@
 import { expect } from "../../test/deps.ts";
-import { join, resolve } from "../../deps.ts";
+import { join, resolve, sep } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { resolveId } from "./resolveId.ts";
 
@@ -48,6 +48,11 @@ describe("resolveId", () => {
   it("resolveId: when a relative path source is provided: it should return the source unchanged", () => {
     const source = join("..", "test-path", "test.ts");
     expect(resolveId(source)).toBe(source);
+  });
+
+  it("resolveId: when an unnormalized relative path source is provided: it should return the normalized source", () => {
+    const source = `.${sep}${sep}test.ts`;
+    expect(resolveId(source)).toBe(`test.ts`);
   });
 
   it("resolveId: when a relative path source is provided: and an encapsulating relative path importer is provided: it should return the resolved relative path of the source from the importer", () => {
