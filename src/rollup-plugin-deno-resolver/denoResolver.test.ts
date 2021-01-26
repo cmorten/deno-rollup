@@ -12,7 +12,7 @@ const relativeFromImporter = "hello.ts";
 const dotSlashRelative = `.${sep}${relative}`;
 const dotSlashSlashRelative = `.${sep}${sep}${relative}`;
 const absolute = resolve(relative);
-const fileUrl = toFileUrl(absolute);
+const fileUrl = toFileUrl(absolute).href;
 const httpUrl =
   "http://raw.githubusercontent.com/cmorten/deno-rollup/main/test/fixtures/msg.txt";
 const httpsUrl =

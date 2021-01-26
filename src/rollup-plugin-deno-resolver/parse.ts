@@ -1,3 +1,4 @@
+import { isAbsolute, toFileUrl } from "../../deps.ts";
 import { getUrlBase } from "./getUrlBase.ts";
 
 /**
@@ -8,6 +9,10 @@ import { getUrlBase } from "./getUrlBase.ts";
  * @private
  */
 export function parse(id: string): URL | null {
+  if (isAbsolute(id)) {
+    return toFileUrl(id);
+  }
+
   try {
     return new URL(id);
   } catch {
