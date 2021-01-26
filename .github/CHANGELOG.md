@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.38.0+0.7.1] - 26-01-2021
+
+- [#11] Support input subdirectories (#13) 
+- [#10] Add `bundle.close()` to examples (#12)
+
 ## [2.38.0+0.7.0] - 24-01-2021
 
 - [#8] Support URL sources in sourcemaps (#9)
