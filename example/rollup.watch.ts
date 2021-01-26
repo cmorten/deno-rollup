@@ -4,13 +4,13 @@ import options from "./rollup.config.ts";
 
 const watcher = await watch(options);
 
-watcher.on("event", (event: any) => {
+watcher.on("event", (event) => {
   if (event.code === "ERROR") {
     console.error(bold(red(event.code)));
   } else {
     let info = bold(cyan(event.code));
 
-    if (event.duration) {
+    if ("duration" in event && event.duration) {
       info += `: ${bold(dim(`completed in ${ms(event.duration)}`))}`;
     }
 
