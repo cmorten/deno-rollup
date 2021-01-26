@@ -166,11 +166,14 @@ describe("denoResolver", () => {
       expect(await load("https://://", undefined)).toBeNull();
     });
 
+    const newline = Deno.build.os === "windows" ? "\r\n" : "\n";
+
     [
       {
         description: "relative javascript id",
         id: relativeJs,
-        expectedCode: `const a = [];\nconsole.log("Hello Deno!");\n`,
+        expectedCode:
+          `const a = [];${newline}console.log("Hello Deno!");${newline}`,
       },
       {
         description: "relative typescript id",
