@@ -32,7 +32,7 @@ export { EventEmitter } from "https://deno.land/std@0.84.0/node/events.ts";
 export {
   rollup,
   VERSION,
-} from "https://unpkg.com/rollup@2.38.0/dist/es/rollup.browser.js";
+} from "./rollup.browser.js";
 export type {
   AddonHook,
   AddonHookFunction,
