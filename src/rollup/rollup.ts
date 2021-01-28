@@ -60,21 +60,12 @@ export async function rollup(
       },
     });
   } catch (err) {
-    // TODO:
-    //
-    // Workaround for issue with Rollup browser bundle. In the codepath
-    // resolve() is called with no args when returning null from resolveId,
-    // but the bundled browser distribution of rollup throws an error for
-    // it's implementation of resolve when not passed any args.
-    //
-    // REF:
-    // - https://github.com/cmorten/deno-rollup/issues/4
-    // - https://github.com/rollup/rollup/issues/3934
-
     if (err?.plugin === denoResolverPlugin.name) {
+      const { plugin: _, pluginCode, ...rest } = err;
+
       return error({
-        code: err?.pluginCode,
-        message: err?.message,
+        code: pluginCode,
+        ...rest,
       });
     }
 
