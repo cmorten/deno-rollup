@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.38.1+0.7.4] - 30-01-2021
+
+- fix: handle deno resolver plugin errors correctly
+
 ## [2.38.0+0.7.3] - 26-01-2021
 
 - fix: handle parsing of absolute ids
