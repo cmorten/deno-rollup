@@ -1,4 +1,4 @@
-import { RollupError } from "https://unpkg.com/rollup@2.38.0/dist/rollup.d.ts";
+import type { RollupError } from "../../deps.ts";
 import { expect } from "../../test/deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { handleUnresolvedId } from "./handleUnresolvedId.ts";
