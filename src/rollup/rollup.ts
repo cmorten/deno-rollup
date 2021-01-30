@@ -61,7 +61,7 @@ export async function rollup(
     });
   } catch (err) {
     if (err?.plugin === denoResolverPlugin.name) {
-      const { plugin: _, pluginCode, ...rest } = err;
+      const { plugin: _plugin, code: _code, pluginCode, ...rest } = err;
 
       return error({
         code: pluginCode,
