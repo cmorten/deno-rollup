@@ -5,10 +5,10 @@ import { ensureUrl } from "./ensureUrl.ts";
 const validUrlStrings = [
   "http://",
   "https://",
-  "file://",
+  "file:///",
   "http://test-path",
   "https://test-path",
-  "file://test-path",
+  "file:///test-path",
 ];
 
 describe("ensureUrl", () => {
@@ -18,7 +18,7 @@ describe("ensureUrl", () => {
     });
   });
 
-  validUrlStrings.map((string) => string.replace("//", "/")).forEach(
+  validUrlStrings.map((string) => string.replace(/([\/]+)/, "/")).forEach(
     (source, index) => {
       it(`ensureUrl: should return path malformed URL strings with fixes: '${source}'`, () => {
         expect(ensureUrl(source)).toBe(validUrlStrings[index]);
@@ -35,7 +35,7 @@ describe("ensureUrl", () => {
     "file",
     "/http://",
     "/https://",
-    "/file://",
+    "/file:///",
   ].forEach((source) => {
     it(`ensureUrl: should return null for strings that are not URLs: '${source}'`, () => {
       expect(ensureUrl(source)).toBeNull();

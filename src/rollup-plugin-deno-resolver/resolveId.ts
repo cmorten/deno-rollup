@@ -1,6 +1,8 @@
 import { dirname, isAbsolute, join, normalize } from "../../deps.ts";
 import { ensureUrl } from "./ensureUrl.ts";
 
+const RE_HTTP_URL = /^(https?):\/\//;
+
 /**
  * resolveId
  * 
@@ -22,7 +24,9 @@ export function resolveId(source: string, importer?: string): string {
     const importerUrl = ensureUrl(importer);
 
     if (importerUrl) {
-      return new URL(source, importerUrl).href;
+      const url = new URL(source, importerUrl);
+
+      return RE_HTTP_URL.test(url.href) ? url.href : url.pathname;
     }
 
     if (isAbsolute(source)) {

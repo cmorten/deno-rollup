@@ -1,27 +1,47 @@
 import { expect } from "../../test/deps.ts";
-import { join, resolve, sep } from "../../deps.ts";
+import { join, resolve, sep, toFileUrl } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { resolveId } from "./resolveId.ts";
 
 describe("resolveId", () => {
-  it("resolveId: when a URL source is provided: it should return the source unchanged", () => {
+  it("resolveId: when a remote URL source is provided: it should return the source unchanged", () => {
     const source = "https://github.com/cmorten/deno-rollup/test.ts";
     expect(resolveId(source)).toBe(source);
   });
 
-  it("resolveId: when a URL source is provided: and an importer is provided: it should return the source unchanged", () => {
+  it("resolveId: when a file URL source is provided: it should return the source unchanged", () => {
+    const source = toFileUrl(resolve("./test.ts")).href;
+    expect(resolveId(source)).toBe(source);
+  });
+
+  it("resolveId: when a remote URL source is provided: and an importer is provided: it should return the source unchanged", () => {
     const source = "https://github.com/cmorten/deno-rollup/test.ts";
     expect(resolveId(source, "test-importer")).toBe(source);
   });
 
-  it("resolveId: when a path malformed URL source is provided: it should return the fixed source unchanged", () => {
+  it("resolveId: when a file URL source is provided: and an importer is provided: it should return the source unchanged", () => {
+    const source = toFileUrl(resolve("./test.ts")).href;
+    expect(resolveId(source, "test-importer")).toBe(source);
+  });
+
+  it("resolveId: when a path malformed remote URL source is provided: it should return the fixed source unchanged", () => {
     const source = "https://github.com/cmorten/deno-rollup/test.ts";
     expect(resolveId(source.replace("//", "/"))).toBe(source);
   });
 
-  it("resolveId: when a path malformed URL source is provided: and an importer is provided: it should return the fixed source unchanged", () => {
+  it("resolveId: when a path malformed file URL source is provided: it should return the fixed source unchanged", () => {
+    const source = toFileUrl(resolve("./test.ts")).href;
+    expect(resolveId(source.replace("///", "/"))).toBe(source);
+  });
+
+  it("resolveId: when a path malformed remote URL source is provided: and an importer is provided: it should return the fixed source unchanged", () => {
     const source = "https://github.com/cmorten/deno-rollup/test.ts";
     expect(resolveId(source.replace("//", "/"), "test-importer")).toBe(source);
+  });
+
+  it("resolveId: when a path malformed file URL source is provided: and an importer is provided: it should return the fixed source unchanged", () => {
+    const source = toFileUrl(resolve("./test.ts")).href;
+    expect(resolveId(source.replace("///", "/"), "test-importer")).toBe(source);
   });
 
   it("resolveId: when an absolute path source is provided: it should return the source unchanged", () => {
@@ -29,7 +49,7 @@ describe("resolveId", () => {
     expect(resolveId(source)).toBe(source);
   });
 
-  it("resolveId: when an absolute path source is provided: and an URL importer is provided: it should return the resolved URL of the source from the importer", () => {
+  it("resolveId: when an absolute path source is provided: and a remote URL importer is provided: it should return the resolved URL of the source from the importer", () => {
     const importer = "https://github.com/cmorten/deno-rollup/test.ts";
     const source = "/cmorten/opine-cli/test.ts";
     expect(resolveId(source, importer)).toBe(
@@ -37,12 +57,24 @@ describe("resolveId", () => {
     );
   });
 
-  it("resolveId: when an absolute path source is provided: and a path malformed URL importer is provided: it should return the resolved URL of the source from the fixed importer", () => {
+  it("resolveId: when an absolute path source is provided: and a file URL importer is provided: it should return the source", () => {
+    const importer = toFileUrl(resolve("./test.ts")).href;
+    const source = "/cmorten/opine-cli/test.ts";
+    expect(resolveId(source, importer)).toBe(source);
+  });
+
+  it("resolveId: when an absolute path source is provided: and a path malformed remote URL importer is provided: it should return the resolved URL of the source from the fixed importer", () => {
     const importer = "https://github.com/cmorten/deno-rollup/test.ts";
     const source = "/cmorten/opine-cli/test.ts";
     expect(resolveId(source, importer.replace("//", "/"))).toBe(
       "https://github.com/cmorten/opine-cli/test.ts",
     );
+  });
+
+  it("resolveId: when an absolute path source is provided: and a path malformed file URL importer is provided: it should return the source", () => {
+    const importer = toFileUrl(resolve("./test.ts")).href;
+    const source = "/cmorten/opine-cli/test.ts";
+    expect(resolveId(source, importer.replace("///", "/"))).toBe(source);
   });
 
   it("resolveId: when a relative path source is provided: it should return the source unchanged", () => {
@@ -79,7 +111,7 @@ describe("resolveId", () => {
     );
   });
 
-  it("resolveId: when a relative path source is provided: and an URL importer is provided: it should return the resolved URL of the source from the importer", () => {
+  it("resolveId: when a relative path source is provided: and a remote URL importer is provided: it should return the resolved URL of the source from the importer", () => {
     const importer = "https://github.com/cmorten/deno-rollup/test.ts";
     const source = join("..", "opine-cli", "test.ts");
     expect(resolveId(source, importer)).toBe(
@@ -87,11 +119,27 @@ describe("resolveId", () => {
     );
   });
 
-  it("resolveId: when a relative path source is provided: and a path malformed URL importer is provided: it should return the resolved URL of the source from the fixed importer", () => {
+  it("resolveId: when a relative path source is provided: and a file URL importer is provided: it should return the resolved URL of the source from the importer", () => {
+    const importer = toFileUrl(resolve("./test.ts")).href;
+    const source = join("..", "opine-cli", "test.ts");
+    expect(resolveId(source, importer)).toBe(
+      resolve(source),
+    );
+  });
+
+  it("resolveId: when a relative path source is provided: and a path malformed remote URL importer is provided: it should return the resolved URL of the source from the fixed importer", () => {
     const importer = "https://github.com/cmorten/deno-rollup/test.ts";
     const source = join("..", "opine-cli", "test.ts");
     expect(resolveId(source, importer.replace("//", "/"))).toBe(
       "https://github.com/cmorten/opine-cli/test.ts",
+    );
+  });
+
+  it("resolveId: when a relative path source is provided: and a path malformed file URL importer is provided: it should return the resolved URL of the source from the fixed importer", () => {
+    const importer = toFileUrl(resolve("./test.ts")).href;
+    const source = join("..", "opine-cli", "test.ts");
+    expect(resolveId(source, importer.replace("///", "/"))).toBe(
+      resolve(source),
     );
   });
 });
