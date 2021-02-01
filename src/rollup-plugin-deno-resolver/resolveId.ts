@@ -26,7 +26,7 @@ export function resolveId(source: string, importer?: string): string {
     if (importerUrl) {
       const url = new URL(source, importerUrl);
 
-      return RE_HTTP_URL.test(url.href) ? url.href : url.pathname;
+      return RE_HTTP_URL.test(url.href) ? url.href : normalize(url.pathname);
     }
 
     if (isAbsolute(source)) {
