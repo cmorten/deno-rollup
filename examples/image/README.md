@@ -12,7 +12,7 @@ To invoke Rollup to bundle files in the `./src` directory, from this directory r
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.2+0.8.0/examples/image/rollup.build.ts
+deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.3+0.8.0/examples/image/rollup.build.ts
 
 # When cloned locally
 deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
@@ -35,7 +35,7 @@ Alternatively you can use the Rollup CLI to bundle files.
 Install the CLI:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.38.2+0.8.0/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.38.3+0.8.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
@@ -54,7 +54,7 @@ To watch and rebuild your bundle when it is detected that modules have changed o
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.2+0.8.0/examples/image/rollup.watch.ts
+deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.3+0.8.0/examples/image/rollup.watch.ts
 
 # When cloned locally
 deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.watch.ts
@@ -71,7 +71,7 @@ Alternatively you can use the Rollup CLI to watch and rebuild your bundle.
 Install the CLI (same as before):
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.38.2+0.8.0/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.38.3+0.8.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
