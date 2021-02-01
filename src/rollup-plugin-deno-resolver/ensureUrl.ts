@@ -17,8 +17,8 @@ export function ensureUrl(source: string): string | null {
       /\\/g,
       "/",
     );
-  } else if (RE_PATH_MALFORMED_HTTP_URL.test(source)) {
-    return source.replace(RE_PATH_MALFORMED_HTTP_URL, "$1///$3").replace(
+  } else if (RE_PATH_MALFORMED_FILE_URL.test(source)) {
+    return source.replace(RE_PATH_MALFORMED_FILE_URL, "$1///$3").replace(
       /\\/g,
       "/",
     );
