@@ -6,12 +6,12 @@ import { ensureUrl } from "./ensureUrl.ts";
 const validUrlStrings = [
   "http://",
   "https://",
-  "file://C:/",
+  "file:///C:/",
   "file:///",
   "http://test-path",
   "https://test-path",
   "file:///test-path",
-  "file://C:/test-path",
+  "file:///C:/test-path",
 ];
 
 describe("ensureUrl", () => {

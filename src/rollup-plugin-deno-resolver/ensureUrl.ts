@@ -22,7 +22,7 @@ export function ensureUrl(source: string): string | null {
   } else if (RE_PATH_MALFORMED_HTTP_URL.test(source)) {
     return source.replace(RE_PATH_MALFORMED_HTTP_URL, "$1/$3");
   } else if (RE_WIN_PATH_MALFORMED_FILE_URL.test(source)) {
-    return source.replace(RE_WIN_PATH_MALFORMED_FILE_URL, "$1//$3").replace(
+    return source.replace(RE_WIN_PATH_MALFORMED_FILE_URL, "$1///$3").replace(
       /\\/g,
       "/",
     );
