@@ -32,7 +32,7 @@ describe("resolveId", () => {
   it("resolveId: when a path malformed file URL source is provided: it should return the fixed source unchanged", () => {
     const source = toFileUrl(resolve("./test.ts")).href;
     console.log({ source, res: resolve("./test.ts") });
-    expect(resolveId(source.replace("//", "/"))).toBe(source);
+    expect(resolveId(source.replace("///", "/"))).toBe(source);
   });
 
   it("resolveId: when a path malformed remote URL source is provided: and an importer is provided: it should return the fixed source unchanged", () => {
@@ -42,7 +42,7 @@ describe("resolveId", () => {
 
   it("resolveId: when a path malformed file URL source is provided: and an importer is provided: it should return the fixed source unchanged", () => {
     const source = toFileUrl(resolve("./test.ts")).href;
-    expect(resolveId(source.replace("//", "/"), "test-importer")).toBe(source);
+    expect(resolveId(source.replace("///", "/"), "test-importer")).toBe(source);
   });
 
   it("resolveId: when an absolute path source is provided: it should return the source unchanged", () => {
@@ -139,7 +139,7 @@ describe("resolveId", () => {
   it("resolveId: when a relative path source is provided: and a path malformed file URL importer is provided: it should return the resolved URL of the source from the fixed importer", () => {
     const importer = toFileUrl(resolve("./test.ts")).href;
     const source = join("..", "opine-cli", "test.ts");
-    expect(resolveId(source, importer.replace("//", "/"))).toBe(
+    expect(resolveId(source, importer.replace("///", "/"))).toBe(
       resolve(source),
     );
   });
