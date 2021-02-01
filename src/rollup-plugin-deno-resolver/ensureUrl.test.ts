@@ -5,12 +5,12 @@ import { ensureUrl } from "./ensureUrl.ts";
 const validUrlStrings = [
   "http://",
   "https://",
-  "file://c:/",
+  "file://C:/",
   "file:///",
   "http://test-path",
   "https://test-path",
   "file:///test-path",
-  "file://c:/test-path",
+  "file://C:/test-path",
 ];
 
 describe("ensureUrl", () => {
@@ -38,6 +38,7 @@ describe("ensureUrl", () => {
     "/http://",
     "/https://",
     "/file:///",
+    "/file://C:/",
   ].forEach((source) => {
     it(`ensureUrl: should return null for strings that are not URLs: '${source}'`, () => {
       expect(ensureUrl(source)).toBeNull();
