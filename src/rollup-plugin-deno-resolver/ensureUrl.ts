@@ -2,7 +2,7 @@ const RE_URL = /^(https?|file):\/\//;
 const RE_PATH_MALFORMED_HTTP_URL = /^((https?):\/)([^\/]?)/;
 const RE_PATH_MALFORMED_FILE_URL = /^((file):\/)([^\/]?)/;
 const RE_WIN_PATH_MALFORMED_HTTP_URL = /^((https?):)(?:\\|\/)/;
-const RE_WIN_PATH_MALFORMED_FILE_URL = /^((file):)(?:\\?|\/)(\w:)/;
+const RE_WIN_PATH_MALFORMED_FILE_URL = /^((file):)(?:\\?|\/)(\w:)?/;
 
 /**
  * ensureUrl
