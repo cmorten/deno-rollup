@@ -24,6 +24,7 @@ describe("ensureUrl", () => {
   validUrlStrings.map((string) => join(string)).forEach(
     (source, index) => {
       it(`ensureUrl: should return path malformed URL strings with fixes: '${source}'`, () => {
+        console.log(source, validUrlStrings[index])
         expect(ensureUrl(source)).toBe(validUrlStrings[index]);
       });
     },
