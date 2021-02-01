@@ -1,5 +1,6 @@
 import { expect } from "../../test/deps.ts";
 import { describe, it } from "../../test/mod.ts";
+import { join } from "../../deps.ts";
 import { ensureUrl } from "./ensureUrl.ts";
 
 const validUrlStrings = [
@@ -20,7 +21,7 @@ describe("ensureUrl", () => {
     });
   });
 
-  validUrlStrings.map((string) => string.replace(/([\/]+)/, "/")).forEach(
+  validUrlStrings.map((string) => join(string)).forEach(
     (source, index) => {
       it(`ensureUrl: should return path malformed URL strings with fixes: '${source}'`, () => {
         expect(ensureUrl(source)).toBe(validUrlStrings[index]);
