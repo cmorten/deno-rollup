@@ -24,22 +24,27 @@ describe("resolveId", () => {
     expect(resolveId(source, "test-importer")).toBe(source);
   });
 
-  it("resolveId: when a path malformed remote URL source is provided: it should return the fixed source unchanged", () => {
+  it("resolveId: when a path malformed remote URL source is provided: it should return the fixed source", () => {
     const source = "https://github.com/cmorten/deno-rollup/test.ts";
     expect(resolveId(join(source))).toBe(source);
   });
 
-  it("resolveId: when a path malformed file URL source is provided: it should return the fixed source unchanged", () => {
+  it("resolveId: when a path malformed file URL source is provided: it should return the fixed source", () => {
     const source = toFileUrl(resolve("./test.ts")).href;
+    console.log({
+      source,
+      resolve: resolve("./test.ts"),
+      join: join(source),
+    });
     expect(resolveId(join(source))).toBe(source);
   });
 
-  it("resolveId: when a path malformed remote URL source is provided: and an importer is provided: it should return the fixed source unchanged", () => {
+  it("resolveId: when a path malformed remote URL source is provided: and an importer is provided: it should return the fixed source", () => {
     const source = "https://github.com/cmorten/deno-rollup/test.ts";
     expect(resolveId(join(source), "test-importer")).toBe(source);
   });
 
-  it("resolveId: when a path malformed file URL source is provided: and an importer is provided: it should return the fixed source unchanged", () => {
+  it("resolveId: when a path malformed file URL source is provided: and an importer is provided: it should return the fixed source", () => {
     const source = toFileUrl(resolve("./test.ts")).href;
     expect(resolveId(join(source), "test-importer")).toBe(source);
   });
