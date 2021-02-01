@@ -1,7 +1,8 @@
 const RE_URL = /^(https?|file):\/\//;
 const RE_PATH_MALFORMED_HTTP_URL = /^((https?):\/)([^\/]?)/;
 const RE_PATH_MALFORMED_FILE_URL = /^((file):\/)([^\/]?)/;
-const RE_WIN_PATH_MALFORMED_FILE_URL = /^((file):\/)(\w:)/;
+const RE_WIN_PATH_MALFORMED_HTTP_URL = /^((https?):)\\/;
+const RE_WIN_PATH_MALFORMED_FILE_URL = /^((file):)\\(\w:)/;
 
 /**
  * ensureUrl
@@ -18,6 +19,20 @@ export function ensureUrl(source: string): string | null {
     });
 
     return source;
+  } else if (RE_WIN_PATH_MALFORMED_HTTP_URL.test(source)) {
+    console.log({
+      type: "win http malformed",
+      source,
+      out: source.replace(RE_WIN_PATH_MALFORMED_HTTP_URL, "$1//").replace(
+        /\\/g,
+        "/",
+      ),
+    });
+
+    return source.replace(RE_WIN_PATH_MALFORMED_HTTP_URL, "$1//").replace(
+      /\\/g,
+      "/",
+    );
   } else if (RE_PATH_MALFORMED_HTTP_URL.test(source)) {
     console.log({
       type: "http malformed",
@@ -30,10 +45,16 @@ export function ensureUrl(source: string): string | null {
     console.log({
       type: "win file malformed",
       source,
-      out: source.replace(RE_WIN_PATH_MALFORMED_FILE_URL, "$1/$3"),
+      out: source.replace(RE_WIN_PATH_MALFORMED_FILE_URL, "$1//$3").replace(
+        /\\/g,
+        "/",
+      ),
     });
 
-    return source.replace(RE_WIN_PATH_MALFORMED_FILE_URL, "$1/$3");
+    return source.replace(RE_WIN_PATH_MALFORMED_FILE_URL, "$1//$3").replace(
+      /\\/g,
+      "/",
+    );
   } else if (RE_PATH_MALFORMED_FILE_URL.test(source)) {
     console.log({
       type: "file malformed",
