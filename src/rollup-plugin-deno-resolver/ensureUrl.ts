@@ -12,27 +12,35 @@ const RE_WIN_PATH_MALFORMED_FILE_URL = /^((file):\/)(\w:)/;
  */
 export function ensureUrl(source: string): string | null {
   if (RE_URL.test(source)) {
+    console.log({
+      type: "match",
+      source,
+    });
+
     return source;
   } else if (RE_PATH_MALFORMED_HTTP_URL.test(source)) {
-    console.log(
-      "http",
+    console.log({
+      type: "http malformed",
       source,
-      source.replace(RE_PATH_MALFORMED_HTTP_URL, "$1/$3"),
-    );
+      out: source.replace(RE_PATH_MALFORMED_HTTP_URL, "$1/$3"),
+    });
+
     return source.replace(RE_PATH_MALFORMED_HTTP_URL, "$1/$3");
   } else if (RE_WIN_PATH_MALFORMED_FILE_URL.test(source)) {
-    console.log(
-      "win file",
+    console.log({
+      type: "win file malformed",
       source,
-      source.replace(RE_WIN_PATH_MALFORMED_FILE_URL, "$1/$3"),
-    );
+      out: source.replace(RE_WIN_PATH_MALFORMED_FILE_URL, "$1/$3"),
+    });
+
     return source.replace(RE_WIN_PATH_MALFORMED_FILE_URL, "$1/$3");
   } else if (RE_PATH_MALFORMED_FILE_URL.test(source)) {
-    console.log(
-      "file",
+    console.log({
+      type: "file malformed",
       source,
-      source.replace(RE_PATH_MALFORMED_FILE_URL, "$1//$3"),
-    );
+      out: source.replace(RE_PATH_MALFORMED_FILE_URL, "$1//$3"),
+    });
+
     return source.replace(RE_PATH_MALFORMED_FILE_URL, "$1//$3");
   }
 

@@ -31,7 +31,6 @@ describe("resolveId", () => {
 
   it("resolveId: when a path malformed file URL source is provided: it should return the fixed source unchanged", () => {
     const source = toFileUrl(resolve("./test.ts")).href;
-    console.log({ source, res: resolve(source) });
     expect(resolveId(join(source))).toBe(source);
   });
 
