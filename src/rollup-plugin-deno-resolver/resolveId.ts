@@ -1,4 +1,10 @@
-import { dirname, isAbsolute, join, normalize } from "../../deps.ts";
+import {
+  dirname,
+  fromFileUrl,
+  isAbsolute,
+  join,
+  normalize,
+} from "../../deps.ts";
 import { ensureUrl } from "./ensureUrl.ts";
 
 const RE_HTTP_URL = /^(https?):\/\//;
@@ -26,7 +32,7 @@ export function resolveId(source: string, importer?: string): string {
     if (importerUrl) {
       const url = new URL(source, importerUrl);
 
-      return RE_HTTP_URL.test(url.href) ? url.href : normalize(url.pathname);
+      return RE_HTTP_URL.test(url.href) ? url.href : fromFileUrl(url);
     }
 
     if (isAbsolute(source)) {
