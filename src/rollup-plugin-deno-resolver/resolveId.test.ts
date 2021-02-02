@@ -1,5 +1,5 @@
 import { expect } from "../../test/deps.ts";
-import { join, resolve, sep, toFileUrl, normalize } from "../../deps.ts";
+import { join, normalize, resolve, sep, toFileUrl } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { resolveId } from "./resolveId.ts";
 
