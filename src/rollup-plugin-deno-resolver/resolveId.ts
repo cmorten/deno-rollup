@@ -20,17 +20,25 @@ const RE_HTTP_URL = /^(https?):\/\//;
 export function resolveId(source: string, importer?: string): string {
   const sourceUrl = ensureUrl(source);
 
+  console.log({ sourceUrl });
+
   if (sourceUrl) {
     return sourceUrl;
   }
 
   source = normalize(source);
 
+  console.log({ nSource: source });
+
   if (importer) {
     const importerUrl = ensureUrl(importer);
 
+    console.log({ importerUrl });
+
     if (importerUrl) {
       const url = new URL(source, importerUrl);
+
+      console.log({ url });
 
       return RE_HTTP_URL.test(url.href) ? url.href : fromFileUrl(url);
     }
