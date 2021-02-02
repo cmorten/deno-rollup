@@ -1,6 +1,6 @@
 # ChangeLog
 
-## [2.38.3+0.8.0] - 31-01-2021
+## [2.38.4+0.8.0] - 31-01-2021
 
 - feat: add `html`, `image`, `json` and `yaml` plugins.
 - docs: add examples for using plugins
