@@ -1,5 +1,14 @@
-import { dirname, isAbsolute, join, normalize } from "../../deps.ts";
+import {
+  dirname,
+  fromFileUrl,
+  isAbsolute,
+  join,
+  normalize,
+} from "../../deps.ts";
 import { ensureUrl } from "./ensureUrl.ts";
+
+const RE_HTTP_URL = /^(https?):\/\//;
+const RE_WIN_DEVICE = /^([A-Za-z]:)(\\+|\/)/;
 
 /**
  * resolveId
@@ -22,7 +31,10 @@ export function resolveId(source: string, importer?: string): string {
     const importerUrl = ensureUrl(importer);
 
     if (importerUrl) {
-      return new URL(source, importerUrl).href;
+      const devicelessSource = source.replace(RE_WIN_DEVICE, "$2");
+      const url = new URL(devicelessSource, importerUrl);
+
+      return RE_HTTP_URL.test(url.href) ? url.href : fromFileUrl(url);
     }
 
     if (isAbsolute(source)) {

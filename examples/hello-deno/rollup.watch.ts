@@ -1,5 +1,5 @@
-import { bold, cyan, dim, ms, red } from "../deps.ts";
-import { watch } from "../mod.ts";
+import { bold, cyan, dim, ms, red } from "../../deps.ts";
+import { watch } from "../../mod.ts";
 import options from "./rollup.config.ts";
 
 const watcher = await watch(options);

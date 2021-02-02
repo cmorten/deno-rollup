@@ -22,7 +22,8 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 - [Overview](#overview)
 - [Installation](#installation)
 - [Documentation](#documentation)
-- [Example](#example)
+- [Plugins](#plugins)
+- [Examples](#examples)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -30,7 +31,7 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 
 [Rollup](https://github.com/rollup/rollup) is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application.
 
-This library extends Rollup so that it can be used within Deno scripts to bundle Deno code.
+This library extends Rollup so that it can be used within Deno scripts to bundle modules.
 
 ## Installation
 
@@ -41,7 +42,7 @@ deno-rollup can be used either through a [command line interface (CLI)](https://
 To install the CLI run:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.38.1+0.7.4/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.38.4+0.8.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
@@ -65,7 +66,7 @@ rollup -c --watch
 You can import deno-rollup straight into your project to bundle your modules:
 
 ```ts
-import { rollup } from "https://deno.land/x/drollup@2.38.1+0.7.4/mod.ts";
+import { rollup } from "https://deno.land/x/drollup@2.38.4+0.8.0/mod.ts";
 
 const options = {
   input: "./mod.ts",
@@ -84,7 +85,7 @@ await bundle.close();
 Or using the `watch` API:
 
 ```ts
-import { watch } from "https://deno.land/x/drollup@2.38.1+0.7.4/mod.ts";
+import { watch } from "https://deno.land/x/drollup@2.38.4+0.8.0/mod.ts";
 
 const options = {
   input: "./src/mod.ts",
@@ -140,19 +141,23 @@ watcher.close();
 
 Please refer to the official [Rollup Documentation](https://rollupjs.org).
 
-## Example
+## Plugins
 
-To run the [example](./example) you have a couple of options:
+A suite of deno-rollup compatible plugins are available in the [plugins](./plugins) directory.
+
+## Examples
+
+To run the [examples](./examples) you have a couple of options:
 
 ### Direct from repository
 
-1. Run the deno-rollup example directly from the repository:
+1. Run the deno-rollup `hello-deno` example directly from the repository:
 
-    ```console
-    deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.1+0.7.4/example/rollup.build.ts
-    ```
+   ```console
+   deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.4+0.8.0/examples/hello-deno/rollup.build.ts
+   ```
 
-    This will create a `./dist` directory with the bundled files in your current working directory.
+   This will create a `./dist` directory with the bundled files in your current working directory.
 
 ### Clone
 
@@ -163,16 +168,16 @@ To run the [example](./example) you have a couple of options:
    cd deno-rollup
    ```
 
-1. Then enter the example directory and run the build script:
+1. Then enter the desired examples directory and run the build script:
 
    ```bash
-   cd example
+   cd examples/hello-deno
    deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
    ```
 
-   This will create a `./dist` directory with the bundled files in the current `./example` directory.
+   This will create a `./dist` directory with the bundled files in the current directory.
 
-1. Further details are available in the [example README](./example/README.md).
+1. Further details are available in each example directory.
 
 ## Contributing
 

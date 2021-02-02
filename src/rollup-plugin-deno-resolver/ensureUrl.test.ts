@@ -1,14 +1,17 @@
 import { expect } from "../../test/deps.ts";
 import { describe, it } from "../../test/mod.ts";
+import { join } from "../../deps.ts";
 import { ensureUrl } from "./ensureUrl.ts";
 
 const validUrlStrings = [
   "http://",
   "https://",
-  "file://",
+  "file:///C:/",
+  "file:///",
   "http://test-path",
   "https://test-path",
-  "file://test-path",
+  "file:///test-path",
+  "file:///C:/test-path",
 ];
 
 describe("ensureUrl", () => {
@@ -18,7 +21,7 @@ describe("ensureUrl", () => {
     });
   });
 
-  validUrlStrings.map((string) => string.replace("//", "/")).forEach(
+  validUrlStrings.map((string) => join(string)).forEach(
     (source, index) => {
       it(`ensureUrl: should return path malformed URL strings with fixes: '${source}'`, () => {
         expect(ensureUrl(source)).toBe(validUrlStrings[index]);
@@ -35,7 +38,8 @@ describe("ensureUrl", () => {
     "file",
     "/http://",
     "/https://",
-    "/file://",
+    "/file:///",
+    "/file://C:/",
   ].forEach((source) => {
     it(`ensureUrl: should return null for strings that are not URLs: '${source}'`, () => {
       expect(ensureUrl(source)).toBeNull();

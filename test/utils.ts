@@ -8,6 +8,7 @@ import { dirname, join } from "../deps.ts";
 import { listGitHub } from "./deps.ts";
 import { toUrlString } from "./toUrlString.ts";
 import { requireSham } from "./requireSham.ts";
+import { coreRollupVersion } from "../version.ts";
 
 (globalThis as any).require = requireSham;
 
@@ -61,6 +62,7 @@ async function readGitHubDirSync(samplesDir: string): Promise<string[]> {
     user: "rollup",
     repository: "rollup",
     directory: samplesDir,
+    ref: `v${coreRollupVersion}`,
     token: Deno.env.get("GITHUB_PAT"),
   });
 }

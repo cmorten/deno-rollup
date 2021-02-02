@@ -208,3 +208,8 @@ export interface RollupWatchOptions extends InputOptions {
   output?: OutputOptions | OutputOptions[];
   watch?: WatcherOptions | false;
 }
+
+/**
+ * @public
+ */
+export type { FilterPattern } from "./createFilter.ts";
