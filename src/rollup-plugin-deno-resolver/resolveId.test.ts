@@ -1,5 +1,5 @@
 import { expect } from "../../test/deps.ts";
-import { join, resolve, sep, toFileUrl } from "../../deps.ts";
+import { join, resolve, sep, toFileUrl, normalize } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { resolveId } from "./resolveId.ts";
 
@@ -51,7 +51,7 @@ describe("resolveId", () => {
 
   it("resolveId: when an absolute path source is provided: and a remote URL importer is provided: it should return the resolved URL of the source from the importer", () => {
     const importer = "https://github.com/cmorten/deno-rollup/test.ts";
-    const source = "/cmorten/opine-cli/test.ts";
+    const source = normalize("/cmorten/opine-cli/test.ts");
     expect(resolveId(source, importer)).toBe(
       "https://github.com/cmorten/opine-cli/test.ts",
     );
@@ -59,13 +59,13 @@ describe("resolveId", () => {
 
   it("resolveId: when an absolute path source is provided: and a file URL importer is provided: it should return the source", () => {
     const importer = toFileUrl(resolve("./test.ts")).href;
-    const source = "/cmorten/opine-cli/test.ts";
+    const source = normalize("/cmorten/opine-cli/test.ts");
     expect(resolveId(source, importer)).toBe(source);
   });
 
   it("resolveId: when an absolute path source is provided: and a path malformed remote URL importer is provided: it should return the resolved URL of the source from the fixed importer", () => {
     const importer = "https://github.com/cmorten/deno-rollup/test.ts";
-    const source = "/cmorten/opine-cli/test.ts";
+    const source = normalize("/cmorten/opine-cli/test.ts");
     expect(resolveId(source, join(importer))).toBe(
       "https://github.com/cmorten/opine-cli/test.ts",
     );
@@ -73,7 +73,7 @@ describe("resolveId", () => {
 
   it("resolveId: when an absolute path source is provided: and a path malformed file URL importer is provided: it should return the source", () => {
     const importer = toFileUrl(resolve("./test.ts")).href;
-    const source = "/cmorten/opine-cli/test.ts";
+    const source = normalize("/cmorten/opine-cli/test.ts");
     expect(resolveId(source, join(importer))).toBe(source);
   });
 
