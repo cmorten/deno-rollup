@@ -8,6 +8,7 @@ import {
 import { ensureUrl } from "./ensureUrl.ts";
 
 const RE_HTTP_URL = /^(https?):\/\//;
+const RE_WIN_DEVICE = /^([A-Za-z]:)(?:\\+|\/)/
 
 /**
  * resolveId
@@ -36,7 +37,7 @@ export function resolveId(source: string, importer?: string): string {
     console.log({ importerUrl });
 
     if (importerUrl) {
-      const url = new URL(source, importerUrl);
+      const url = new URL(source.replace(RE_WIN_DEVICE, ""), importerUrl);
 
       console.log({ url });
 
