@@ -1,6 +1,10 @@
-# json
+# importmap
 
-This is a basic example to show Rollup usage with the `json` plugin.
+This is a basic example to show Rollup usage with the `importmap` plugin.
+
+The Rollup config is defined in the `./rollup.config.ts` file, and specifies that we wish to created ES bundles from our code in the `./src` directory, including source maps.
+
+The code in `./src` makes use of the mappings in the `./import_map.json` import map.
 
 ## Usage
 
@@ -12,7 +16,7 @@ To invoke Rollup to bundle files in the `./src` directory, from this directory r
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.4+0.9.0/examples/json/rollup.build.ts
+deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.4+0.9.0/examples/importmap/rollup.build.ts
 
 # When cloned locally
 deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
@@ -20,11 +24,13 @@ deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allo
 
 This executes the `./rollup.build.ts` file, which imports the config, invokes Rollup and then writes out the bundles.
 
-To execute your newly bundled code run:
+To execute your newly bundled server code run:
 
 ```console
-deno run --allow-read="./" ./dist/mod.js
+deno run --allow-read="./" --allow-net="0.0.0.0:3000" ./dist/mod.js
 ```
+
+The code starts an [Opine](https://github.com/asos-craigmorten/opine) server on <http://0.0.0.0:3000> and returns a simple message with your CWD.
 
 #### Bundle CLI
 
@@ -52,7 +58,7 @@ To watch and rebuild your bundle when it is detected that modules have changed o
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.4+0.9.0/examples/json/rollup.watch.ts
+deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.4+0.9.0/examples/importmap/rollup.watch.ts
 
 # When cloned locally
 deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.watch.ts
@@ -80,4 +86,4 @@ You can then bundle the files using the `rollup.config.ts` with:
 rollup -c --watch
 ```
 
-When using the `--watch` CLI, not only will your bundle be rebuilt when your source files change, but Rollup will also reload your `rollup.config.ts` file when that changes. For example, try switching the output directory to `./bin`!
+When using the `--watch` CLI, not only will your bundle be rebuilt when your source files change, but Rollup will also reload your `rollup.config.ts` file when that changes. For example, try switching the `external` option of the plugin to `true`!
