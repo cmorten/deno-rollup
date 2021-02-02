@@ -27,7 +27,7 @@
  */
 
 import type { NormalizedInputOptions, Plugin } from "../../mod.ts";
-import { normalize } from "./deps.ts";
+import { dirname, fromFileUrl, normalize, relative } from "./deps.ts";
 import { ensureArray } from "../../src/ensureArray.ts";
 import { resolveId } from "../../src/rollup-plugin-deno-resolver/resolveId.ts";
 
@@ -99,6 +99,7 @@ const isBareImportSpecifier = (address: string) => {
 const validate = (
   importMap: ImportMapObject,
   options: NormalizedInputOptions,
+  baseUrl: string,
 ) =>
   Object.keys(importMap.imports).map((specifier) => {
     const address = importMap.imports[specifier];
@@ -125,7 +126,7 @@ const validate = (
       }
     }
 
-    return { specifier, address };
+    return { specifier, address, baseUrl };
   });
 
 /**
@@ -143,7 +144,7 @@ const readFile = async (
   const importMapFile = await Deno.readTextFile(importMapPath);
   const importMap = JSON.parse(importMapFile);
 
-  return validate(importMap, options);
+  return validate(importMap, options, dirname(importMapPath));
 };
 
 // TODO: consider scopes
@@ -162,19 +163,32 @@ export function rollupImportMapPlugin(
   rollupImportMapOptions: RollupImportMapOptions,
 ): Plugin {
   const cache = new Map();
+  const cwd = Deno.cwd();
   const importMaps = ensureArray(rollupImportMapOptions.maps);
 
-  function getAddress(source: string) {
-    for (const [specifier, address] of cache.entries()) {
+  function getAddress(source: string, importer?: string) {
+    for (const [specifier, { address, baseUrl }] of cache.entries()) {
+      let base = baseUrl;
+
+      if (importer) {
+        if (importer.startsWith("file://")) {
+          base = relative(fromFileUrl(importer), baseUrl);
+        } else {
+          base = relative(importer, baseUrl);
+        }
+      }
+
+      const resolvedAddress = resolveId(address, base);
+
       if (specifier === source) {
-        return address;
+        return resolvedAddress;
       } else if (
         specifier.endsWith("/") &&
         source.startsWith(specifier)
       ) {
         const suffix = source.slice(specifier.length);
 
-        return resolveId(suffix, address);
+        return resolveId(suffix, resolvedAddress);
       }
     }
 
@@ -191,19 +205,19 @@ export function rollupImportMapPlugin(
             return readFile(importMap, options);
           }
 
-          return validate(importMap, options);
+          return validate(importMap, options, cwd);
         }),
       );
 
       mappings.forEach((map) => {
-        map.forEach(({ specifier, address }) => {
-          cache.set(specifier, address);
+        map.forEach(({ specifier, address, baseUrl }) => {
+          cache.set(specifier, { address, baseUrl });
         });
       });
     },
 
     async resolveId(source, importer) {
-      const address = getAddress(source);
+      const address = getAddress(source, importer);
 
       if (address) {
         const resolvedId = await this.resolve(address, importer);

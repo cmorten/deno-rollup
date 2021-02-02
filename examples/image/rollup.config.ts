@@ -1,4 +1,4 @@
-import { dirname, toFileUrl, resolve } from "../../deps.ts";
+import { dirname } from "../../deps.ts";
 import { image } from "../../plugins/image/mod.ts";
 import { html } from "../../plugins/html/mod.ts";
 
