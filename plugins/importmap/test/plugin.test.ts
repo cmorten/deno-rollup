@@ -11,14 +11,14 @@ const file = join(__dirname, "./fixtures/modules/file/main.js");
 const map = join(__dirname, "./fixtures/simple.map.json");
 const err = join(__dirname, "./fixtures/faulty.map.json");
 
+const clean = (str: string) => str.split("\r").join("");
+
 const assertMatchSnapshot = (code: string, snapshotName: string) => {
   const snapshot = Deno.readTextFileSync(
     join(__dirname, `./snapshots/${snapshotName}.txt`),
   );
-  expect(code).toEqual(snapshot);
+  expect(clean(code)).toEqual(clean(snapshot));
 };
-
-const clean = (str: string) => str.split("\r").join("");
 
 describe("plugin", () => {
   it("plugin: target is refered to in external option - should reject process", async () => {
@@ -64,7 +64,7 @@ it("plugin: external true: basic module: should replace lit-element with CDN URL
 
   const bundle = await rollup(options);
   const { output } = await bundle.generate({});
-  assertMatchSnapshot(clean(output[0].code), "basic_example");
+  assertMatchSnapshot(output[0].code, "basic_example");
 });
 
 it("plugin: external true: simple module: should replace lit-element with CDN URL", async () => {
@@ -84,7 +84,7 @@ it("plugin: external true: simple module: should replace lit-element with CDN UR
 
   const bundle = await rollup(options);
   const { output } = await bundle.generate({});
-  assertMatchSnapshot(clean(output[0].code), "simple_example");
+  assertMatchSnapshot(output[0].code, "simple_example");
 });
 
 it("plugin: external true: import map maps non bare imports: should replace import statement with CDN URL", async () => {
@@ -105,7 +105,7 @@ it("plugin: external true: import map maps non bare imports: should replace impo
 
   const bundle = await rollup(options);
   const { output } = await bundle.generate({});
-  assertMatchSnapshot(clean(output[0].code), "non_bare_imports");
+  assertMatchSnapshot(output[0].code, "non_bare_imports");
 });
 
 it("plugin: external true: import map maps address to a relative path: should replace import statement with relative path", async () => {
@@ -125,7 +125,7 @@ it("plugin: external true: import map maps address to a relative path: should re
 
   const bundle = await rollup(options);
   const { output } = await bundle.generate({});
-  assertMatchSnapshot(clean(output[0].code), "non_bare_imports_relative_path");
+  assertMatchSnapshot(output[0].code, "non_bare_imports_relative_path");
 });
 
 it("plugin: export true: import specifier is a interior package path: should replace with CDN URL", async () => {
@@ -147,7 +147,7 @@ it("plugin: export true: import specifier is a interior package path: should rep
 
   const bundle = await rollup(options);
   const { output } = await bundle.generate({});
-  assertMatchSnapshot(clean(output[0].code), "interior_package_path");
+  assertMatchSnapshot(output[0].code, "interior_package_path");
 });
 
 it("plugin: import map maps address to a bare importer: should throw", async () => {
@@ -196,7 +196,7 @@ it("plugin: external true: array of import map maps: should replace import state
 
   const bundle = await rollup(options);
   const { output } = await bundle.generate({});
-  assertMatchSnapshot(clean(output[0].code), "non_bare_imports");
+  assertMatchSnapshot(output[0].code, "non_bare_imports");
 });
 
 it("plugin: external true: input is a filepath to a map file: should load map and replace import statements with CDN URLs", async () => {
@@ -210,7 +210,7 @@ it("plugin: external true: input is a filepath to a map file: should load map an
 
   const bundle = await rollup(options);
   const { output } = await bundle.generate({});
-  assertMatchSnapshot(clean(output[0].code), "simple_example");
+  assertMatchSnapshot(output[0].code, "simple_example");
 });
 
 it("plugin: external true: input is a filepath to a map file and an inline map - should load map and replace import statements with CDN URLs", async () => {
@@ -233,7 +233,7 @@ it("plugin: external true: input is a filepath to a map file and an inline map -
 
   const bundle = await rollup(options);
   const { output } = await bundle.generate({});
-  assertMatchSnapshot(clean(output[0].code), "non_bare_imports");
+  assertMatchSnapshot(output[0].code, "non_bare_imports");
 });
 
 it("plugin: input is a filepath to a non existing map file: should throw", async () => {
