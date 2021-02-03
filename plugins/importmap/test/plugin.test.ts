@@ -1,10 +1,9 @@
 import { expect } from "../../../test/deps.ts";
 import { describe, it } from "../../../test/mod.ts";
 import { __dirname } from "./dirname.ts";
-import { join } from "../../../deps.ts";
+import { dirname, join } from "../../../deps.ts";
 import { rollup } from "../../../mod.ts";
 import { rollupImportMapPlugin } from "../mod.ts";
-import { dirname } from "https://deno.land/std@0.85.0/path/posix.ts";
 
 const simple = join(__dirname, "./fixtures/modules/simple/main.js");
 const basic = join(__dirname, "./fixtures/modules/basic/main.js");
