@@ -67,6 +67,15 @@ export interface RollupImportMapOptions {
    * import path is resolved.
    */
   external?: boolean;
+  /**
+   * Set the base url from which the relative-URL-like addresses
+   * are resolved.
+   * 
+   * If not provided, the base url will the location of the import
+   * map if an import map path is provided, or the current working
+   * directory if not.
+   */
+  baseUrl?: string;
 }
 
 /**
@@ -139,12 +148,13 @@ const validate = (
 const readFile = async (
   path: string,
   options: NormalizedInputOptions,
+  baseUrl?: string,
 ) => {
   const importMapPath = normalize(path);
   const importMapFile = await Deno.readTextFile(importMapPath);
   const importMap = JSON.parse(importMapFile);
 
-  return validate(importMap, options, dirname(importMapPath));
+  return validate(importMap, options, baseUrl ?? dirname(importMapPath));
 };
 
 // TODO: consider scopes
@@ -202,10 +212,14 @@ export function rollupImportMapPlugin(
       const mappings = await Promise.all(
         importMaps.map((importMap) => {
           if (typeof importMap === "string") {
-            return readFile(importMap, options);
+            return readFile(importMap, options, rollupImportMapOptions.baseUrl);
           }
 
-          return validate(importMap, options, cwd);
+          return validate(
+            importMap,
+            options,
+            rollupImportMapOptions.baseUrl ?? cwd,
+          );
         }),
       );
 
@@ -220,14 +234,10 @@ export function rollupImportMapPlugin(
       const address = getAddress(source, importer);
 
       if (address) {
-        const resolvedId = await this.resolve(address, importer);
-
-        if (resolvedId !== null) {
-          return {
-            id: resolvedId.id,
-            external: rollupImportMapOptions.external ?? resolvedId.external,
-          };
-        }
+        return {
+          id: await resolveId(address, importer),
+          external: rollupImportMapOptions.external ?? false,
+        };
       }
 
       return null;

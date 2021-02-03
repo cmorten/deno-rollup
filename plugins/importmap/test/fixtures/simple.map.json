@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "lit-element": "https://unpkg.com/lit-element@2.4.0/lit-element.js"
+  }
+}
