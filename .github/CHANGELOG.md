@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.38.4+0.9.1] - 03-02-2021
+
+- docs: correct `external` option docs for `importmap` plugin
+
 ## [2.38.4+0.9.0] - 02-02-2021
 
 - feat: add `importmap` plugin

@@ -62,9 +62,8 @@ export interface RollupImportMapOptions {
   /**
    * If `true`, instructs Rollup to mark imports declared in the
    * provided import maps as external. If `false` the imports
-   * are bundled. If not specified, the external status will be
-   * determined by Rollup and other provided plugins when the
-   * import path is resolved.
+   * are bundled. If not specified it will default to `false`.
+   * @default false
    */
   external?: boolean;
   /**

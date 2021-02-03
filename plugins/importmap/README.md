@@ -17,7 +17,7 @@ Assuming a `import_map.json` exists and contains:
 Create a `rollup.config.js` [configuration file](https://www.rollupjs.org/guide/en/#configuration-files) and import the plugin:
 
 ```ts
-import { rollupImportMapPlugin } from "https://deno.land/x/drollup@2.38.4+0.9.0/plugins/importmap/mod.ts";
+import { rollupImportMapPlugin } from "https://deno.land/x/drollup@2.38.4+0.9.1/plugins/importmap/mod.ts";
 
 export default {
   input: "./src/mod.ts",
@@ -43,9 +43,9 @@ A path to an import map, an inline import map object, or an array containing any
 ### `external`
 
 Type: `Boolean`<br>
-Default: `null`
+Default: `false`
 
-If `true`, instructs Rollup to mark imports declared in the provided import maps as external. If `false` the imports are bundled. If not specified, the external status will be determined by Rollup and other provided plugins when the import path is resolved.
+If `true`, instructs Rollup to mark imports declared in the provided import maps as external. If `false` the imports are bundled. If not specified it will default to `false`.
 
 ### `baseUrl`
 
