@@ -36,6 +36,7 @@ Then call `rollup` either via the [CLI](https://www.rollupjs.org/guide/en/#comma
 ### `maps`
 
 Type: `String` | `Object` | `(String | Object)[]`
+
 Default: `[]`
 
 A path to an import map, an inline import map object, or an array containing any combination of the above.
@@ -43,6 +44,7 @@ A path to an import map, an inline import map object, or an array containing any
 ### `external`
 
 Type: `Boolean`
+
 Default: `null`
 
 If `true`, instructs Rollup to mark imports declared in the provided import maps as external. If `false` the imports are bundled. If not specified, the external status will be determined by Rollup and other provided plugins when the import path is resolved.
@@ -50,6 +52,7 @@ If `true`, instructs Rollup to mark imports declared in the provided import maps
 ### `baseUrl`
 
 Type: `String`
+
 Default: `null`
 
 Set the base url from which the relative-URL-like addresses are resolved.
