@@ -1,6 +1,5 @@
 import { dirname } from "../../deps.ts";
-import { image } from "../../plugins/image/mod.ts";
-import { html } from "../../plugins/html/mod.ts";
+import { rollupImportMapPlugin } from "../../plugins/importmap/mod.ts";
 
 const __dirname = dirname(import.meta.url);
 const format = "es" as const;
@@ -8,8 +7,7 @@ const format = "es" as const;
 export default {
   input: new URL("./src/mod.ts", `${__dirname}/`).href,
   plugins: [
-    image({ dom: true }),
-    html(),
+    rollupImportMapPlugin({ maps: "./import_map.json" }),
   ],
   output: {
     dir: "./dist",

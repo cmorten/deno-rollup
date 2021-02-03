@@ -1,0 +1,63 @@
+import { html } from '../../../lit-element/v2';
+
+function replaceElement(target, element) {
+  target.replaceWith(element);
+  return element;
+}
+
+function firstElement(element) {
+  return element.firstElementChild;
+}
+
+function view(items) {
+  return html`<p>Hello ${items[0]}!</p>`;
+}
+
+function random(min, max) {
+  return Math.floor(min + Math.random() * (max + 1 - min));
+}
+
+function data() {
+  return [
+    random(0, 20),
+    random(20, 40),
+    random(40, 60),
+    random(60, 80),
+    random(80, 100),
+  ];
+}
+
+class App {
+  constructor(root) {
+    this.root = root;
+  }
+
+  render() {
+    const items = data();
+    const el = view(items);
+    this.root = replaceElement(this.root, el);
+  }
+
+  update() {
+    setInterval(() => {
+      this.render();
+    }, 1000);
+  }
+}
+
+const ready = () => {
+  return new Promise((resolve) => {
+    document.addEventListener("DOMContentLoaded", () => {
+      const el = document.getElementById("app");
+      resolve(firstElement(el));
+    });
+  });
+};
+
+const start = async () => {
+  const el = await ready();
+  const app = new App(el);
+  app.render();
+  app.update();
+};
+start();

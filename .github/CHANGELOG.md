@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.38.4+0.9.0] - 02-02-2021
+
+- feat: add `importmap` plugin
+
 ## [2.38.4+0.8.0] - 31-01-2021
 
 - feat: add `html`, `image`, `json` and `yaml` plugins.
