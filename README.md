@@ -141,7 +141,7 @@ watcher.close();
 
 Please refer to the official [Rollup Documentation](https://rollupjs.org).
 
-## Plugins
+## Plugins
 
 A suite of deno-rollup compatible plugins are available in the [plugins](./plugins) directory.
 
