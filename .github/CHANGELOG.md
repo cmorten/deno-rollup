@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.38.4+0.10.0] - 06-02-2021
+
+- feat: add `virtual` plugin
+
 ## [2.38.4+0.9.1] - 03-02-2021
 
 - docs: correct `external` option docs for `importmap` plugin
@@ -10,7 +14,7 @@
 
 ## [2.38.4+0.8.0] - 31-01-2021
 
-- feat: add `html`, `image`, `json` and `yaml` plugins.
+- feat: add `html`, `image`, `json` and `yaml` plugins
 - docs: add examples for using plugins
 - fix: handling of file URLs
 
