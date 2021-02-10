@@ -54,7 +54,7 @@ Default: `null`
 
 Set the base url from which the relative-URL-like addresses are resolved.
 
-If not provided, the base url will the location of the import map if an import map path is provided, or the current working directory if not.
+If not provided, the base url will be the location of the import map if an import map path is provided, or the current working directory if not.
 
 ## Meta
 
