@@ -14,6 +14,12 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
    <img src="https://img.shields.io/github/license/cmorten/deno-rollup" alt="deno-rollup license" />
    <a href="https://github.com/cmorten/deno-rollup/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="deno-rollup is maintained" /></a>
 </p>
+<p align="center">
+   <a href="https://deno.land/x/drollup"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fdrollup%2Fmod.ts" alt="deno-rollup latest /x/ version" /></a>
+   <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/drollup/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fdrollup%2Fmod.ts" alt="deno-rollup dependency count" /></a>
+   <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/drollup/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fdrollup%2Fmod.ts" alt="deno-rollup dependency outdatedness" /></a>
+   <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/drollup/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fdrollup%2Fmod.ts" alt="deno-rollup cached size" /></a>
+</p>
 
 ---
 
