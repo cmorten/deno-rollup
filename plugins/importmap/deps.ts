@@ -3,4 +3,4 @@ export {
   fromFileUrl,
   normalize,
   relative,
-} from "https://deno.land/std@0.85.0/path/mod.ts";
+} from "https://deno.land/std@0.86.0/path/mod.ts";

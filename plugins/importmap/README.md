@@ -9,7 +9,7 @@ Assuming a `import_map.json` exists and contains:
 ```json
 {
   "imports": {
-    "fmt/": "https://deno.land/std@0.85.0/fmt/"
+    "fmt/": "https://deno.land/std@0.86.0/fmt/"
   }
 }
 ```
@@ -17,7 +17,7 @@ Assuming a `import_map.json` exists and contains:
 Create a `rollup.config.js` [configuration file](https://www.rollupjs.org/guide/en/#configuration-files) and import the plugin:
 
 ```ts
-import { rollupImportMapPlugin } from "https://deno.land/x/drollup@2.38.4+0.10.0/plugins/importmap/mod.ts";
+import { rollupImportMapPlugin } from "https://deno.land/x/drollup@2.38.5+0.11.0/plugins/importmap/mod.ts";
 
 export default {
   input: "./src/mod.ts",
