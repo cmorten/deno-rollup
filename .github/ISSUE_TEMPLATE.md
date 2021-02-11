@@ -7,8 +7,6 @@ Setup:
 - Typescript version: <replace_with_typescript_version>
 - deno-rollup version: <replace_with_deno_rollup_version>
 
-> Please replace this line with a short description of the issue.
-
 ## Details
 
 > Please replace this quote block with the details of the feature / bug you wish to be addressed. If it is a bug please do your best to add steps to reproduce.
