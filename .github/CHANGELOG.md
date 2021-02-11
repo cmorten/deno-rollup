@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [2.38.5+0.11.0] - 06-02-2021
+
+- feat: upgrade deps
+- ci: publish to nest.land registry
+- docs: tidy up contribution docs
+
 ## [2.38.4+0.10.0] - 06-02-2021
 
 - feat: add `virtual` plugin
