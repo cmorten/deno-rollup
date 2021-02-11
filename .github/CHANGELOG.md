@@ -1,6 +1,6 @@
 # ChangeLog
 
-## [2.38.5+0.11.0] - 06-02-2021
+## [2.38.5+0.11.0] - 11-02-2021
 
 - feat: upgrade deps
 - ci: publish to nest.land registry
