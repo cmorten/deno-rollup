@@ -1,6 +1,6 @@
 # svelte
 
-Compile Svelte components.
+🍣 A Rollup plugin to compile Svelte components.
 
 This is a minimal port / re-export of the official `sveltejs/rollup-plugin-svelte` package.
 
