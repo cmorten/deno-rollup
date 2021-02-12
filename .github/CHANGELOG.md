@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.38.5+0.13.0] - 12-02-2021
+
+- feat: Add css plugin (#22)
+
 ## [2.38.5+0.12.0] - 12-02-2021
 
 - [#19] Add svelte plugin (#21)
