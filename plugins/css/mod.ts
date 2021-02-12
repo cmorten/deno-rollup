@@ -40,11 +40,12 @@ export interface RollupCssOptions {
   /**
    * One of:
    * - A string filename to write all styles to;
-   * - A callback that will be called ongenerate with two arguments:
-   *   - styles: the contents of all style tags combined: 'body { color: green }';
-   *   - styleNodes: an array of style objects: [{lang: 'css', content: 'body { color: green }'}];
+   * - A callback that will be called once generated with three arguments:
+   *   - `styles`: the contents of all style tags combined: `"body { color: green }"`;
+   *   - `styleNodes`: an array of style objects: `[{ lang: "css", content: "body { color: green }" }]`;
+   *   - `bundle`: the output bundle object;
    * - `false` to disable any style output or callbacks;
-   * - `null` for the default behaviour to write all styles to the bundle outputination where .js is replaced by .css.
+   * - `null` for the default behaviour: to write all styles to the bundle destination where .js is replaced by .css.
    */
   output?: string | boolean | OutputFunction | null;
   /**
