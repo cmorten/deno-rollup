@@ -26,9 +26,9 @@
  * SOFTWARE.
  */
 
-import type { FilterPattern, OutputBundle, Plugin } from "../../mod.ts";
+import type { FilterPattern, OutputBundle, Plugin, NormalizedOutputOptions } from "../../mod.ts";
 import { createFilter } from "../../src/rollup/createFilter.ts";
-import { basename } from "../../deps.ts";
+import { parse } from "./deps.ts";
 
 export type OutputFunction = (
   styles: string,
@@ -60,6 +60,31 @@ export interface RollupCssOptions {
   exclude?: FilterPattern;
 }
 
+function getFileName(
+  opts: NormalizedOutputOptions,
+  bundle: OutputBundle,
+): string {
+  if (opts.file) {
+    return `${parse(opts.file).name}.css`;
+  }
+
+  const entryFile = Object.keys(bundle).find((fileName) => {
+    const file = bundle[fileName];
+
+    if ("isEntry" in file) {
+      return file.isEntry;
+    }
+
+    return false;
+  });
+
+  if (entryFile) {
+    return `${parse(entryFile).name}.css`;
+  }
+
+  return "bundle.css";
+}
+
 /**
  * A Rollup plugin that bundles imported css.
  * 
@@ -71,7 +96,6 @@ export function css(options: RollupCssOptions = {}): Plugin {
   const styles: Record<string, string> = {};
   const importOrder: string[] = [];
 
-  let output = options.output;
   let changes = 0;
   let source = "";
 
@@ -125,13 +149,9 @@ export function css(options: RollupCssOptions = {}): Plugin {
         return;
       }
 
-      let fileName;
-
-      if (typeof output !== "string") {
-        fileName = `${basename(opts.file ?? "bundle")}.css`;
-      } else {
-        fileName = output;
-      }
+      const fileName = options.output === "string"
+        ? options.output
+        : getFileName(opts, bundle);
 
       this.emitFile({ type: "asset", fileName, source });
     },
