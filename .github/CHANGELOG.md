@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.39.0+0.14.0] - 13-02-2021
+
+- chore: upgrade std lib and rollup dependencies
+- feat: add postcss plugin
+
 ## [2.38.5+0.13.0] - 12-02-2021
 
 - feat: Add css plugin (#22)

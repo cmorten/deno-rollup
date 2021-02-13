@@ -11,7 +11,7 @@ Please refer to the original [README](https://github.com/thgh/rollup-plugin-css-
 Create a `rollup.config.js` [configuration file](https://www.rollupjs.org/guide/en/#configuration-files) and import the plugin:
 
 ```ts
-import { css } from "https://deno.land/x/drollup@2.39.0+0.13.0/plugins/css/mod.ts";
+import { css } from "https://deno.land/x/drollup@2.39.0+0.14.0/plugins/css/mod.ts";
 
 export default {
   input: "./src/mod.ts",
