@@ -12,7 +12,7 @@ To invoke Rollup to bundle files in the `./src` directory, from this directory r
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.5+0.13.0/examples/image/rollup.build.ts
+deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.39.0+0.13.0/examples/image/rollup.build.ts
 
 # When cloned locally
 deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
@@ -23,7 +23,7 @@ This executes the `./rollup.build.ts` file, which imports the config, invokes Ro
 To view your new HTML page and bundle code run:
 
 ```console
-deno run --allow-net --allow-read https://deno.land/std@0.86.0/http/file_server.ts ./dist --port 3000
+deno run --allow-net --allow-read https://deno.land/std@0.87.0/http/file_server.ts ./dist --port 3000
 ```
 
 This uses the Deno standard library's `file_server` module to serve the static files in the `./dist` directory to `0.0.0.0` port `3000`. Open a browser at <http://0.0.0.0:3000/> to view your page.
@@ -35,7 +35,7 @@ Alternatively you can use the Rollup CLI to bundle files.
 Install the CLI:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.38.5+0.13.0/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.39.0+0.13.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
@@ -54,7 +54,7 @@ To watch and rebuild your bundle when it is detected that modules have changed o
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.38.5+0.13.0/examples/image/rollup.watch.ts
+deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.39.0+0.13.0/examples/image/rollup.watch.ts
 
 # When cloned locally
 deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.watch.ts
@@ -71,7 +71,7 @@ Alternatively you can use the Rollup CLI to watch and rebuild your bundle.
 Install the CLI (same as before):
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.38.5+0.13.0/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.39.0+0.13.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.

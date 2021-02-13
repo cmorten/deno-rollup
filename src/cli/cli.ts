@@ -241,6 +241,10 @@ const program = await new Command()
     "Do not replace empty SystemJS setters with `null`",
   )
   .option(
+    "--validate",
+    "Validate output",
+  )
+  .option(
     "--treeshake [treeshake:treeshake]",
     "Enable tree-shaking optimisations",
     {

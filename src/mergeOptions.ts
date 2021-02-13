@@ -303,6 +303,7 @@ function mergeOutputOptions(
     sourcemapPathTransform: getOption("sourcemapPathTransform"),
     strict: getOption("strict"),
     systemNullSetters: getOption("systemNullSetters"),
+    validate: getOption("validate"),
   };
 
   return outputOptions;

@@ -23,4 +23,3 @@ lint:
 test:
 	@deno test --allow-read --allow-write --allow-net --allow-run --allow-env --unstable ./src
 	@deno test --allow-read --allow-write --allow-net --allow-run --allow-env --unstable ./plugins
-	@deno test --allow-read --allow-write --allow-net --allow-run --allow-env --unstable ./test
