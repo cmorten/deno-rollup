@@ -1,8 +1,14 @@
+/**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/loadConfigFromCommand.ts>
+ */
+
 import type { MergedRollupOptions } from "../../deps.ts";
 import type { GenericConfigObject } from "../types.ts";
 import { mergeOptions } from "../mergeOptions.ts";
 
 const stdinName = "-";
+
+// TODO: warnings
 
 export function loadConfigFromCommand(
   commandOptions: GenericConfigObject = {},

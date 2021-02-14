@@ -1,3 +1,7 @@
+/**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/index.ts>
+ */
+
 import type { IParseResult, MergedRollupOptions } from "../../deps.ts";
 import { getConfigPath } from "./getConfigPath.ts";
 import { loadAndParseConfigFile } from "./loadAndParseConfigFile.ts";

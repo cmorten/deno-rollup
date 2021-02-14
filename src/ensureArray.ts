@@ -1,4 +1,8 @@
 /**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/src/utils/ensureArray.ts>
+ */
+
+/**
  * ensureArray
  * 
  * @param {any} items

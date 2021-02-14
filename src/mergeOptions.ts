@@ -1,3 +1,7 @@
+/**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/src/utils/options/mergeOptions.ts>
+ */
+
 // deno-lint-ignore-file ban-types
 import type { CommandConfigObject, GenericConfigObject } from "./types.ts";
 import type {
@@ -13,13 +17,66 @@ import type { InputOptions } from "./rollup/mod.ts";
 import { ensureArray } from "./ensureArray.ts";
 
 /**
- * onWarn
+ * defaultOnWarn
  * 
  * @param {any} warning
  * @private
  */
-export const onWarn: WarningHandler = (warning) =>
+const defaultOnWarn: WarningHandler = (warning) =>
   console.warn(warning.message || warning);
+
+/**
+ * warnUnknownOptions
+ * 
+ * @param {GenericConfigObject} passedOptions 
+ * @param {string[]} validOptions 
+ * @param {string} optionType 
+ * @param {WarningHandler} warn 
+ * @param {RegExp} ignoredKeys
+ * @private
+ */
+function warnUnknownOptions(
+  passedOptions: GenericConfigObject,
+  validOptions: string[],
+  optionType: string,
+  warn: WarningHandler,
+  ignoredKeys = /$./,
+): void {
+  const validOptionSet = new Set(validOptions);
+  const unknownOptions = Object.keys(passedOptions).filter(
+    (key) => !(validOptionSet.has(key) || ignoredKeys.test(key)),
+  );
+  if (unknownOptions.length > 0) {
+    warn({
+      code: "UNKNOWN_OPTION",
+      message: `Unknown ${optionType}: ${
+        unknownOptions.join(", ")
+      }. Allowed options: ${
+        [
+          ...validOptionSet,
+        ]
+          .sort()
+          .join(", ")
+      }`,
+    });
+  }
+}
+
+export const commandAliases: { [key: string]: string } = {
+  c: "config",
+  d: "dir",
+  e: "external",
+  f: "format",
+  g: "globals",
+  h: "help",
+  i: "input",
+  m: "sourcemap",
+  n: "name",
+  o: "file",
+  p: "plugin",
+  v: "version",
+  w: "watch",
+};
 
 /**
  * mergeOptions
@@ -31,14 +88,22 @@ export const onWarn: WarningHandler = (warning) =>
  */
 export function mergeOptions(
   config: GenericConfigObject,
-  rawCommandOptions: GenericConfigObject = { external: [] },
+  rawCommandOptions: GenericConfigObject = { external: [], globals: undefined },
+  defaultOnWarnHandler: WarningHandler = defaultOnWarn,
 ): MergedRollupOptions {
   const command = getCommandOptions(rawCommandOptions);
 
   const inputOptions = mergeInputOptions(
     config,
     command,
+    defaultOnWarnHandler,
   ) as MergedRollupOptions;
+
+  const warn = inputOptions.onwarn as WarningHandler;
+
+  if (command.output) {
+    Object.assign(command, command.output);
+  }
 
   const outputOptionsArray = ensureArray(
     config.output,
@@ -49,7 +114,27 @@ export function mergeOptions(
   }
 
   const outputOptions = outputOptionsArray.map((singleOutputOptions) =>
-    mergeOutputOptions(singleOutputOptions, command)
+    mergeOutputOptions(singleOutputOptions, command, warn)
+  );
+
+  warnUnknownOptions(
+    command,
+    Object.keys(inputOptions).concat(
+      Object.keys(outputOptions[0]).filter((option) =>
+        option !== "sourcemapPathTransform"
+      ),
+      Object.keys(commandAliases),
+      "config",
+      "environment",
+      "plugin",
+      "silent",
+      "failAfterWarnings",
+      "stdin",
+      "waitForBundleInput",
+    ),
+    "CLI flags",
+    warn,
+    /^_$|output$|config/,
   );
 
   inputOptions.output = outputOptions;
@@ -105,6 +190,7 @@ type CompleteInputOptions<U extends keyof InputOptions> = {
 function mergeInputOptions(
   config: GenericConfigObject,
   overrides: CommandConfigObject,
+  defaultOnWarnHandler: WarningHandler,
 ): InputOptions {
   // deno-lint-ignore no-explicit-any
   const getOption = (name: string): any => overrides[name] ?? config[name];
@@ -123,7 +209,7 @@ function mergeInputOptions(
     input: getOption("input") || [],
     manualChunks: getOption("manualChunks"),
     moduleContext: getOption("moduleContext"),
-    onwarn: getOnWarn(config, onWarn),
+    onwarn: getOnWarn(config, defaultOnWarnHandler),
     perf: getOption("perf"),
     plugins: ensureArray(config.plugins) as Plugin[],
     preserveEntrySignatures: getOption("preserveEntrySignatures"),
@@ -134,6 +220,14 @@ function mergeInputOptions(
     treeshake: getObjectOption(config, overrides, "treeshake"),
     watch: getWatch(config, overrides, "watch"),
   };
+
+  warnUnknownOptions(
+    config,
+    Object.keys(inputOptions),
+    "input options",
+    inputOptions.onwarn as WarningHandler,
+    /^output$/,
+  );
 
   return inputOptions;
 }
@@ -259,6 +353,7 @@ type CompleteOutputOptions<U extends keyof OutputOptions> = {
 function mergeOutputOptions(
   config: GenericConfigObject,
   overrides: GenericConfigObject,
+  warn: WarningHandler,
 ): OutputOptions {
   // deno-lint-ignore no-explicit-any
   const getOption = (name: string): any => overrides[name] ?? config[name];
@@ -305,6 +400,13 @@ function mergeOutputOptions(
     systemNullSetters: getOption("systemNullSetters"),
     validate: getOption("validate"),
   };
+
+  warnUnknownOptions(
+    config,
+    Object.keys(outputOptions),
+    "output options",
+    warn,
+  );
 
   return outputOptions;
 }

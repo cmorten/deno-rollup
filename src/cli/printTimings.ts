@@ -1,3 +1,7 @@
+/**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/timings.ts>
+ */
+
 import type { SerializedTimings } from "../../deps.ts";
 import { bold, underline } from "../../deps.ts";
 import { logInfo } from "../logging.ts";

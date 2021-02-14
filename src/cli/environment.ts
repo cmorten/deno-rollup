@@ -1,3 +1,7 @@
+/**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/index.ts>
+ */
+
 import type { IParseResult } from "../../deps.ts";
 
 // TODO: the browser version of rollup probably isn't doing anything

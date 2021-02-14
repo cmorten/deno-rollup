@@ -1,3 +1,7 @@
+/**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/logging.ts>
+ */
+
 import type { RollupError } from "../deps.ts";
 import { bold, cyan, dim, red } from "../deps.ts";
 import { relativeId } from "./relativeId.ts";

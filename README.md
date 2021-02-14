@@ -147,6 +147,15 @@ watcher.close();
 
 Please refer to the official [Rollup Documentation](https://rollupjs.org).
 
+Known deviations from Rollup:
+
+- Deno code support: TypeScript and URL imports supported out-of-the-box.
+- CLI does not currently support some nested "dot" flags, namely: `--no-treeshake.*`, `--watch.*` and `--no-watch.*`.
+- CLI does not currently support the `--plugin` flag.
+- Some warnings have yet to be implemented.
+
+Where further deviations / incompatibility are found, please raise an issue.
+
 ## Plugins
 
 A suite of deno-rollup compatible plugins are available in the [plugins](./plugins) directory.
@@ -196,3 +205,5 @@ To run the [examples](./examples) you have a couple of options:
 deno-rollup is licensed under the [MIT License](./LICENSE.md).
 
 The license for the Rollup library, which this library adapts, is available at [ROLLUP_LICENSE](./ROLLUP_LICENSE.md).
+
+Derived works other than from [Rollup](https://github.com/rollup/rollup) are attributed with their license in source.

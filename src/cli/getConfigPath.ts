@@ -1,3 +1,7 @@
+/**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/getConfigPath.ts>
+ */
+
 import { resolve } from "../../deps.ts";
 
 const DEFAULT_CONFIG_BASE = "rollup.config";

@@ -1,3 +1,7 @@
+/**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/loadConfigFile.ts>
+ */
+
 import type { MergedRollupOptions } from "../../deps.ts";
 import type { GenericConfigObject } from "../types.ts";
 import { loadConfigFile } from "./loadConfigFile.ts";

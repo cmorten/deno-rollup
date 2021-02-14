@@ -1,3 +1,7 @@
+/**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/build.ts>
+ */
+
 import type { MergedRollupOptions } from "../../deps.ts";
 import { bold, cyan, green, ms } from "../../deps.ts";
 import { relativeId } from "../relativeId.ts";
@@ -8,6 +12,15 @@ import { handleError, logInfo, logOutput } from "../logging.ts";
 
 const decoder = new TextDecoder();
 
+// TODO: warnings
+
+/**
+ * build
+ * 
+ * @param {MergedRollupOptions} inputOptions
+ * @param {boolen} silent
+ * @private
+ */
 export async function build(
   inputOptions: MergedRollupOptions,
   silent = false,

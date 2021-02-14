@@ -1,3 +1,7 @@
+/**
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/watch-cli.ts>
+ */
+
 import type { IParseResult, MergedRollupOptions } from "../../deps.ts";
 import type { RollupWatcher } from "../rollup/mod.ts";
 import { VERSION, watch as _watch } from "../rollup/mod.ts";
