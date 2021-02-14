@@ -157,10 +157,10 @@ To run the [examples](./examples) you have a couple of options:
 
 ### Direct from repository
 
-1. Run the deno-rollup `hello-deno` example directly from the repository:
+1. Run the deno-rollup `helloDeno` example directly from the repository:
 
    ```console
-   deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.39.0+0.14.0/examples/hello-deno/rollup.build.ts
+   deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.39.0+0.14.0/examples/helloDeno/rollup.build.ts
    ```
 
    This will create a `./dist` directory with the bundled files in your current working directory.
@@ -177,7 +177,7 @@ To run the [examples](./examples) you have a couple of options:
 1. Then enter the desired examples directory and run the build script:
 
    ```bash
-   cd examples/hello-deno
+   cd examples/helloDeno
    deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
    ```
 
