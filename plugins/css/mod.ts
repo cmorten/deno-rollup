@@ -26,7 +26,12 @@
  * SOFTWARE.
  */
 
-import type { FilterPattern, OutputBundle, Plugin, NormalizedOutputOptions } from "../../mod.ts";
+import type {
+  FilterPattern,
+  NormalizedOutputOptions,
+  OutputBundle,
+  Plugin,
+} from "../../mod.ts";
 import { createFilter } from "../../src/rollup/createFilter.ts";
 import { parse } from "./deps.ts";
 

@@ -1,5 +1,5 @@
-import type { PreprocessorGroup, compileOptions } from "./deps.ts";
-import { RollupWarning, Plugin } from "../../mod.ts";
+import type { compileOptions, PreprocessorGroup } from "./deps.ts";
+import { Plugin, RollupWarning } from "../../mod.ts";
 
 type Arrayable<T> = T | T[];
 

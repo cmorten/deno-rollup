@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.39.1+0.15.0] - 13-02-2021
+
+- feat: support Deno 1.8.0 and std 0.89.0
+- feat: upgrade Rollup to 2.39.1
+
 ## [2.39.0+0.14.0] - 13-02-2021
 
 - chore: upgrade std lib and rollup dependencies
@@ -52,7 +57,7 @@
 
 ## [2.38.0+0.7.1] - 26-01-2021
 
-- [#11] Support input subdirectories (#13) 
+- [#11] Support input subdirectories (#13)
 - [#10] Add `bundle.close()` to examples (#12)
 
 ## [2.38.0+0.7.0] - 24-01-2021
@@ -72,7 +77,9 @@
 
 - feat: perf improvements
 
-`Deno.emit(...)` appears to a bottleneck somewhere when resolving remote modules resulting in very long compilation time. Retrieving the module manually and passing as a source appears far more performant at the moment.
+`Deno.emit(...)` appears to a bottleneck somewhere when resolving remote modules
+resulting in very long compilation time. Retrieving the module manually and
+passing as a source appears far more performant at the moment.
 
 ## [2.37.1+0.5.0] - 20-01-2021
 

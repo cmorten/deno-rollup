@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/src/utils/ensureArray.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.1/src/utils/ensureArray.ts>
  */
 
 /**

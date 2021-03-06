@@ -1,6 +1,8 @@
 # Examples
 
-This directory contains a series of self-contained examples that you can use as starting points for your app, or as snippets to pull into your existing applications:
+This directory contains a series of self-contained examples that you can use as
+starting points for your app, or as snippets to pull into your existing
+applications:
 
 | Example                  | Description                                                                                        |
 | ------------------------ | -------------------------------------------------------------------------------------------------- |

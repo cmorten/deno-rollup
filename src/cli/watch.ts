@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/watch-cli.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.1/cli/run/watch-cli.ts>
  */
 
 import type { IParseResult, MergedRollupOptions } from "../../deps.ts";

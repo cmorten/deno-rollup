@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/logging.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.39.1/cli/logging.ts>
  */
 
 import type { RollupError } from "../deps.ts";
