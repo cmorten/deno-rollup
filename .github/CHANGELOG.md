@@ -1,6 +1,6 @@
 # ChangeLog
 
-## [2.39.1+0.15.0] - 13-02-2021
+## [2.39.1+0.15.0] - 06-03-2021
 
 - feat: support Deno 1.8.0 and std 0.89.0
 - feat: upgrade Rollup to 2.39.1
