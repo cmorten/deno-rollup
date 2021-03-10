@@ -1,6 +1,6 @@
 {
   "imports": {
-    "path/": "https://deno.land/std@0.89.0/path/",
+    "path/": "https://deno.land/std@0.90.0/path/",
     "opine": "https://deno.land/x/opine@1.1.0/mod.ts",
     "message": "./src/message.ts"
   }

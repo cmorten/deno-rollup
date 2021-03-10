@@ -1,6 +1,14 @@
-# virtual
+# terser
 
-This is a basic example to show Rollup usage with the `virtual` plugin.
+This is a basic example to show Rollup usage with the `terser` plugin.
+
+The Rollup config is defined in the `./rollup.config.ts` file, and specifies
+that we wish to created ES bundles from our code in the `./src` directory,
+including source maps.
+
+The code in `./src` is fairly trivial, but makes use of typescript, dynamic
+imports, URL imports (from the std library) and the Deno namespace, in order to
+demonstrate the bundling capabilities of Rollup with Deno.
 
 ## Usage
 
@@ -13,10 +21,10 @@ run:
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.41.0+0.16.0/examples/virtual/rollup.build.ts
+deno run --allow-read --allow-write="./dist" --allow-net --allow-env --unstable --no-check https://deno.land/x/drollup@2.41.0+0.16.0/examples/terser/rollup.build.ts
 
 # When cloned locally
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
+deno run --allow-read --allow-write="./dist" --allow-net --allow-env --unstable --no-check ./rollup.build.ts
 ```
 
 This executes the `./rollup.build.ts` file, which imports the config, invokes
@@ -25,7 +33,7 @@ Rollup and then writes out the bundles.
 To execute your newly bundled code run:
 
 ```console
-deno run ./dist/mod.js
+deno run --allow-read="./" ./dist/mod.js
 ```
 
 #### Bundle CLI
@@ -55,10 +63,10 @@ on disk run:
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.41.0+0.16.0/examples/virtual/rollup.watch.ts
+deno run --allow-read --allow-write="./dist" --allow-net --allow-env --unstable --no-check https://deno.land/x/drollup@2.41.0+0.16.0/examples/terser/rollup.watch.ts
 
 # When cloned locally
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.watch.ts
+deno run --allow-read --allow-write="./dist" --allow-net --allow-env --unstable --no-check ./rollup.watch.ts
 ```
 
 This executes the `./rollup.watch.ts` file, which imports the config, adds a few
