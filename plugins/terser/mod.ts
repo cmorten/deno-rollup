@@ -40,8 +40,24 @@ export interface RollupTerserOptions extends Omit<MinifyOptions, "sourceMap"> {}
 const workerScriptUrl = new URL("./worker.js", import.meta.url).href;
 
 export function terser(options: RollupTerserOptions = {}) {
-  let worker: any;
-  let numOfBundles: number;
+  const workerPromise = importw(
+    workerScriptUrl,
+    {
+      name: "transform",
+      deno: {
+        namespace: false,
+        permissions: {
+          write: false,
+          read: true,
+          net: true,
+          env: false,
+          hrtime: false,
+          plugin: false,
+          run: false,
+        },
+      },
+    },
+  );
 
   return {
     name: "terser",
@@ -51,30 +67,7 @@ export function terser(options: RollupTerserOptions = {}) {
       _chunk: unknown,
       outputOptions: NormalizedOutputOptions,
     ) {
-      if (!worker) {
-        worker = await importw(
-          workerScriptUrl,
-          {
-            name: "transform",
-            deno: {
-              namespace: false,
-              permissions: {
-                write: false,
-                read: true,
-                net: ["unpkg.com"],
-                env: false,
-                hrtime: false,
-                plugin: false,
-                run: false,
-              },
-            },
-          },
-        );
-
-        numOfBundles = 0;
-      }
-
-      numOfBundles++;
+      const worker = await workerPromise;
 
       const defaultOptions: Record<string, any> = {
         sourceMap: outputOptions.sourcemap === true ||
@@ -92,20 +85,20 @@ export function terser(options: RollupTerserOptions = {}) {
         ...options,
       };
 
-      // remove plugin specific options
       for (let key of ["numWorkers"]) {
         if (normalizedOptions.hasOwnProperty(key)) {
           delete normalizedOptions[key];
         }
       }
 
+      let result;
+
       try {
-        const result = await worker.transform(code, normalizedOptions);
+        result = await worker.transform(code, normalizedOptions);
 
         if (result.nameCache) {
           let { vars, props } = options.nameCache as { vars: any; props: any };
 
-          // only assign nameCache.vars if it was provided, and if terser produced values:
           if (vars) {
             const newVars = result.nameCache.vars &&
               result.nameCache.vars.props;
@@ -115,12 +108,10 @@ export function terser(options: RollupTerserOptions = {}) {
             }
           }
 
-          // support populating an empty nameCache object:
           if (!props) {
             props = (options.nameCache as { props: any }).props = {};
           }
 
-          // merge updated props into original nameCache object:
           const newProps = result.nameCache.props &&
             result.nameCache.props.props;
           if (newProps) {
@@ -128,18 +119,17 @@ export function terser(options: RollupTerserOptions = {}) {
             Object.assign(props.props, newProps);
           }
         }
-
-        return result.result;
       } catch (error) {
         throw error;
-      } finally {
-        numOfBundles--;
-
-        if (numOfBundles === 0) {
-          worker[workerSymbol].terminate();
-          worker = 0;
-        }
       }
+
+      return result.result;
+    },
+
+    async closeBundle() {
+      const worker = await workerPromise;
+
+      worker[workerSymbol].terminate();
     },
   };
 }

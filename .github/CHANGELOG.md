@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.41.0+0.16.1] - 10-03-2021
+
+- fix: allow net for worker in terser plugin
+- fix: race condition in terser plugin for terminating worker
+
 ## [2.41.0+0.16.0] - 10-03-2021
 
 - feat: support Deno 1.8.1 and std 0.90.0

@@ -7,8 +7,8 @@ that we wish to created ES bundles from our code in the `./src` directory,
 including source maps.
 
 The code in `./src` is fairly trivial, but makes use of typescript, dynamic
-imports, URL imports (from the std library) and the Deno namespace, in order to
-demonstrate the bundling capabilities of Rollup with Deno.
+imports, and the Deno namespace, in order to demonstrate the bundling
+capabilities of Rollup with Deno.
 
 ## Usage
 
@@ -21,7 +21,7 @@ run:
 
 ```console
 # Direct from repository
-deno run --allow-read --allow-write="./dist" --allow-net --allow-env --unstable --no-check https://deno.land/x/drollup@2.41.0+0.16.0/examples/terser/rollup.build.ts
+deno run --allow-read --allow-write="./dist" --allow-net --allow-env --unstable --no-check https://deno.land/x/drollup@2.41.0+0.16.1/examples/terser/rollup.build.ts
 
 # When cloned locally
 deno run --allow-read --allow-write="./dist" --allow-net --allow-env --unstable --no-check ./rollup.build.ts
@@ -43,7 +43,7 @@ Alternatively you can use the Rollup CLI to bundle files.
 Install the CLI:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.41.0+0.16.0/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.41.0+0.16.1/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
@@ -63,7 +63,7 @@ on disk run:
 
 ```console
 # Direct from repository
-deno run --allow-read --allow-write="./dist" --allow-net --allow-env --unstable --no-check https://deno.land/x/drollup@2.41.0+0.16.0/examples/terser/rollup.watch.ts
+deno run --allow-read --allow-write="./dist" --allow-net --allow-env --unstable --no-check https://deno.land/x/drollup@2.41.0+0.16.1/examples/terser/rollup.watch.ts
 
 # When cloned locally
 deno run --allow-read --allow-write="./dist" --allow-net --allow-env --unstable --no-check ./rollup.watch.ts
@@ -82,7 +82,7 @@ Alternatively you can use the Rollup CLI to watch and rebuild your bundle.
 Install the CLI (same as before):
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.41.0+0.16.0/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.41.0+0.16.1/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.

@@ -9,6 +9,8 @@ Please refer to the original
 [README](https://github.com/TrySound/rollup-plugin-terser) for further
 information.
 
+This plugin requires the `--allow-read` and `--allow-net` permissions.
+
 ## Usage
 
 Create a `rollup.config.js`
@@ -16,7 +18,7 @@ Create a `rollup.config.js`
 import the plugin:
 
 ```ts
-import { terser } from "https://deno.land/x/drollup@2.41.0+0.16.0/plugins/terser/mod.ts";
+import { terser } from "https://deno.land/x/drollup@2.41.0+0.16.1/plugins/terser/mod.ts";
 
 export default {
   input: "./src/mod.ts",
