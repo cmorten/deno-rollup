@@ -15,7 +15,7 @@ Create a `rollup.config.js`
 import the plugin:
 
 ```ts
-import { css } from "https://deno.land/x/drollup@2.39.1+0.15.0/plugins/css/mod.ts";
+import { css } from "https://deno.land/x/drollup@2.41.0+0.16.0/plugins/css/mod.ts";
 
 export default {
   input: "./src/mod.ts",

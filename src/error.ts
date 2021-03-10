@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.39.1/src/utils/error.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.41.0/src/utils/error.ts>
  */
 
 import type { RollupError } from "../deps.ts";

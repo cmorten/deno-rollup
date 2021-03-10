@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [2.41.0+0.16.0] - 10-03-2021
+
+- feat: support Deno 1.8.1 and std 0.90.0
+- feat: upgrade Rollup to 2.41.0
+- feat: add terser plugin
+
 ## [2.39.1+0.15.0] - 06-03-2021
 
 - feat: support Deno 1.8.0 and std 0.89.0

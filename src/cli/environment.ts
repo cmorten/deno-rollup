@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.39.1/cli/run/index.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.41.0/cli/run/index.ts>
  */
 
 import type { IParseResult } from "../../deps.ts";
