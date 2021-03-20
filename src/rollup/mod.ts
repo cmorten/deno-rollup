@@ -12,6 +12,7 @@ import type {
   WarningHandlerWithDefault,
 } from "../../deps.ts";
 import { VERSION } from "../../deps.ts";
+import { DenoResolverOptions } from "../rollup-plugin-deno-resolver/denoResolver.ts";
 import { rollup } from "./rollup.ts";
 import { watch } from "./watch.ts";
 
@@ -188,6 +189,7 @@ export interface InputOptions {
   strictDeprecations?: boolean;
   treeshake?: boolean | TreeshakingOptions;
   watch?: WatcherOptions | false;
+  denoResolver?: DenoResolverOptions;
 }
 
 /**
