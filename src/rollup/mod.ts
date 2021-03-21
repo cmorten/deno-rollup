@@ -103,7 +103,6 @@ export type {
   RollupCache,
   RollupError,
   RollupLogProps,
-  RollupOptions,
   RollupOutput,
   RollupWarning,
   RollupWatcherEvent,
@@ -190,6 +189,14 @@ export interface InputOptions {
   treeshake?: boolean | TreeshakingOptions;
   watch?: WatcherOptions | false;
   denoResolver?: DenoResolverOptions;
+}
+
+/**
+ * @public
+ */
+export interface RollupOptions extends InputOptions {
+  // This is included for compatibility with config files but ignored by rollup.rollup
+  output?: OutputOptions | OutputOptions[];
 }
 
 /**

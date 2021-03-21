@@ -1,4 +1,4 @@
-import type { InputOptions, RollupBuild } from "./mod.ts";
+import type { RollupBuild, RollupOptions } from "./mod.ts";
 import { rollup as _rollup } from "../../deps.ts";
 import { write } from "./write.ts";
 import { generate } from "./generate.ts";
@@ -29,7 +29,7 @@ import { error } from "../error.ts";
  * @public
  */
 export async function rollup(
-  options: InputOptions,
+  options: RollupOptions,
 ): Promise<RollupBuild> {
   const denoResolverPlugin = denoResolver(options.denoResolver);
 
