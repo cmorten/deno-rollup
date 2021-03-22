@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.42.3+0.17.0] - 22-03-2021
+
+- [#26] Open 'rollup' to set custom Deno.CompilerOptions (#27)
+- feat: support Deno 1.8.2 and std 0.91.0
+
 ## [2.41.0+0.16.1] - 10-03-2021
 
 - fix: allow net for worker in terser plugin
