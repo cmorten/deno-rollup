@@ -18,7 +18,7 @@ Create a `rollup.config.js`
 import the plugin:
 
 ```ts
-import { terser } from "https://deno.land/x/drollup@2.41.0+0.16.1/plugins/terser/mod.ts";
+import { terser } from "https://deno.land/x/drollup@2.42.3+0.17.0/plugins/terser/mod.ts";
 
 export default {
   input: "./src/mod.ts",

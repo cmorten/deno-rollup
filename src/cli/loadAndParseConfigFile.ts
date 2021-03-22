@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.41.0/cli/run/loadConfigFile.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.42.3/cli/run/loadConfigFile.ts>
  */
 
 import type { MergedRollupOptions } from "../../deps.ts";
