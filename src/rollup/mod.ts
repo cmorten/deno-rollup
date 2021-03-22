@@ -12,6 +12,7 @@ import type {
   WarningHandlerWithDefault,
 } from "../../deps.ts";
 import { VERSION } from "../../deps.ts";
+import { DenoResolverOptions } from "../rollup-plugin-deno-resolver/denoResolver.ts";
 import { rollup } from "./rollup.ts";
 import { watch } from "./watch.ts";
 
@@ -102,7 +103,6 @@ export type {
   RollupCache,
   RollupError,
   RollupLogProps,
-  RollupOptions,
   RollupOutput,
   RollupWarning,
   RollupWatcherEvent,
@@ -188,6 +188,15 @@ export interface InputOptions {
   strictDeprecations?: boolean;
   treeshake?: boolean | TreeshakingOptions;
   watch?: WatcherOptions | false;
+  denoResolver?: DenoResolverOptions;
+}
+
+/**
+ * @public
+ */
+export interface RollupOptions extends InputOptions {
+  // This is included for compatibility with config files but ignored by rollup.rollup
+  output?: OutputOptions | OutputOptions[];
 }
 
 /**

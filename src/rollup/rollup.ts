@@ -31,7 +31,7 @@ import { error } from "../error.ts";
 export async function rollup(
   options: RollupOptions,
 ): Promise<RollupBuild> {
-  const denoResolverPlugin = denoResolver();
+  const denoResolverPlugin = denoResolver(options.denoResolver);
 
   options = {
     ...options,
