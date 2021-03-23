@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.41.0/src/utils/relativeId.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.42.3/src/utils/relativeId.ts>
  */
 
 import { isAbsolute, relative } from "../deps.ts";

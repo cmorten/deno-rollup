@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.41.0/src/utils/options/mergeOptions.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.42.3/src/utils/options/mergeOptions.ts>
  */
 
 // deno-lint-ignore-file ban-types
@@ -219,7 +219,7 @@ function mergeInputOptions(
     strictDeprecations: getOption("strictDeprecations"),
     treeshake: getObjectOption(config, overrides, "treeshake"),
     watch: getWatch(config, overrides, "watch"),
-    denoResolver: getObjectOption(config, overrides, "denoResolver"),
+    denoResolver: getObjectOption(config, overrides, "denoResolver")
   };
 
   warnUnknownOptions(
