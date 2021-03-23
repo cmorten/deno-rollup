@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.42.3+0.17.1] - 23-03-2021
+
+- [#29] Rollup deno compiler options (#30)
+
 ## [2.42.3+0.17.0] - 22-03-2021
 
 - [#26] Open 'rollup' to set custom Deno.CompilerOptions (#27)

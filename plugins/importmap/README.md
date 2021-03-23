@@ -20,7 +20,7 @@ Create a `rollup.config.js`
 import the plugin:
 
 ```ts
-import { rollupImportMapPlugin } from "https://deno.land/x/drollup@2.42.3+0.17.0/plugins/importmap/mod.ts";
+import { rollupImportMapPlugin } from "https://deno.land/x/drollup@2.42.3+0.17.1/plugins/importmap/mod.ts";
 
 export default {
   input: "./src/mod.ts",
