@@ -219,7 +219,7 @@ function mergeInputOptions(
     strictDeprecations: getOption("strictDeprecations"),
     treeshake: getObjectOption(config, overrides, "treeshake"),
     watch: getWatch(config, overrides, "watch"),
-    denoResolver: getWatch(config, overrides, "denoResolver"),
+    denoResolver: getObjectOption(config, overrides, "denoResolver"),
   };
 
   warnUnknownOptions(
