@@ -1,2 +1,2 @@
-document.querySelector("#content").innerHTML = `<h1>This is a history fallback enabled website.</h1>
-<p>Reach any endpoint and you will see me.</p>`
+document.querySelector("#content").innerHTML = `<h1>This is a historyApiFallback enabled website.</h1>
+<p><strong>Reach any endpoint and you will see me.</strong></p>`

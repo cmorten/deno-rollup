@@ -13,4 +13,7 @@ export default {
       historyApiFallback: '/index.html'
     }),
   ],
+  watch: {
+    include: ["src/**"],
+  }
 }
