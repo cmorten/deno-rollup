@@ -1,1 +1,0 @@
-export { default } from 'https://deno.land/x/drollup_plugin_serve/src/index.ts'
