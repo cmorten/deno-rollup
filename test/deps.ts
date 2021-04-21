@@ -6,4 +6,4 @@ export { default as listGitHub } from "https://esm.sh/list-github-dir-content@3.
 export { default as magicString } from "https://esm.sh/magic-string@0.25.7";
 export { default as url } from "https://esm.sh/url@0.11.0";
 export { default as sourceMap } from "https://esm.sh/source-map@0.7.3";
-export { default as acorn } from "https://esm.sh/acorn@8.0.4";
+export { default as acorn } from "https://cdn.skypack.dev/acorn@8.0.4";
