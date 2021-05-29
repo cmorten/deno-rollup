@@ -2,7 +2,7 @@
  * std
  */
 
-export {
+ export {
   basename,
   dirname,
   extname,
@@ -14,7 +14,7 @@ export {
   resolve,
   sep,
   toFileUrl,
-} from "https://deno.land/std@0.91.0/path/mod.ts";
+} from "https://deno.land/std@0.97.0/path/mod.ts";
 export {
   bold,
   cyan,
@@ -22,18 +22,18 @@ export {
   green,
   red,
   underline,
-} from "https://deno.land/std@0.91.0/fmt/colors.ts";
-export { EventEmitter } from "https://deno.land/std@0.91.0/node/events.ts";
+} from "https://deno.land/std@0.97.0/fmt/colors.ts";
+export { EventEmitter } from "https://deno.land/std@0.97.0/node/events.ts";
 
 /**
  * Rollup
  */
 
-// @deno-types="https://unpkg.com/rollup@2.42.3/dist/rollup.d.ts"
+// @deno-types="https://unpkg.com/rollup@2.50.4/dist/rollup.d.ts"
 export {
   rollup,
   VERSION,
-} from "https://unpkg.com/rollup@2.42.3/dist/es/rollup.browser.js";
+} from "https://unpkg.com/rollup@2.50.4/dist/es/rollup.browser.js";
 export type {
   AddonHook,
   AddonHookFunction,
@@ -131,7 +131,7 @@ export type {
   WarningHandler,
   WarningHandlerWithDefault,
   WatchChangeHook,
-} from "https://unpkg.com/rollup@2.42.3/dist/rollup.d.ts";
+} from "https://unpkg.com/rollup@2.50.4/dist/rollup.d.ts";
 
 /**
  * deno.land/x

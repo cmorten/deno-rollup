@@ -393,6 +393,7 @@ function mergeOutputOptions(
     preferConst: getOption("preferConst"),
     preserveModules: getOption("preserveModules"),
     preserveModulesRoot: getOption("preserveModulesRoot"),
+    sanitizeFileName: getOption("sanitizeFileName"),
     sourcemap: getOption("sourcemap"),
     sourcemapExcludeSources: getOption("sourcemapExcludeSources"),
     sourcemapFile: getOption("sourcemapFile"),
