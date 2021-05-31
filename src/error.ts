@@ -6,7 +6,7 @@ import type { RollupError } from "../deps.ts";
 
 /**
  * error
- * 
+ *
  * @param {Error|RollupError} base
  * @private
  */

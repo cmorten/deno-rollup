@@ -16,7 +16,7 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 </p>
 <p align="center">
    <a href="https://deno.land/x/drollup"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fdrollup%2Fmod.ts" alt="deno-rollup latest /x/ version" /></a>
-   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.8.2-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
+   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.10.2-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/drollup/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fdrollup%2Fmod.ts" alt="deno-rollup dependency count" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/drollup/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fdrollup%2Fmod.ts" alt="deno-rollup dependency outdatedness" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/drollup/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fdrollup%2Fmod.ts" alt="deno-rollup cached size" /></a>
@@ -55,7 +55,7 @@ with an optional configuration file, or else through its
 To install the CLI run:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.42.3+0.17.1/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.50.5+0.18.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
@@ -80,7 +80,7 @@ rollup -c --watch
 You can import deno-rollup straight into your project to bundle your modules:
 
 ```ts
-import { rollup } from "https://deno.land/x/drollup@2.42.3+0.17.1/mod.ts";
+import { rollup } from "https://deno.land/x/drollup@2.50.5+0.18.0/mod.ts";
 
 const options = {
   input: "./mod.ts",
@@ -99,7 +99,7 @@ await bundle.close();
 Or using the `watch` API:
 
 ```ts
-import { watch } from "https://deno.land/x/drollup@2.42.3+0.17.1/mod.ts";
+import { watch } from "https://deno.land/x/drollup@2.50.5+0.18.0/mod.ts";
 
 const options = {
   input: "./src/mod.ts",
@@ -179,7 +179,7 @@ To run the [examples](./examples) you have a couple of options:
 1. Run the deno-rollup `helloDeno` example directly from the repository:
 
    ```console
-   deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.42.3+0.17.1/examples/helloDeno/rollup.build.ts
+   deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.50.5+0.18.0/examples/helloDeno/rollup.build.ts
    ```
 
    This will create a `./dist` directory with the bundled files in your current

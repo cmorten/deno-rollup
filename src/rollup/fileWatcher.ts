@@ -2,7 +2,7 @@ import { Task } from "./task.ts";
 
 /**
  * FileWatcher
- * 
+ *
  * @private
  */
 export class FileWatcher {

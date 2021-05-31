@@ -3,7 +3,7 @@ import { dirname, resolve } from "../../deps.ts";
 
 /**
  * getDestination
- * 
+ *
  * @param {OutputOptions} options
  * @returns {string|null}
  * @private

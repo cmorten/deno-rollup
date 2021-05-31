@@ -6,8 +6,8 @@ const RE_PATH_MALFORMED_FILE_URL = /(.*)(file:\/)([^\/]?)/;
 
 /**
  * supportUrlSources
- * 
- * @param {OutputOptions} options 
+ *
+ * @param {OutputOptions} options
  * @returns {OutputOptions}
  * @private
  */

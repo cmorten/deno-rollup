@@ -12,8 +12,8 @@ const RE_WIN_DEVICE = /^([A-Za-z]:)(\\+|\/)/;
 
 /**
  * resolveId
- * 
- * @param {string} source 
+ *
+ * @param {string} source
  * @param {string} [importer]
  * @returns {string}
  * @private

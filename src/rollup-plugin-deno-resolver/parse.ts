@@ -3,7 +3,7 @@ import { getUrlBase } from "./getUrlBase.ts";
 
 /**
  * parse
- * 
+ *
  * @param {string} id
  * @returns {URL|null}
  * @private

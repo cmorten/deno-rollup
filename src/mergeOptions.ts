@@ -2,7 +2,6 @@
  * Derived from <https://github.com/rollup/rollup/blob/v2.42.3/src/utils/options/mergeOptions.ts>
  */
 
-// deno-lint-ignore-file ban-types
 import type { CommandConfigObject, GenericConfigObject } from "./types.ts";
 import type {
   ExternalOption,
@@ -10,6 +9,7 @@ import type {
   OutputOptions,
   Plugin,
   RollupCache,
+  RollupWarning,
   WarningHandler,
   WarningHandlerWithDefault,
 } from "../deps.ts";
@@ -18,20 +18,20 @@ import { ensureArray } from "./ensureArray.ts";
 
 /**
  * defaultOnWarn
- * 
+ *
  * @param {any} warning
  * @private
  */
-const defaultOnWarn: WarningHandler = (warning) =>
+const defaultOnWarn: WarningHandler = (warning: RollupWarning) =>
   console.warn(warning.message || warning);
 
 /**
  * warnUnknownOptions
- * 
- * @param {GenericConfigObject} passedOptions 
- * @param {string[]} validOptions 
- * @param {string} optionType 
- * @param {WarningHandler} warn 
+ *
+ * @param {GenericConfigObject} passedOptions
+ * @param {string[]} validOptions
+ * @param {string} optionType
+ * @param {WarningHandler} warn
  * @param {RegExp} ignoredKeys
  * @private
  */
@@ -80,7 +80,7 @@ export const commandAliases: { [key: string]: string } = {
 
 /**
  * mergeOptions
- * 
+ *
  * @param {GenericConfigObject} config
  * @param {GenericConfigObject} rawCommandOptions
  * @returns {MergedRollupOptions}
@@ -144,7 +144,7 @@ export function mergeOptions(
 
 /**
  * getCommandOptions
- * 
+ *
  * @param {GenericConfigObject} rawCommandOptions
  * @returns {CommandConfigObject}
  * @private
@@ -181,7 +181,7 @@ type CompleteInputOptions<U extends keyof InputOptions> = {
 
 /**
  * mergeInputOptions
- * 
+ *
  * @param {GenericConfigObject} config
  * @param {CommandConfigObject} overrides
  * @returns {InputOptions}
@@ -198,8 +198,8 @@ function mergeInputOptions(
   const inputOptions: CompleteInputOptions<keyof InputOptions> = {
     acorn: getOption("acorn"),
     acornInjectPlugins: config.acornInjectPlugins as
-      | Function
-      | Function[]
+      | (() => unknown)[]
+      | (() => unknown)
       | undefined,
     cache: config.cache as false | RollupCache | undefined,
     context: getOption("context"),
@@ -207,6 +207,7 @@ function mergeInputOptions(
     external: getExternal(config, overrides),
     inlineDynamicImports: getOption("inlineDynamicImports"),
     input: getOption("input") || [],
+    makeAbsoluteExternalsRelative: getOption("makeAbsoluteExternalsRelative"),
     manualChunks: getOption("manualChunks"),
     moduleContext: getOption("moduleContext"),
     onwarn: getOnWarn(config, defaultOnWarnHandler),
@@ -235,7 +236,7 @@ function mergeInputOptions(
 
 /**
  * getExternal
- * 
+ *
  * @param {GenericConfigObject} config
  * @param {CommandConfigObject} overrides
  * @returns {ExternalOption}
@@ -256,7 +257,7 @@ const getExternal = (
 
 /**
  * getOnWarn
- * 
+ *
  * @param {GenericConfigObject} config
  * @param {WarningHandler} defaultOnWarnHandler
  * @returns {WarningHandler}
@@ -267,7 +268,7 @@ const getOnWarn = (
   defaultOnWarnHandler: WarningHandler,
 ): WarningHandler =>
   config.onwarn
-    ? (warning) =>
+    ? (warning: RollupWarning) =>
       (config.onwarn as WarningHandlerWithDefault)(
         warning,
         defaultOnWarnHandler,
@@ -276,7 +277,7 @@ const getOnWarn = (
 
 /**
  * getObjectOption
- * 
+ *
  * @param {GenericConfigObject} config
  * @param {CommandConfigObject} overrides
  * @param {string} name
@@ -300,7 +301,7 @@ const getObjectOption = (
 
 /**
  * getWatch
- * 
+ *
  * @param {GenericConfigObject} config
  * @param {GenericConfigObject} overrides
  * @param {string} name
@@ -315,7 +316,7 @@ const getWatch = (
 
 /**
  * normalizeObjectOptionValue
- * 
+ *
  * @param {any} optionValue
  * @returns {any}
  * @private
@@ -345,7 +346,7 @@ type CompleteOutputOptions<U extends keyof OutputOptions> = {
 
 /**
  * mergeOutputOptions
- * 
+ *
  * @param {GenericConfigObject} config
  * @param {GenericConfigObject} overrides
  * @returns {OutputOptions}

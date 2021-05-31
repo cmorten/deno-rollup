@@ -4,7 +4,7 @@
 
 /**
  * ensureArray
- * 
+ *
  * @param {any} items
  * @returns {any[]}
  * @private

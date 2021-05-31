@@ -6,9 +6,9 @@ import { notImplemented } from "../notImplemented.ts";
 
 /**
  * exists
- * 
- * @param {URL} url 
- * @param {RequestInit} [fetchOpts] 
+ *
+ * @param {URL} url
+ * @param {RequestInit} [fetchOpts]
  * @returns {Promise<boolean>}
  * @private
  */

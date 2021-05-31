@@ -1,5 +1,5 @@
 import { expect } from "../../test/deps.ts";
-import { bold, red, resolve, toFileUrl } from "../../deps.ts";
+import { bold, red, toFileUrl } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { exists } from "./exists.ts";
 

@@ -16,7 +16,7 @@ import { Watcher } from "./watcher.ts";
 
 /**
  * Task
- * 
+ *
  * @private
  */
 export class Task {
