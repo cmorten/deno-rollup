@@ -37,7 +37,7 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 
 [Rollup](https://github.com/rollup/rollup) is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application.
 
-This library extends Rollup so that it can be used in Deno. Rollup is designed for use in NodeJS, with all the code on the local file-system, and dependent packages pre-installed in `node_modules`. Deno knows nothing about packages or `node_modules`, but it can load modules from both the local file-system and remote URLs. So deno-rollup uses the browser version of Rollup, using `file://` URLs to access the local file-system. Many CJS modules can be loaded via a proxy server such as JSPM or `esm.sh`, which convert CJS to ES modules. Package references can be mapped to URLs using the import map plugin (see below). The end result is that external dependencies can be included in a build without having to be installed on the local file-system.
+This library extends Rollup so that it can be used in Deno - supporting core Deno features out-of-the-box such as URL imports, Typescript and JSX.
 
 ## Installation
 
