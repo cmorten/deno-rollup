@@ -107,12 +107,7 @@ export default (options = {}) => {
         code = processed.code;
       }
 
-      const compiled = compile(code, {
-        filename: filename,
-        generate: "dom",
-        dev: true,
-        sveltePath: "https://cdn.skypack.dev/svelte@3.32.1",
-      });
+      const compiled = compile(code, svelte_options);
 
       (compiled.warnings || []).forEach((warning) => {
         if (!emitCss && warning.code === "css-unused-selector") return;
