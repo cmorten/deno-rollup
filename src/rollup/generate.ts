@@ -3,9 +3,9 @@ import { supportUrlSources } from "./supportUrlSources.ts";
 
 /**
  * generate
- * 
- * @param {RollupBuild} this 
- * @param {OutputOptions} options 
+ *
+ * @param {RollupBuild} this
+ * @param {OutputOptions} options
  * @returns {Promise<RollupOutput>}
  * @private
  */

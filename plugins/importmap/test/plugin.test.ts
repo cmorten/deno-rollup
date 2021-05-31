@@ -137,7 +137,7 @@ it("plugin: export true: import specifier is a interior package path: should rep
         imports: {
           "lit-element": "https://unpkg.com/lit-element@2.4.0/lit-element.js",
           "lit-html/lit-html": "https://unpkg.com/lit-html@1.3.0/lit-html.js",
-          "lit-html": "https://unpkg.com/lit-html@0.14.0/lit-html.js",
+          "lit-html": "https://unpkg.com/lit-html@0.16.1/lit-html.js",
         },
       },
       external: true,

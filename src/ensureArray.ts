@@ -1,10 +1,10 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/src/utils/ensureArray.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.42.3/src/utils/ensureArray.ts>
  */
 
 /**
  * ensureArray
- * 
+ *
  * @param {any} items
  * @returns {any[]}
  * @private

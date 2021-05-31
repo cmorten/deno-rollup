@@ -8,9 +8,9 @@ export const SOURCEMAPPING_URL = "sourceMappingURL";
 
 /**
  * write
- * 
- * @param {RollupBuild} this 
- * @param {OutputOptions} options 
+ *
+ * @param {RollupBuild} this
+ * @param {OutputOptions} options
  * @returns {Promise<RollupOutput>}
  * @private
  */

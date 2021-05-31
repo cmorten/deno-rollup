@@ -1,5 +1,5 @@
 import { createFilter } from "../../src/rollup/createFilter.ts";
-import { path, compile, preprocess } from "./deps.ts";
+import { compile, path, preprocess } from "./deps.ts";
 
 const PREFIX = "[rollup-plugin-svelte]";
 const pkg_export_errors = new Set();
@@ -27,7 +27,7 @@ export default (options = {}) => {
   for (const key in rest) {
     if (plugin_options.has(key)) continue;
     console.warn(
-      `${PREFIX} Unknown "${key}" option. Please use "compilerOptions" for any Svelte compiler configuration.`
+      `${PREFIX} Unknown "${key}" option. Please use "compilerOptions" for any Svelte compiler configuration.`,
     );
   }
 
@@ -38,7 +38,7 @@ export default (options = {}) => {
   if (emitCss) {
     if (compilerOptions.css) {
       console.warn(
-        `${PREFIX} Forcing \`"compilerOptions.css": false\` because "emitCss" was truthy.`
+        `${PREFIX} Forcing \`"compilerOptions.css": false\` because "emitCss" was truthy.`,
       );
     }
     compilerOptions.css = false;
@@ -57,8 +57,9 @@ export default (options = {}) => {
         importee[0] === "." ||
         importee[0] === "\0" ||
         path.isAbsolute(importee)
-      )
+      ) {
         return null;
+      }
 
       // if this is a bare import, see if there's a valid pkg.svelte
       const parts = importee.split("/");
@@ -99,8 +100,9 @@ export default (options = {}) => {
 
       if (rest.preprocess) {
         const processed = await preprocess(code, rest.preprocess, { filename });
-        if (processed.dependencies)
+        if (processed.dependencies) {
           dependencies.push(...processed.dependencies);
+        }
         if (processed.map) svelte_options.sourcemap = processed.map;
         code = processed.code;
       }
@@ -139,10 +141,10 @@ export default (options = {}) => {
     generateBundle() {
       if (pkg_export_errors.size > 0) {
         console.warn(
-          `\n${PREFIX} The following packages did not export their \`package.json\` file so we could not check the "svelte" field. If you had difficulties importing svelte components from a package, then please contact the author and ask them to export the package.json file.\n`
+          `\n${PREFIX} The following packages did not export their \`package.json\` file so we could not check the "svelte" field. If you had difficulties importing svelte components from a package, then please contact the author and ask them to export the package.json file.\n`,
         );
         console.warn(
-          Array.from(pkg_export_errors, (s) => `- ${s}`).join("\n") + "\n"
+          Array.from(pkg_export_errors, (s) => `- ${s}`).join("\n") + "\n",
         );
       }
     },

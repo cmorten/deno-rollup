@@ -4,9 +4,9 @@ const decoder = new TextDecoder("utf-8");
 
 /**
  * loadUrl
- * 
- * @param {URL} url 
- * @param {RequestInit} [fetchOpts] 
+ *
+ * @param {URL} url
+ * @param {RequestInit} [fetchOpts]
  * @returns {Promise<string>}
  * @private
  */

@@ -1,7 +1,7 @@
 {
   "name": "drollup",
   "description": "Next-generation ES module bundler for Deno ported from Rollup.",
-  "version": "2.39.0+0.14.0",
+  "version": "2.50.5+0.18.0",
   "repository": "https://github.com/cmorten/deno-rollup",
   "stable": true,
   "files": [
@@ -17,6 +17,9 @@
     "./ROLLUP_LICENSE.md",
     "./.github/CHANGELOG.md"
   ],
+  "checkFormat": false,
+  "checkTests": false,
+  "checkInstallation": false,
   "check": false,
   "entry": "./mod.ts",
   "homepage": "https://github.com/cmorten/deno-rollup",

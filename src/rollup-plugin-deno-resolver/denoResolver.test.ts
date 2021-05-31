@@ -173,22 +173,25 @@ describe("denoResolver", () => {
         description: "relative javascript id",
         id: relativeJs,
         expectedCode:
-          `const a = [];${newline}console.log("Hello Deno!");${newline}`,
+          `// deno-lint-ignore-file no-unused-vars${newline}const a = [];${newline}console.log("Hello Deno!");${newline}`,
       },
       {
         description: "relative typescript id",
         id: relative,
-        expectedCode: `const a = [];\nconsole.log("Hello Deno!");\n`,
+        expectedCode:
+          `// deno-lint-ignore-file no-unused-vars\nconst a = [];\nconsole.log("Hello Deno!");\n`,
       },
       {
         description: "absolute typescript id",
         id: absolute,
-        expectedCode: `const a = [];\nconsole.log("Hello Deno!");\n`,
+        expectedCode:
+          `// deno-lint-ignore-file no-unused-vars\nconst a = [];\nconsole.log("Hello Deno!");\n`,
       },
       {
         description: "file URL typescript id",
         id: fileUrl,
-        expectedCode: `const a = [];\nconsole.log("Hello Deno!");\n`,
+        expectedCode:
+          `// deno-lint-ignore-file no-unused-vars\nconst a = [];\nconsole.log("Hello Deno!");\n`,
       },
       {
         description: "http URL id",

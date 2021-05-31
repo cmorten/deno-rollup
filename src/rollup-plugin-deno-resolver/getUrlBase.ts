@@ -2,7 +2,7 @@ import { join, sep, toFileUrl } from "../../deps.ts";
 
 /**
  * getUrlBase
- * 
+ *
  * @returns {URL}
  * @private
  */

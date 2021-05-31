@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/getConfigPath.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.42.3/cli/run/getConfigPath.ts>
  */
 
 import { resolve } from "../../deps.ts";

@@ -3,9 +3,9 @@ import { error } from "../error.ts";
 
 /**
  * handleUnresolvedId
- * 
- * @param {string} id 
- * @param {string} [importer] 
+ *
+ * @param {string} id
+ * @param {string} [importer]
  * @returns {null}
  * @private
  */

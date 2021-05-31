@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/run/build.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.42.3/cli/run/build.ts>
  */
 
 import type { MergedRollupOptions } from "../../deps.ts";
@@ -16,7 +16,7 @@ const decoder = new TextDecoder();
 
 /**
  * build
- * 
+ *
  * @param {MergedRollupOptions} inputOptions
  * @param {boolen} silent
  * @private

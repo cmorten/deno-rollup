@@ -2,7 +2,7 @@ import { handleError } from "./logging.ts";
 
 /**
  * notImplemented
- * 
+ *
  * @param {string} [msg]
  * @throws {Error}
  * @private

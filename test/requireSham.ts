@@ -38,7 +38,7 @@ const _require = createRequire(import.meta.url);
  * polyfill, designed around providing capabilities
  * for rollup's tests, and not as a production ready
  * require polyfill.
- * 
+ *
  * @param {string} path the import path
  */
 export function requireSham(path: string): any {

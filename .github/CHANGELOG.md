@@ -1,5 +1,35 @@
 # ChangeLog
 
+## [2.50.5+0.18.0] - 31-05-2021
+
+- chore: support Deno 1.10.2 and std 0.97.0
+- feat: upgrade Rollup to 2.50.5
+
+## [2.42.3+0.17.1] - 23-03-2021
+
+- [#29] Rollup deno compiler options (#30)
+
+## [2.42.3+0.17.0] - 22-03-2021
+
+- [#26] Open 'rollup' to set custom Deno.CompilerOptions (#27)
+- feat: support Deno 1.8.2 and std 0.91.0
+
+## [2.41.0+0.16.1] - 10-03-2021
+
+- fix: allow net for worker in terser plugin
+- fix: race condition in terser plugin for terminating worker
+
+## [2.41.0+0.16.0] - 10-03-2021
+
+- feat: support Deno 1.8.1 and std 0.90.0
+- feat: upgrade Rollup to 2.41.0
+- feat: add terser plugin
+
+## [2.39.1+0.15.0] - 06-03-2021
+
+- feat: support Deno 1.8.0 and std 0.89.0
+- feat: upgrade Rollup to 2.39.1
+
 ## [2.39.0+0.14.0] - 13-02-2021
 
 - chore: upgrade std lib and rollup dependencies
@@ -52,7 +82,7 @@
 
 ## [2.38.0+0.7.1] - 26-01-2021
 
-- [#11] Support input subdirectories (#13) 
+- [#11] Support input subdirectories (#13)
 - [#10] Add `bundle.close()` to examples (#12)
 
 ## [2.38.0+0.7.0] - 24-01-2021
@@ -72,7 +102,9 @@
 
 - feat: perf improvements
 
-`Deno.emit(...)` appears to a bottleneck somewhere when resolving remote modules resulting in very long compilation time. Retrieving the module manually and passing as a source appears far more performant at the moment.
+`Deno.emit(...)` appears to a bottleneck somewhere when resolving remote modules
+resulting in very long compilation time. Retrieving the module manually and
+passing as a source appears far more performant at the moment.
 
 ## [2.37.1+0.5.0] - 20-01-2021
 

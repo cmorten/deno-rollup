@@ -1,5 +1,5 @@
 /**
- * Derived from <https://github.com/rollup/rollup/blob/v2.39.0/cli/logging.ts>
+ * Derived from <https://github.com/rollup/rollup/blob/v2.42.3/cli/logging.ts>
  */
 
 import type { RollupError } from "../deps.ts";
@@ -12,7 +12,7 @@ export const logOutput = console.log.bind(console);
 
 /**
  * handleError
- * 
+ *
  * @param {RollupErr} err
  * @param {boolean} recover
  * @private
