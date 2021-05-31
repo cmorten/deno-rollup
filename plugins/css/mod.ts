@@ -154,7 +154,7 @@ export function css(options: RollupCssOptions = {}): Plugin {
         return;
       }
 
-      const fileName = options.output === "string"
+      const fileName = typeof options.output === "string"
         ? options.output
         : getFileName(opts, bundle);
 
