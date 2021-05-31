@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.50.5+0.18.2] - 31-05-2021
+
+- [NO-ISSUE] Fixes some bugs regarding css and svelte plugins (#36)
+
 ## [2.50.5+0.18.1] - 31-05-2021
 
 - test: add subset of [Web Platform Tests](https://github.com/web-platform-tests/wpt/tree/master/import-maps/data-driven/resources) for importmap plugin with some compatibility improvements
