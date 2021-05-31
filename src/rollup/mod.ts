@@ -24,7 +24,7 @@ export { rollup, VERSION, watch };
 /**
  * Prevent `warning: Compiled module not found` by re-exporting
  * types explicitly.
- * 
+ *
  * @public
  */
 export type {
@@ -163,8 +163,8 @@ export interface RollupWatcher extends
  * @public
  */
 export interface InputOptions {
-  acorn?: Object;
-  acornInjectPlugins?: Function | Function[];
+  acorn?: Record<string, unknown> | undefined;
+  acornInjectPlugins?: (() => unknown)[] | (() => unknown) | undefined;
   cache?: false | RollupCache;
   context?: string;
   experimentalCacheExpiry?: number;
@@ -189,6 +189,7 @@ export interface InputOptions {
   treeshake?: boolean | TreeshakingOptions;
   watch?: WatcherOptions | false;
   denoResolver?: DenoResolverOptions;
+  sanitizeFileName?: boolean;
 }
 
 /**

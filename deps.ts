@@ -2,7 +2,7 @@
  * std
  */
 
- export {
+export {
   basename,
   dirname,
   extname,

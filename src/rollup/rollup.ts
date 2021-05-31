@@ -45,7 +45,7 @@ export async function rollup(
 
   try {
     // deno-lint-ignore no-explicit-any
-    const bundle = await _rollup(options as any);
+    const bundle = await _rollup(options);
 
     return new Proxy(bundle, {
       get: (target, prop, receiver) => {
