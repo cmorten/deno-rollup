@@ -1,7 +1,7 @@
 import { expect } from "../../../test/deps.ts";
 import { describe, it } from "../../../test/mod.ts";
 import { __dirname } from "./dirname.ts";
-import { dirname, join } from "../../../deps.ts";
+import { join } from "../../../deps.ts";
 import { rollup } from "../../../mod.ts";
 import { rollupImportMapPlugin } from "../mod.ts";
 
