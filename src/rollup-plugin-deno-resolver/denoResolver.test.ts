@@ -173,7 +173,7 @@ describe("denoResolver", () => {
         description: "relative javascript id",
         id: relativeJs,
         expectedCode:
-          `// deno-lint-ignore-file no-unused-vars\nconst a = [];${newline}console.log("Hello Deno!");${newline}`,
+          `// deno-lint-ignore-file no-unused-vars${newline}const a = [];${newline}console.log("Hello Deno!");${newline}`,
       },
       {
         description: "relative typescript id",
