@@ -40,8 +40,8 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 which compiles small pieces of code into something larger and more complex, such
 as a library or application.
 
-This library extends Rollup so that it can be used within Deno scripts to bundle
-modules.
+This library extends Rollup so that it can be used in Deno - supporting core
+Deno features out-of-the-box such as URL imports, Typescript and JSX.
 
 ## Installation
 
