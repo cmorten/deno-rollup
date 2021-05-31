@@ -27,7 +27,7 @@
  */
 
 import type { NormalizedInputOptions, Plugin } from "../../mod.ts";
-import { dirname, fromFileUrl, normalize, relative } from "./deps.ts";
+import { dirname, fromFileUrl, join, normalize, relative } from "./deps.ts";
 import { ensureArray } from "../../src/ensureArray.ts";
 import { resolveId } from "../../src/rollup-plugin-deno-resolver/resolveId.ts";
 
@@ -35,7 +35,7 @@ import { resolveId } from "../../src/rollup-plugin-deno-resolver/resolveId.ts";
  * @public
  */
 export interface ImportMapObject {
-  imports: Record<string, string>;
+  imports?: Record<string, string>;
   scopes?: Record<string, Record<string, string>>;
 }
 
@@ -109,8 +109,8 @@ const validate = (
   options: NormalizedInputOptions,
   baseUrl: string,
 ) =>
-  Object.keys(importMap.imports).map((specifier) => {
-    const address = importMap.imports[specifier];
+  Object.keys(importMap.imports ?? {}).map((specifier) => {
+    const address = importMap.imports![specifier];
 
     if (isBareImportSpecifier(address)) {
       throw new TypeError(
@@ -156,6 +156,28 @@ const readFile = async (
   return validate(importMap, options, baseUrl ?? dirname(importMapPath));
 };
 
+function isUrlMatch(
+  { source, importer, specifier, baseUrl }: {
+    source: string;
+    importer?: string;
+    specifier: string;
+    baseUrl: string;
+  },
+) {
+  try {
+    const pathname = new URL(source, importer).pathname;
+    const specifierPathname = new URL(specifier, baseUrl).pathname;
+
+    if (pathname === specifierPathname) {
+      return true;
+    }
+  } catch (_) {
+    // swallow
+  }
+
+  return false;
+}
+
 // TODO: consider scopes
 
 /**
@@ -176,6 +198,8 @@ export function rollupImportMapPlugin(
   const importMaps = ensureArray(rollupImportMapOptions.maps);
 
   function getAddress(source: string, importer?: string) {
+    let out: string | null = null;
+
     for (const [specifier, { address, baseUrl }] of cache.entries()) {
       let base = baseUrl;
 
@@ -191,17 +215,18 @@ export function rollupImportMapPlugin(
 
       if (specifier === source) {
         return resolvedAddress;
+      } else if (isUrlMatch({ source, importer, specifier, baseUrl })) {
+        out = resolvedAddress;
       } else if (
         specifier.endsWith("/") &&
         source.startsWith(specifier)
       ) {
         const suffix = source.slice(specifier.length);
-
-        return resolveId(suffix, resolvedAddress);
+        out = join(resolvedAddress, suffix);
       }
     }
 
-    return null;
+    return out;
   }
 
   return {

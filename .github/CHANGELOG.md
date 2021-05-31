@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.50.5+0.18.1] - 31-05-2021
+
+- test: add subset of [Web Platform Tests](https://github.com/web-platform-tests/wpt/tree/master/import-maps/data-driven/resources) for importmap plugin with some compatibility improvements
+
 ## [2.50.5+0.18.0] - 31-05-2021
 
 - chore: support Deno 1.10.2 and std 0.97.0
