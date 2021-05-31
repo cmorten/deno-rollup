@@ -1,22 +1,22 @@
 /**
  * Derived from <https://github.com/trygve-lie/rollup-plugin-import-map>
- * 
+ *
  * Licensed as follows:
- * 
+ *
  * MIT License
- * 
+ *
  * Copyright (c) 2020 Trygve Lie
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -69,7 +69,7 @@ export interface RollupImportMapOptions {
   /**
    * Set the base url from which the relative-URL-like addresses
    * are resolved.
-   * 
+   *
    * If not provided, the base url will the location of the import
    * map if an import map path is provided, or the current working
    * directory if not.
@@ -79,8 +79,8 @@ export interface RollupImportMapOptions {
 
 /**
  * isBareImportSpecifier
- * 
- * @param {string} address 
+ *
+ * @param {string} address
  * @returns {boolean}
  * @private
  */
@@ -99,9 +99,9 @@ const isBareImportSpecifier = (address: string) => {
 
 /**
  * validate
- * 
- * @param {ImportMapObject} importMap 
- * @param {NormalizedInputOptions} options 
+ *
+ * @param {ImportMapObject} importMap
+ * @param {NormalizedInputOptions} options
  * @private
  */
 const validate = (
@@ -139,9 +139,9 @@ const validate = (
 
 /**
  * readFile
- * 
- * @param {string} pathname 
- * @param options 
+ *
+ * @param {string} pathname
+ * @param options
  * @private
  */
 const readFile = async (
@@ -160,10 +160,10 @@ const readFile = async (
 
 /**
  * rollupImportMapPlugin
- * 
+ *
  * Apply [import map](https://github.com/WICG/import-maps)
  * mappings to ES modules.
- * 
+ *
  * @param {RollupImportMapOptions} rollupImportMapOptions
  * @returns {Plugin}
  * @public

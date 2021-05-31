@@ -12,7 +12,7 @@ export const logOutput = console.log.bind(console);
 
 /**
  * handleError
- * 
+ *
  * @param {RollupErr} err
  * @param {boolean} recover
  * @private

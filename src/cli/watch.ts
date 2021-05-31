@@ -2,7 +2,11 @@
  * Derived from <https://github.com/rollup/rollup/blob/v2.42.3/cli/run/watch-cli.ts>
  */
 
-import type { IParseResult, MergedRollupOptions } from "../../deps.ts";
+import type {
+  IParseResult,
+  MergedRollupOptions,
+  RollupError,
+} from "../../deps.ts";
 import type { RollupWatcher } from "../rollup/mod.ts";
 import { VERSION, watch as _watch } from "../rollup/mod.ts";
 import { bold, cyan, green, ms, underline } from "../../deps.ts";
@@ -49,6 +53,16 @@ export async function watch(program: IParseResult) {
   let reloadingConfig = false;
   let aborted = false;
   let configFileData: string | null = null;
+
+  window.addEventListener("unload", () => {
+    console.log("unload");
+    if (watcher) {
+      watcher.close();
+    }
+    if (configWatcher) {
+      configWatcher.close();
+    }
+  });
 
   const configFile = program.options.config
     ? await getConfigPath(program.options.config)
@@ -184,7 +198,9 @@ export async function watch(program: IParseResult) {
       }
 
       if ("result" in event && event.result) {
-        event.result.close().catch((error) => handleError(error, true));
+        event.result.close().catch((error: RollupError) =>
+          handleError(error, true)
+        );
       }
     });
   }

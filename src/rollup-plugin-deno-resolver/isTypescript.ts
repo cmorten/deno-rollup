@@ -2,8 +2,8 @@ const RE_TS = /\.tsx?$/;
 
 /**
  * isTypescript
- * 
- * @param {string} source 
+ *
+ * @param {string} source
  * @returns {boolean}
  * @private
  */

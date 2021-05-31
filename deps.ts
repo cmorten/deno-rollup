@@ -14,7 +14,7 @@ export {
   resolve,
   sep,
   toFileUrl,
-} from "https://deno.land/std@0.91.0/path/mod.ts";
+} from "https://deno.land/std@0.97.0/path/mod.ts";
 export {
   bold,
   cyan,
@@ -22,18 +22,18 @@ export {
   green,
   red,
   underline,
-} from "https://deno.land/std@0.91.0/fmt/colors.ts";
-export { EventEmitter } from "https://deno.land/std@0.91.0/node/events.ts";
+} from "https://deno.land/std@0.97.0/fmt/colors.ts";
+export { EventEmitter } from "https://deno.land/std@0.97.0/node/events.ts";
 
 /**
  * Rollup
  */
 
-// @deno-types="https://unpkg.com/rollup@2.42.3/dist/rollup.d.ts"
+// @deno-types="https://unpkg.com/rollup@2.50.5/dist/rollup.d.ts"
 export {
   rollup,
   VERSION,
-} from "https://unpkg.com/rollup@2.42.3/dist/es/rollup.browser.js";
+} from "https://unpkg.com/rollup@2.50.5/dist/es/rollup.browser.js";
 export type {
   AddonHook,
   AddonHookFunction,
@@ -60,6 +60,7 @@ export type {
   GlobalsOption,
   HasModuleSideEffects,
   InputOption,
+  InputOptions,
   InternalModuleFormat,
   InteropType,
   IsExternal,
@@ -131,21 +132,21 @@ export type {
   WarningHandler,
   WarningHandlerWithDefault,
   WatchChangeHook,
-} from "https://unpkg.com/rollup@2.42.3/dist/rollup.d.ts";
+} from "https://unpkg.com/rollup@2.50.5/dist/rollup.d.ts";
 
 /**
  * deno.land/x
  */
 
-export { Command } from "https://deno.land/x/cliffy@v0.18.1/command/mod.ts";
+export { Command } from "https://deno.land/x/cliffy@v0.19.1/command/mod.ts";
 export type {
   IParseResult,
   ITypeInfo,
-} from "https://deno.land/x/cliffy@v0.18.1/command/mod.ts";
+} from "https://deno.land/x/cliffy@v0.19.1/command/mod.ts";
 
 /**
  * esm.sh
  */
 
 export { default as ms } from "https://esm.sh/ms@2.1.3";
-export { default as pm } from "https://esm.sh/picomatch@2.2.2";
+export { default as pm } from "https://esm.sh/picomatch@2.3.0";

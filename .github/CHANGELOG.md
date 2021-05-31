@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.50.5+0.18.0] - 31-05-2021
+
+- chore: support Deno 1.10.2 and std 0.97.0
+- feat: upgrade Rollup to 2.50.5
+
 ## [2.42.3+0.17.1] - 23-03-2021
 
 - [#29] Rollup deno compiler options (#30)

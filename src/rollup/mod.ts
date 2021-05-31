@@ -1,15 +1,7 @@
-// deno-lint-ignore-file ban-types
 import type {
-  ExternalOption,
-  InputOption,
-  ManualChunksOption,
+  InputOptions as _InputOptions,
   OutputOptions,
-  Plugin,
-  PreserveEntrySignaturesOption,
-  RollupCache,
   RollupWatcherEvent,
-  TreeshakingOptions,
-  WarningHandlerWithDefault,
 } from "../../deps.ts";
 import { VERSION } from "../../deps.ts";
 import { DenoResolverOptions } from "../rollup-plugin-deno-resolver/denoResolver.ts";
@@ -24,7 +16,7 @@ export { rollup, VERSION, watch };
 /**
  * Prevent `warning: Compiled module not found` by re-exporting
  * types explicitly.
- * 
+ *
  * @public
  */
 export type {
@@ -162,32 +154,7 @@ export interface RollupWatcher extends
 /**
  * @public
  */
-export interface InputOptions {
-  acorn?: Object;
-  acornInjectPlugins?: Function | Function[];
-  cache?: false | RollupCache;
-  context?: string;
-  experimentalCacheExpiry?: number;
-  external?: ExternalOption;
-  /** @deprecated Use the "inlineDynamicImports" output option instead. */
-  inlineDynamicImports?: boolean;
-  input?: InputOption;
-  /** @deprecated Use the "manualChunks" output option instead. */
-  manualChunks?: ManualChunksOption;
-  moduleContext?: ((id: string) => string | null | undefined) | {
-    [id: string]: string;
-  };
-  onwarn?: WarningHandlerWithDefault;
-  perf?: boolean;
-  plugins?: Plugin[];
-  preserveEntrySignatures?: PreserveEntrySignaturesOption;
-  /** @deprecated Use the "preserveModules" output option instead. */
-  preserveModules?: boolean;
-  preserveSymlinks?: boolean;
-  shimMissingExports?: boolean;
-  strictDeprecations?: boolean;
-  treeshake?: boolean | TreeshakingOptions;
-  watch?: WatcherOptions | false;
+export interface InputOptions extends _InputOptions {
   denoResolver?: DenoResolverOptions;
 }
 
