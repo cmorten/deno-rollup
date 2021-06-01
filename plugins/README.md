@@ -12,6 +12,7 @@
 | [livereload][2]          | A Rollup plugin which automatically reload your html whe the filesystem changes.                   |
 | [postcss](./postcss)     | A Rollup plugin to apply [PostCSS](https://github.com/postcss/postcss) transforms to styles.       |
 | [serve][1]               | A Rollup plugin to run a development server.                                                       |
+| [string](./string)       | A Rollup plugin that converts text files to modules.                                               |
 | [svelte](./svelte)       | A Rollup plugin to compile Svelte components.                                                      |
 | [virtual](./virtual)     | A Rollup plugin which loads virtual modules from memory.                                           |
 | [yaml](./yaml)           | A Rollup plugin which converts YAML files to ES6 modules.                                          |
