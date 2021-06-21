@@ -1,4 +1,5 @@
 import { notImplemented } from "../notImplemented.ts";
+import { Cache } from "../../deps.ts";
 
 const decoder = new TextDecoder("utf-8");
 
@@ -22,9 +23,16 @@ export async function loadUrl(
     }
     case "http:":
     case "https:": {
-      const res = await fetch(url.href, fetchOpts);
+      try {
+        // get from deno cache storage
+        const file = await Cache.cache(url.href);
 
-      return await res.text();
+        return await Deno.readTextFile(file.path);
+      } catch (error) {
+        const res = await fetch(url.href, fetchOpts);
+
+        return await res.text();
+      }
     }
     default: {
       return notImplemented(`support for protocol '${url.protocol}'`);
