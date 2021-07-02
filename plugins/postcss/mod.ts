@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 /**
  * Derived from <https://github.com/egoist/rollup-plugin-postcss>
  * 
@@ -237,7 +238,7 @@ export function postcss(options: RollupPostcssOptions = {}): Plugin {
       };
     },
 
-    async generateBundle(opts, bundle) {
+    generateBundle(opts, bundle) {
       if (options.output === false) {
         return;
       }

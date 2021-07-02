@@ -58,7 +58,7 @@ By default all files are targeted.
 
 ### `modules`
 
-Type: `boolen` | `Object`<br> Default: `false`
+Type: `boolean` | `Object`<br> Default: `false`
 
 Enable CSS modules for `postcss-modules`.
 

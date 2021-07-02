@@ -2,9 +2,9 @@ import { createFilter } from "../../src/rollup/createFilter.ts";
 import { compile, path, preprocess } from "./deps.ts";
 
 const PREFIX = "[rollup-plugin-svelte]";
-const pkg_export_errors = new Set();
+const pkgExportErrors = new Set();
 
-const plugin_options = new Set([
+const pluginOptions = new Set([
   "emitCss",
   "exclude",
   "extensions",
@@ -25,14 +25,14 @@ export default (options = {}) => {
   compilerOptions.format = "esm";
 
   for (const key in rest) {
-    if (plugin_options.has(key)) continue;
+    if (pluginOptions.has(key)) continue;
     console.warn(
       `${PREFIX} Unknown "${key}" option. Please use "compilerOptions" for any Svelte compiler configuration.`,
     );
   }
 
   // [filename]:[chunk]
-  const cache_emit = new Map();
+  const cacheEmit = new Map();
   const { onwarn, emitCss = true } = rest;
 
   if (emitCss) {
@@ -51,7 +51,7 @@ export default (options = {}) => {
      * Resolve an import's full filepath.
      */
     resolveId(importee, importer) {
-      if (cache_emit.has(importee)) return importee;
+      if (cacheEmit.has(importee)) return importee;
       if (
         !importer ||
         importee[0] === "." ||
@@ -81,7 +81,7 @@ export default (options = {}) => {
      * Returns CSS contents for a file, if ours
      */
     load(id) {
-      return cache_emit.get(id) || null;
+      return cacheEmit.get(id) || null;
     },
 
     /**
@@ -96,18 +96,18 @@ export default (options = {}) => {
 
       const dependencies = [];
       const filename = path.relative(Deno.cwd(), id);
-      const svelte_options = { ...compilerOptions, filename };
+      const svelteOptions = { ...compilerOptions, filename };
 
       if (rest.preprocess) {
         const processed = await preprocess(code, rest.preprocess, { filename });
         if (processed.dependencies) {
           dependencies.push(...processed.dependencies);
         }
-        if (processed.map) svelte_options.sourcemap = processed.map;
+        if (processed.map) svelteOptions.sourcemap = processed.map;
         code = processed.code;
       }
 
-      const compiled = compile(code, svelte_options);
+      const compiled = compile(code, svelteOptions);
 
       (compiled.warnings || []).forEach((warning) => {
         if (!emitCss && warning.code === "css-unused-selector") return;
@@ -118,7 +118,7 @@ export default (options = {}) => {
       if (emitCss && compiled.css.code) {
         const fname = id.replace(new RegExp(`\\${extension}$`), ".css");
         compiled.js.code += `\nimport ${JSON.stringify(fname)};\n`;
-        cache_emit.set(fname, compiled.css);
+        cacheEmit.set(fname, compiled.css);
       }
 
       if (this.addWatchFile) {
@@ -134,12 +134,12 @@ export default (options = {}) => {
      * All resolutions done; display warnings wrt `package.json` access.
      */
     generateBundle() {
-      if (pkg_export_errors.size > 0) {
+      if (pkgExportErrors.size > 0) {
         console.warn(
           `\n${PREFIX} The following packages did not export their \`package.json\` file so we could not check the "svelte" field. If you had difficulties importing svelte components from a package, then please contact the author and ask them to export the package.json file.\n`,
         );
         console.warn(
-          Array.from(pkg_export_errors, (s) => `- ${s}`).join("\n") + "\n",
+          Array.from(pkgExportErrors, (s) => `- ${s}`).join("\n") + "\n",
         );
       }
     },

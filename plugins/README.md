@@ -5,6 +5,7 @@
 | Plugin                   | Description                                                                                        |
 | ------------------------ | -------------------------------------------------------------------------------------------------- |
 | [css](./css)             | A Rollup plugin that bundles imported css.                                                         |
+| [esbuild](./esbuild)     | A Rollup plugin that bundles using [esbuild](https://github.com/evanw/esbuild).                    |
 | [html](./html)           | A Rollup plugin which creates HTML files to serve Rollup bundles.                                  |
 | [image](./image)         | A Rollup plugin which imports JPG, PNG, GIF, SVG, and WebP files.                                  |
 | [importmap](./importmap) | A Rollup plugin to apply [import map](https://github.com/WICG/import-maps) mappings to ES modules. |

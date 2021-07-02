@@ -18,7 +18,7 @@ const decoder = new TextDecoder();
  * build
  *
  * @param {MergedRollupOptions} inputOptions
- * @param {boolen} silent
+ * @param {boolean} silent
  * @private
  */
 export async function build(
