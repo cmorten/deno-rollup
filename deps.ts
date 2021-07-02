@@ -14,11 +14,7 @@ export {
   resolve,
   sep,
   toFileUrl,
-<<<<<<< HEAD
-} from "https://deno.land/std@0.99.0/path/mod.ts";
-=======
 } from "https://deno.land/std@0.100.0/path/mod.ts";
->>>>>>> d7f8cb833a1746dea26a4bd42ef49d9563e358b0
 export {
   bold,
   cyan,
@@ -26,19 +22,8 @@ export {
   green,
   red,
   underline,
-<<<<<<< HEAD
-} from "https://deno.land/std@0.99.0/fmt/colors.ts";
-export { EventEmitter } from "https://deno.land/std@0.99.0/node/events.ts";
-
-/**
- * deno.land/x
- */
-
-export * as Cache from "https://deno.land/x/cache@0.2.13/mod.ts";
-=======
 } from "https://deno.land/std@0.100.0/fmt/colors.ts";
 export { EventEmitter } from "https://deno.land/std@0.100.0/node/events.ts";
->>>>>>> d7f8cb833a1746dea26a4bd42ef49d9563e358b0
 
 /**
  * Rollup
