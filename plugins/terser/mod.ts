@@ -30,7 +30,7 @@ import {
   importw,
   workerSymbol,
 } from "https://deno.land/x/importw@0.3.0/src/importw.ts";
-import { MinifyOptions } from "https://cdn.esm.sh/v16/terser@5.6.0/tools/terser.d.ts";
+import { MinifyOptions } from "https://cdn.esm.sh/v16/terser@5.7.1/tools/terser.d.ts";
 
 /**
  * @public
