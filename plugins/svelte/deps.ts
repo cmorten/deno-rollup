@@ -1,4 +1,4 @@
-export * as path from "https://deno.land/std@0.99.0/path/mod.ts";
+export * as path from "https://deno.land/std@0.100.0/path/mod.ts";
 
 export {
   compile,

@@ -10,7 +10,7 @@ Assuming a `import_map.json` exists and contains:
 ```json
 {
   "imports": {
-    "fmt/": "https://deno.land/std@0.91.0/fmt/"
+    "fmt/": "https://deno.land/std@0.100.0/fmt/"
   }
 }
 ```
