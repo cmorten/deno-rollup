@@ -14,7 +14,7 @@ export {
   resolve,
   sep,
   toFileUrl,
-} from "https://deno.land/std@0.97.0/path/mod.ts";
+} from "https://deno.land/std@0.100.0/path/mod.ts";
 export {
   bold,
   cyan,
@@ -22,8 +22,8 @@ export {
   green,
   red,
   underline,
-} from "https://deno.land/std@0.97.0/fmt/colors.ts";
-export { EventEmitter } from "https://deno.land/std@0.97.0/node/events.ts";
+} from "https://deno.land/std@0.100.0/fmt/colors.ts";
+export { EventEmitter } from "https://deno.land/std@0.100.0/node/events.ts";
 
 /**
  * Rollup
