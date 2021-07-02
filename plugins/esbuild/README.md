@@ -10,7 +10,7 @@ Create a `rollup.config.js`
 import the plugin:
 
 ```ts
-import { esbuild } from "https://deno.land/x/drollup@2.50.5+0.18.2/plugins/esbuild/mod.ts";
+import { esbuild } from "https://deno.land/x/drollup@2.52.7+0.19.0/plugins/esbuild/mod.ts";
 
 export default {
   input: "./src/mod.ts",
