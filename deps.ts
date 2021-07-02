@@ -148,5 +148,5 @@ export type {
  * esm.sh
  */
 
-export { default as ms } from "https://esm.sh/ms@2.1.3";
-export { default as pm } from "https://esm.sh/picomatch@2.3.0";
+export { default as ms } from "https://cdn.esm.sh/v43/ms@2.1.3/deno/ms.js";
+export { default as pm } from "https://cdn.esm.sh/v43/picomatch@2.3.0/deno/picomatch.js";
