@@ -29,11 +29,11 @@ export { EventEmitter } from "https://deno.land/std@0.100.0/node/events.ts";
  * Rollup
  */
 
-// @deno-types="https://unpkg.com/rollup@2.50.5/dist/rollup.d.ts"
+// @deno-types="https://unpkg.com/rollup@2.52.7/dist/rollup.d.ts"
 export {
   rollup,
   VERSION,
-} from "https://unpkg.com/rollup@2.50.5/dist/es/rollup.browser.js";
+} from "https://unpkg.com/rollup@2.52.7/dist/es/rollup.browser.js";
 export type {
   AddonHook,
   AddonHookFunction,
@@ -132,17 +132,17 @@ export type {
   WarningHandler,
   WarningHandlerWithDefault,
   WatchChangeHook,
-} from "https://unpkg.com/rollup@2.50.5/dist/rollup.d.ts";
+} from "https://unpkg.com/rollup@2.52.7/dist/rollup.d.ts";
 
 /**
  * deno.land/x
  */
 
-export { Command } from "https://deno.land/x/cliffy@v0.19.1/command/mod.ts";
+export { Command } from "https://deno.land/x/cliffy@v0.19.2/command/mod.ts";
 export type {
   IParseResult,
   ITypeInfo,
-} from "https://deno.land/x/cliffy@v0.19.1/command/mod.ts";
+} from "https://deno.land/x/cliffy@v0.19.2/command/mod.ts";
 
 /**
  * esm.sh
