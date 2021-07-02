@@ -11,7 +11,7 @@ rollup -c
 To view your new HTML page and bundled code run:
 
 ```console
-deno run --allow-net --allow-read https://deno.land/std@0.91.0/http/file_server.ts ./dist --port 3000
+deno run --allow-net --allow-read https://deno.land/std@0.100.0/http/file_server.ts ./dist --port 3000
 ```
 
 This uses the Deno standard library's `file_server` module to serve the static

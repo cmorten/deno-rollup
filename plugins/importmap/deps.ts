@@ -4,4 +4,4 @@ export {
   join,
   normalize,
   relative,
-} from "https://deno.land/std@0.97.0/path/mod.ts";
+} from "https://deno.land/std@0.100.0/path/mod.ts";
