@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [2.52.7+0.19.1] - 02-07-2021
+
+- chore: upgrade postcss plugin deps
+
 ## [2.52.7+0.19.0] - 02-07-2021
 
 - [FEAT]: Adds a new rollup plugin called string derived from <https://github.com/TrySound/rollup-plugin-string> (#37)
