@@ -24,7 +24,6 @@ export async function loadUrl(
     case "http:":
     case "https:": {
       try {
-        // get from deno cache storage
         const file = await Cache.cache(url.href);
 
         return await Deno.readTextFile(file.path);
