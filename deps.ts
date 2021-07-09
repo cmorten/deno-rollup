@@ -138,6 +138,8 @@ export type {
  * deno.land/x
  */
 
+export * as Cache from "https://deno.land/x/cache@0.2.13/mod.ts";
+
 export { Command } from "https://deno.land/x/cliffy@v0.19.2/command/mod.ts";
 export type {
   IParseResult,
