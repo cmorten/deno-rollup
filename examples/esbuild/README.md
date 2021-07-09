@@ -1,6 +1,14 @@
-# image
+# esbuild
 
-This is a basic example to show Rollup usage with the `image` plugin.
+This is a basic example to show Rollup usage with the `esbuild` plugin.
+
+The Rollup config is defined in the `./rollup.config.ts` file, and specifies
+that we wish to created ES bundles from our code in the `./src` directory,
+including source maps.
+
+The code in `./src` is fairly trivial, but makes use of typescript, dynamic
+imports, and the Deno namespace, in order to demonstrate the bundling
+capabilities of Rollup with Deno.
 
 ## Usage
 
@@ -13,24 +21,20 @@ run:
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.52.7+0.19.1/examples/image/rollup.build.ts
+deno run --allow-read --allow-write --allow-net --allow-env --allow-run --unstable --no-check https://deno.land/x/drollup@2.52.7+0.19.1/examples/esbuild/rollup.build.ts
 
 # When cloned locally
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
+deno run --allow-read --allow-write --allow-net --allow-env --allow-run --unstable --no-check ./rollup.build.ts
 ```
 
 This executes the `./rollup.build.ts` file, which imports the config, invokes
 Rollup and then writes out the bundles.
 
-To view your new HTML page and bundle code run:
+To execute your newly bundled code run:
 
 ```console
-deno run --allow-net --allow-read https://deno.land/std@0.100.0/http/file_server.ts ./dist --port 3000
+deno run --allow-read="./" ./dist/mod.js
 ```
-
-This uses the Deno standard library's `file_server` module to serve the static
-files in the `./dist` directory to `0.0.0.0` port `3000`. Open a browser at
-<http://0.0.0.0:3000/> to view your page.
 
 #### Bundle CLI
 
@@ -59,10 +63,10 @@ on disk run:
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.52.7+0.19.1/examples/image/rollup.watch.ts
+deno run --allow-read --allow-write --allow-net --allow-env --allow-run --unstable --no-check https://deno.land/x/drollup@2.52.7+0.19.1/examples/esbuild/rollup.watch.ts
 
 # When cloned locally
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.watch.ts
+deno run --allow-read --allow-write --allow-net --allow-env --allow-run --unstable --no-check ./rollup.watch.ts
 ```
 
 This executes the `./rollup.watch.ts` file, which imports the config, adds a few
@@ -91,4 +95,4 @@ rollup -c --watch
 
 When using the `--watch` CLI, not only will your bundle be rebuilt when your
 source files change, but Rollup will also reload your `rollup.config.ts` file
-when that changes.
+when that changes. For example, try switching the output directory to `./bin`!

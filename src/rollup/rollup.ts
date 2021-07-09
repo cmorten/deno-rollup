@@ -32,6 +32,7 @@ export async function rollup(
   options: RollupOptions,
 ): Promise<RollupBuild> {
   const denoResolverPlugin = denoResolver(options.denoResolver);
+  delete options.denoResolver;
 
   options = {
     ...options,

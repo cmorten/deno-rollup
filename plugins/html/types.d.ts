@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { OutputAsset, OutputBundle, OutputChunk, Plugin } from "../../mod.ts";
 
 export interface RollupHtmlOptions {

@@ -35,7 +35,7 @@ export interface RollupStringOptions {
   /**
    * Specify include files
    */
-  include: FilterPattern;
+  include?: FilterPattern;
 
   /**
    * Specify exclude files

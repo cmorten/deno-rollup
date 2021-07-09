@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import type { ImportMapObject } from "../mod.ts";
 import { expect } from "../../../test/deps.ts";
 import { it } from "../../../test/mod.ts";

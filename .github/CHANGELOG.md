@@ -1,5 +1,19 @@
 # ChangeLog
 
+## [2.52.7+0.19.1] - 02-07-2021
+
+- chore: upgrade postcss plugin deps
+
+## [2.52.7+0.19.0] - 02-07-2021
+
+- [FEAT]: Adds a new rollup plugin called string derived from <https://github.com/TrySound/rollup-plugin-string> (#37)
+- [#39] Upgraded to std@0.100.0 to work with deno 1.11.4 (#40) 
+- chore: upgrade deps
+- [#41] Updated the terser dependencies to 5.7.1 (#42) 
+- feat: refactor terser example
+- feat: add esbuild plugin
+- fix: try full esm.sh urls
+
 ## [2.50.5+0.18.2] - 31-05-2021
 
 - [NO-ISSUE] Fixes some bugs regarding css and svelte plugins (#36)

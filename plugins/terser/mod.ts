@@ -1,22 +1,23 @@
+// deno-lint-ignore-file no-explicit-any
 /**
  * Derived from <https://github.com/TrySound/rollup-plugin-terser>
- * 
+ *
  * Licensed as follows:
- * 
+ *
  * The MIT License (MIT)
- * 
+ *
  * Copyright 2018 Bogdan Chadkin <trysound@yandex.ru>
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
  * the Software without restriction, including without limitation the rights to
  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
  * the Software, and to permit persons to whom the Software is furnished to do so,
  * subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
@@ -25,40 +26,15 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import type { FilterPattern, NormalizedOutputOptions } from "../../mod.ts";
-import {
-  importw,
-  workerSymbol,
-} from "https://deno.land/x/importw@0.3.0/src/importw.ts";
-import { MinifyOptions } from "https://cdn.esm.sh/v16/terser@5.7.1/tools/terser.d.ts";
+import type { NormalizedOutputOptions } from "../../mod.ts";
+import type { RollupTerserOptions } from "./types.ts";
+import type { SourceMapInput } from "../../deps.ts";
+import { transform } from "./transform.ts";
 
 /**
  * @public
  */
-export interface RollupTerserOptions extends Omit<MinifyOptions, "sourceMap"> {}
-
-const workerScriptUrl = new URL("./worker.js", import.meta.url).href;
-
 export function terser(options: RollupTerserOptions = {}) {
-  const workerPromise = importw(
-    workerScriptUrl,
-    {
-      name: "transform",
-      deno: {
-        namespace: false,
-        permissions: {
-          write: false,
-          read: true,
-          net: true,
-          env: false,
-          hrtime: false,
-          plugin: false,
-          run: false,
-        },
-      },
-    },
-  );
-
   return {
     name: "terser",
 
@@ -67,8 +43,6 @@ export function terser(options: RollupTerserOptions = {}) {
       _chunk: unknown,
       outputOptions: NormalizedOutputOptions,
     ) {
-      const worker = await workerPromise;
-
       const defaultOptions: Record<string, any> = {
         sourceMap: outputOptions.sourcemap === true ||
           typeof outputOptions.sourcemap === "string",
@@ -85,23 +59,20 @@ export function terser(options: RollupTerserOptions = {}) {
         ...options,
       };
 
-      for (let key of ["numWorkers"]) {
-        if (normalizedOptions.hasOwnProperty(key)) {
-          delete normalizedOptions[key];
-        }
-      }
+      delete normalizedOptions.numWorkers;
 
       let result;
 
       try {
-        result = await worker.transform(code, normalizedOptions);
+        result = await transform(code, normalizedOptions);
 
         if (result.nameCache) {
-          let { vars, props } = options.nameCache as { vars: any; props: any };
+          const resultNameCache = result.nameCache;
+          let { vars, props } = options.nameCache ?? {};
 
           if (vars) {
-            const newVars = result.nameCache.vars &&
-              result.nameCache.vars.props;
+            const newVars = resultNameCache?.vars?.props;
+
             if (newVars) {
               vars.props = vars.props || {};
               Object.assign(vars.props, newVars);
@@ -109,11 +80,12 @@ export function terser(options: RollupTerserOptions = {}) {
           }
 
           if (!props) {
-            props = (options.nameCache as { props: any }).props = {};
+            options.nameCache = {};
+            props = options.nameCache.props = {};
           }
 
-          const newProps = result.nameCache.props &&
-            result.nameCache.props.props;
+          const newProps = resultNameCache?.props?.props;
+
           if (newProps) {
             props.props = props.props || {};
             Object.assign(props.props, newProps);
@@ -123,13 +95,7 @@ export function terser(options: RollupTerserOptions = {}) {
         throw error;
       }
 
-      return result.result;
-    },
-
-    async closeBundle() {
-      const worker = await workerPromise;
-
-      worker[workerSymbol].terminate();
+      return result.result as { code: string; map?: SourceMapInput };
     },
   };
 }

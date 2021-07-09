@@ -5,8 +5,9 @@ starting points for your app, or as snippets to pull into your existing
 applications:
 
 | Example                    | Description                                                                                        |
-| ---------------------------| -------------------------------------------------------------------------------------------------- |
+| -------------------------- | -------------------------------------------------------------------------------------------------- |
 | [css](./css)               | A Rollup plugin that bundles imported css.                                                         |
+| [esbuild](./esbuild)       | A Rollup plugin that bundles using [esbuild](https://github.com/evanw/esbuild).                    |
 | [helloDeno](./helloDeno)   | A basic example to show Rollup usage within Deno.                                                  |
 | [html](./html)             | A Rollup plugin which creates HTML files to serve Rollup bundles.                                  |
 | [image](./image)           | A Rollup plugin which imports JPG, PNG, GIF, SVG, and WebP files.                                  |
