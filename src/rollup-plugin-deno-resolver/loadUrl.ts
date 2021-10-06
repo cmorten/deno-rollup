@@ -27,7 +27,7 @@ export async function loadUrl(
         const file = await Cache.cache(url.href);
 
         return await Deno.readTextFile(file.path);
-      } catch (_) {
+      } catch {
         const res = await fetch(url.href, fetchOpts);
 
         return await res.text();
