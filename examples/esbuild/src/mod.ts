@@ -1,5 +1,5 @@
 import { myString } from "./std.ts";
-import { basename } from "https://deno.land/std@0.100.0/path/mod.ts";
+import { basename } from "https://deno.land/std@0.110.0/path/mod.ts";
 
 export async function main(): Promise<void> {
   console.log(myString);
