@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.58.0+0.20.0] - 09-10-2021
+
+- [NO-ISSUE] Improve performance (#38)
+- chore: support Deno 1.14.3, std 0.110.0, Rollup 2.58.0
+
 ## [2.52.7+0.19.1] - 02-07-2021
 
 - chore: upgrade postcss plugin deps
