@@ -140,6 +140,7 @@ export type {
  */
 
 export { Command } from "https://deno.land/x/cliffy@v0.19.6/command/mod.ts";
+export * as Cache from "https://deno.land/x/cache@0.2.13/mod.ts";
 export type {
   IParseResult,
   ITypeInfo,
