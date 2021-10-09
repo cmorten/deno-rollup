@@ -6,6 +6,9 @@ import type { CommandConfigObject, GenericConfigObject } from "./types.ts";
 import type {
   ExternalOption,
   MergedRollupOptions,
+  NormalizedGeneratedCodeOptions,
+  NormalizedOutputOptions,
+  NormalizedTreeshakingOptions,
   OutputOptions,
   Plugin,
   RollupCache,
@@ -15,6 +18,41 @@ import type {
 } from "../deps.ts";
 import type { InputOptions } from "./rollup/mod.ts";
 import { ensureArray } from "./ensureArray.ts";
+import { error } from "./error.ts";
+
+type ObjectOptionWithPresets =
+  | Partial<NormalizedTreeshakingOptions>
+  | Partial<NormalizedGeneratedCodeOptions>;
+
+export const objectifyOptionWithPresets = <T extends ObjectOptionWithPresets>(
+  presets: Record<string, T>,
+  optionName: string,
+  additionalValues: string,
+) =>
+  (value: unknown): Record<string, unknown> => {
+    if (typeof value === "string") {
+      const preset = presets[value];
+
+      if (preset) {
+        return preset;
+      }
+
+      error(
+        {
+          code: "INVALID_OPTION",
+          message: `Invalid value ${
+            value !== undefined ? `${JSON.stringify(value)} ` : ""
+          }for option "${optionName}" - valid values are ${additionalValues}${(
+            Object.keys(presets).join(", ")
+          )}. You can also supply an object for more fine-grained control}.`,
+        },
+      );
+    }
+
+    return value && typeof value === "object"
+      ? (value as Record<string, unknown>)
+      : {};
+  };
 
 /**
  * defaultOnWarn
@@ -142,6 +180,42 @@ export function mergeOptions(
   return inputOptions;
 }
 
+// deno-lint-ignore no-explicit-any
+type ObjectValue<Base> = Base extends Record<string, any> ? Base : never;
+
+const treeshakePresets: {
+  [
+    key in NonNullable<
+      ObjectValue<InputOptions["treeshake"]>["preset"]
+    >
+  ]: NormalizedTreeshakingOptions;
+} = {
+  recommended: {
+    annotations: true,
+    correctVarValueBeforeDeclaration: false,
+    moduleSideEffects: () => true,
+    propertyReadSideEffects: true,
+    tryCatchDeoptimization: true,
+    unknownGlobalSideEffects: false,
+  },
+  safest: {
+    annotations: true,
+    correctVarValueBeforeDeclaration: true,
+    moduleSideEffects: () => true,
+    propertyReadSideEffects: true,
+    tryCatchDeoptimization: true,
+    unknownGlobalSideEffects: true,
+  },
+  smallest: {
+    annotations: true,
+    correctVarValueBeforeDeclaration: false,
+    moduleSideEffects: () => false,
+    propertyReadSideEffects: false,
+    tryCatchDeoptimization: false,
+    unknownGlobalSideEffects: false,
+  },
+};
+
 /**
  * getCommandOptions
  *
@@ -209,6 +283,7 @@ function mergeInputOptions(
     input: getOption("input") || [],
     makeAbsoluteExternalsRelative: getOption("makeAbsoluteExternalsRelative"),
     manualChunks: getOption("manualChunks"),
+    maxParallelFileReads: getOption("maxParallelFileReads"),
     moduleContext: getOption("moduleContext"),
     onwarn: getOnWarn(config, defaultOnWarnHandler),
     perf: getOption("perf"),
@@ -218,7 +293,16 @@ function mergeInputOptions(
     preserveSymlinks: getOption("preserveSymlinks"),
     shimMissingExports: getOption("shimMissingExports"),
     strictDeprecations: getOption("strictDeprecations"),
-    treeshake: getObjectOption(config, overrides, "treeshake"),
+    treeshake: getObjectOption(
+      config,
+      overrides,
+      "treeshake",
+      objectifyOptionWithPresets(
+        treeshakePresets,
+        "treeshake",
+        "false, true, ",
+      ),
+    ),
     watch: getWatch(config, overrides, "watch"),
     denoResolver: getObjectOption(config, overrides, "denoResolver"),
   };
@@ -288,9 +372,18 @@ const getObjectOption = (
   config: GenericConfigObject,
   overrides: GenericConfigObject,
   name: string,
+  objectifyValue: (value: unknown) => Record<string, unknown> | undefined = (
+    value,
+  ) =>
+    (typeof value === "object" ? value : {}) as
+      | Record<string, unknown>
+      | undefined,
 ) => {
-  const commandOption = normalizeObjectOptionValue(overrides[name]);
-  const configOption = normalizeObjectOptionValue(config[name]);
+  const commandOption = normalizeObjectOptionValue(
+    overrides[name],
+    objectifyValue,
+  );
+  const configOption = normalizeObjectOptionValue(config[name], objectifyValue);
 
   if (commandOption !== undefined) {
     return commandOption && { ...configOption, ...commandOption };
@@ -321,9 +414,12 @@ const getWatch = (
  * @returns {any}
  * @private
  */
-export const normalizeObjectOptionValue = (optionValue: unknown) => {
+export const normalizeObjectOptionValue = (
+  optionValue: unknown,
+  objectifyValue: (value: unknown) => Record<string, unknown> | undefined,
+) => {
   if (!optionValue) {
-    return optionValue;
+    return optionValue as undefined;
   }
 
   if (Array.isArray(optionValue)) {
@@ -333,15 +429,32 @@ export const normalizeObjectOptionValue = (optionValue: unknown) => {
     );
   }
 
-  if (typeof optionValue !== "object") {
-    return {};
-  }
-
-  return optionValue;
+  return objectifyValue(optionValue);
 };
 
 type CompleteOutputOptions<U extends keyof OutputOptions> = {
   [K in U]: OutputOptions[K];
+};
+
+const generatedCodePresets: {
+  [
+    key in NonNullable<
+      ObjectValue<OutputOptions["generatedCode"]>["preset"]
+    >
+  ]: NormalizedOutputOptions["generatedCode"];
+} = {
+  es2015: {
+    arrowFunctions: true,
+    constBindings: true,
+    objectShorthand: true,
+    reservedNamesAsProps: true,
+  },
+  es5: {
+    arrowFunctions: false,
+    constBindings: false,
+    objectShorthand: false,
+    reservedNamesAsProps: true,
+  },
 };
 
 /**
@@ -377,6 +490,16 @@ function mergeOutputOptions(
     footer: getOption("footer"),
     format: getOption("format"),
     freeze: getOption("freeze"),
+    generatedCode: getObjectOption(
+      config,
+      overrides,
+      "generatedCode",
+      objectifyOptionWithPresets(
+        generatedCodePresets,
+        "output.generatedCode",
+        "",
+      ),
+    ),
     globals: getOption("globals"),
     hoistTransitiveImports: getOption("hoistTransitiveImports"),
     indent: getOption("indent"),

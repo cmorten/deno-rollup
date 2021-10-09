@@ -14,7 +14,7 @@ export {
   resolve,
   sep,
   toFileUrl,
-} from "https://deno.land/std@0.100.0/path/mod.ts";
+} from "https://deno.land/std@0.110.0/path/mod.ts";
 export {
   bold,
   cyan,
@@ -22,18 +22,18 @@ export {
   green,
   red,
   underline,
-} from "https://deno.land/std@0.100.0/fmt/colors.ts";
-export { EventEmitter } from "https://deno.land/std@0.100.0/node/events.ts";
+} from "https://deno.land/std@0.110.0/fmt/colors.ts";
+export { EventEmitter } from "https://deno.land/std@0.110.0/node/events.ts";
 
 /**
  * Rollup
  */
 
-// @deno-types="https://unpkg.com/rollup@2.52.7/dist/rollup.d.ts"
+// @deno-types="https://unpkg.com/rollup@2.58.0/dist/rollup.d.ts"
 export {
   rollup,
   VERSION,
-} from "https://unpkg.com/rollup@2.52.7/dist/es/rollup.browser.js";
+} from "https://unpkg.com/rollup@2.58.0/dist/es/rollup.browser.js";
 export type {
   AddonHook,
   AddonHookFunction,
@@ -74,6 +74,7 @@ export type {
   ModuleParsedHook,
   ModuleSideEffectsOption,
   NormalizedAmdOptions,
+  NormalizedGeneratedCodeOptions,
   NormalizedInputOptions,
   NormalizedOutputOptions,
   NormalizedTreeshakingOptions,
@@ -132,19 +133,18 @@ export type {
   WarningHandler,
   WarningHandlerWithDefault,
   WatchChangeHook,
-} from "https://unpkg.com/rollup@2.52.7/dist/rollup.d.ts";
+} from "https://unpkg.com/rollup@2.58.0/dist/rollup.d.ts";
 
 /**
  * deno.land/x
  */
 
+export { Command } from "https://deno.land/x/cliffy@v0.19.6/command/mod.ts";
 export * as Cache from "https://deno.land/x/cache@0.2.13/mod.ts";
-
-export { Command } from "https://deno.land/x/cliffy@v0.19.2/command/mod.ts";
 export type {
   IParseResult,
   ITypeInfo,
-} from "https://deno.land/x/cliffy@v0.19.2/command/mod.ts";
+} from "https://deno.land/x/cliffy@v0.19.6/command/mod.ts";
 
 /**
  * esm.sh

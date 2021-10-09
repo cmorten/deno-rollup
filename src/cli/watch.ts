@@ -54,7 +54,7 @@ export async function watch(program: IParseResult) {
   let aborted = false;
   let configFileData: string | null = null;
 
-  window.addEventListener("unload", () => {
+  globalThis.addEventListener("unload", () => {
     console.log("unload");
     if (watcher) {
       watcher.close();

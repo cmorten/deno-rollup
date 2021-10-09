@@ -16,7 +16,7 @@ export default {
       buildOptions: {
         minify: true,
         format: "esm",
-        treeShaking: true
+        treeShaking: true,
       },
     }),
   ],

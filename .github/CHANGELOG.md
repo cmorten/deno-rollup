@@ -1,15 +1,21 @@
 # ChangeLog
 
+## [2.58.0+0.20.0] - 09-10-2021
+
+- [NO-ISSUE] Improve performance (#38)
+- chore: support Deno 1.14.3, std 0.110.0, Rollup 2.58.0
+
 ## [2.52.7+0.19.1] - 02-07-2021
 
 - chore: upgrade postcss plugin deps
 
 ## [2.52.7+0.19.0] - 02-07-2021
 
-- [FEAT]: Adds a new rollup plugin called string derived from <https://github.com/TrySound/rollup-plugin-string> (#37)
-- [#39] Upgraded to std@0.100.0 to work with deno 1.11.4 (#40) 
+- [FEAT]: Adds a new rollup plugin called string derived from
+  <https://github.com/TrySound/rollup-plugin-string> (#37)
+- [#39] Upgraded to std@0.100.0 to work with deno 1.11.4 (#40)
 - chore: upgrade deps
-- [#41] Updated the terser dependencies to 5.7.1 (#42) 
+- [#41] Updated the terser dependencies to 5.7.1 (#42)
 - feat: refactor terser example
 - feat: add esbuild plugin
 - fix: try full esm.sh urls
@@ -20,7 +26,9 @@
 
 ## [2.50.5+0.18.1] - 31-05-2021
 
-- test: add subset of [Web Platform Tests](https://github.com/web-platform-tests/wpt/tree/master/import-maps/data-driven/resources) for importmap plugin with some compatibility improvements
+- test: add subset of
+  [Web Platform Tests](https://github.com/web-platform-tests/wpt/tree/master/import-maps/data-driven/resources)
+  for importmap plugin with some compatibility improvements
 
 ## [2.50.5+0.18.0] - 31-05-2021
 
