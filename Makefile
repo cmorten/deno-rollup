@@ -3,7 +3,7 @@
 FILES_TO_FORMAT = ./example/src ./example/rollup.build.ts ./example/rollup.config.ts ./example/rollup.watch.ts ./plugins/importmap/mod.ts ./plugins/importmap/deps.ts ./src ./test ./deps.ts ./mod.ts ./rollup.ts ./version.ts
 
 build:
-	@deno run --unstable --reload mod.ts
+	@deno run --unstable --allow-read --allow-write --allow-net --allow-run --allow-env --reload mod.ts
 
 ci:
 	@make fmt-check

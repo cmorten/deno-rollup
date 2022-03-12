@@ -36,7 +36,7 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 
 ## Overview
 
-> **Deprecation Notice**: _Deno will soon support a [`--compat` flag](https://github.com/denoland/deno/issues/12295) that will allow for the running of Node modules in Deno through the [Node compatibility layer](https://deno.land/std@0.110.0/node)._
+> **Deprecation Notice**: _Deno will soon support a [`--compat` flag](https://github.com/denoland/deno/issues/12295) that will allow for the running of Node modules in Deno through the [Node compatibility layer](https://deno.land/std@0.129.0/node)._
 >
 > _This renders the core and CLI parts of this module obsolete, it is to be if the `rollup-plugin-deno-resolver` module will continue to add value as a stand-alone plugin to use with Rollup in Deno._
 >
@@ -61,7 +61,7 @@ with an optional configuration file, or else through its
 To install the CLI run:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.20.0/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.21.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
@@ -86,7 +86,7 @@ rollup -c --watch
 You can import deno-rollup straight into your project to bundle your modules:
 
 ```ts
-import { rollup } from "https://deno.land/x/drollup@2.58.0+0.20.0/mod.ts";
+import { rollup } from "https://deno.land/x/drollup@2.58.0+0.21.0/mod.ts";
 
 const options = {
   input: "./mod.ts",
@@ -105,7 +105,7 @@ await bundle.close();
 Or using the `watch` API:
 
 ```ts
-import { watch } from "https://deno.land/x/drollup@2.58.0+0.20.0/mod.ts";
+import { watch } from "https://deno.land/x/drollup@2.58.0+0.21.0/mod.ts";
 
 const options = {
   input: "./src/mod.ts",
@@ -185,7 +185,7 @@ To run the [examples](./examples) you have a couple of options:
 1. Run the deno-rollup `helloDeno` example directly from the repository:
 
    ```console
-   deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.20.0/examples/helloDeno/rollup.build.ts
+   deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.21.0/examples/helloDeno/rollup.build.ts
    ```
 
    This will create a `./dist` directory with the bundled files in your current

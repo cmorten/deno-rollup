@@ -20,7 +20,7 @@ run:
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.20.0/examples/importmap/rollup.build.ts
+deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.21.0/examples/importmap/rollup.build.ts
 
 # When cloned locally
 deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.build.ts
@@ -45,7 +45,7 @@ Alternatively you can use the Rollup CLI to bundle files.
 Install the CLI:
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.20.0/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.21.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.
@@ -65,7 +65,7 @@ on disk run:
 
 ```console
 # Direct from repository
-deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.20.0/examples/importmap/rollup.watch.ts
+deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.21.0/examples/importmap/rollup.watch.ts
 
 # When cloned locally
 deno run --allow-read="./" --allow-write="./dist" --allow-net="deno.land" --allow-env --unstable ./rollup.watch.ts
@@ -84,7 +84,7 @@ Alternatively you can use the Rollup CLI to watch and rebuild your bundle.
 Install the CLI (same as before):
 
 ```console
-deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.20.0/rollup.ts
+deno install -f -q --allow-read --allow-write --allow-net --allow-env --unstable https://deno.land/x/drollup@2.58.0+0.21.0/rollup.ts
 ```
 
 And follow any suggestions to update your `PATH` environment variable.

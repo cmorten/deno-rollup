@@ -3,7 +3,7 @@ import { bold, red, toFileUrl } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { exists } from "./exists.ts";
 
-const denoRunCommandPrefix = ["deno", "run", "--unstable"];
+const denoRunCommandPrefix = ["deno", "run", "--unstable", "--allow-env"];
 const decoder = new TextDecoder();
 
 describe("exists", () => {

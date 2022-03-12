@@ -118,7 +118,7 @@ await runTestSuiteWithSamples(
             ...config?.options?.output,
           };
 
-          return bundle.generate(outputOptions).then(({ output }) => {
+          return bundle.generate(outputOptions).then(({ output }: any) => {
             if (config.generateError) {
               unintendedError = new Error(
                 "Expected an error while generating output",
@@ -126,7 +126,7 @@ await runTestSuiteWithSamples(
             }
 
             result = output;
-          }).catch((err) => {
+          }).catch((err: any) => {
             if (config.generateError) {
               compareError(err, config.generateError);
             } else {
@@ -155,12 +155,12 @@ await runTestSuiteWithSamples(
               : "main.js";
 
             // A limitation of dealing with remote URL it is that it is not considered
-            // an absolute path by rollup code, therfore the module will be cast as virtual.
+            // an absolute path by rollup code, therefore the module will be cast as virtual.
             // In an attempt to re-use as many remote test cases as possible, we are
             // accepting virtual prefixes here as acceptable.
             if (
-              !codeMap.hasOwnProperty(entryId) &&
-              !codeMap.hasOwnProperty(`_virtual/${entryId}`)
+              !codeMap[entryId] &&
+              !codeMap[`_virtual/${entryId}`]
             ) {
               throw new Error(
                 `Could not find entry "${entryId}" in generated output.\nChunks:\n${

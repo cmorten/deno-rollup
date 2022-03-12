@@ -2,7 +2,7 @@ import { expect } from "../test/deps.ts";
 import { describe, it } from "../test/mod.ts";
 import { bold, red } from "../deps.ts";
 
-const denoRunCommandPrefix = ["deno", "run", "--unstable"];
+const denoRunCommandPrefix = ["deno", "run", "--unstable", "--allow-env"];
 const decoder = new TextDecoder();
 
 describe("notImplemented", () => {

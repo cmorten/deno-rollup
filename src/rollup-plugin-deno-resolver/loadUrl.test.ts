@@ -3,7 +3,7 @@ import { bold, red, resolve, toFileUrl } from "../../deps.ts";
 import { describe, it } from "../../test/mod.ts";
 import { loadUrl } from "./loadUrl.ts";
 
-const denoRunCommandPrefix = ["deno", "run", "--unstable"];
+const denoRunCommandPrefix = ["deno", "run", "--unstable", "--allow-env"];
 const decoder = new TextDecoder();
 
 describe("loadUrl", () => {

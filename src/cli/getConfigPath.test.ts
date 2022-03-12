@@ -3,7 +3,7 @@ import { describe, it } from "../../test/mod.ts";
 import { join, resolve } from "../../deps.ts";
 import { getConfigPath } from "./getConfigPath.ts";
 
-const denoRunCommandPrefix = ["deno", "run", "--allow-read"];
+const denoRunCommandPrefix = ["deno", "run", "--allow-read", "--allow-env"];
 const decoder = new TextDecoder();
 
 describe("getConfigPath", () => {
