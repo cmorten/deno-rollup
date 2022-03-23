@@ -1,4 +1,4 @@
-# postcss
+# esbuild
 
 🍣 A Rollup plugin to apply [esbuild](https://github.com/evanw/esbuild)
 transforms to code.
