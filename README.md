@@ -24,6 +24,24 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 
 ---
 
+**Deprecation Notice**: _Deno now supports a [`--compat` flag](https://github.com/denoland/deno/issues/12295) that allows for the running of Node modules in Deno through the [Node compatibility layer](https://deno.land/std@0.129.0/node). See the [official Rollup docs on Deno usage](https://rollupjs.org/guide/en/#deno)._
+
+From [Deno 1.25 there is also has support for using NPM specifiers](https://deno.com/blog/v1.25#experimental-npm-support):_
+
+```ts
+import { rollup } from "npm:rollup";
+```
+
+```console
+deno run --unstable --allow-env --allow-read --allow-write npm:rollup
+```
+
+_This renders the core and CLI parts of this module obsolete._
+
+_Future efforts will be spent bolstering the Node compatibility layer instead of keeping this module aligned with Rollup for Node._
+
+---
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -35,12 +53,6 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 - [License](#license)
 
 ## Overview
-
-> **Deprecation Notice**: _Deno will soon support a [`--compat` flag](https://github.com/denoland/deno/issues/12295) that will allow for the running of Node modules in Deno through the [Node compatibility layer](https://deno.land/std@0.110.0/node)._
->
-> _This renders the core and CLI parts of this module obsolete, it is to be if the `rollup-plugin-deno-resolver` module will continue to add value as a stand-alone plugin to use with Rollup in Deno._
->
-> _Future efforts will be spent bolstering the Node compatibility layer instead of keeping this module aligned with Rollup for Node. PRs welcome for bugfixes._
 
 [Rollup](https://github.com/rollup/rollup) is a module bundler for JavaScript
 which compiles small pieces of code into something larger and more complex, such
