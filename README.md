@@ -26,7 +26,7 @@ Next-generation ES module bundler for <a href="https://deno.land/">Deno</a> port
 
 **Deprecation Notice**: _Deno now supports a [`--compat` flag](https://github.com/denoland/deno/issues/12295) that allows for the running of Node modules in Deno through the [Node compatibility layer](https://deno.land/std@0.129.0/node). See the [official Rollup docs on Deno usage](https://rollupjs.org/guide/en/#deno)._
 
-From [Deno 1.25 there is also has support for using NPM specifiers](https://deno.com/blog/v1.25#experimental-npm-support):_
+_From [Deno 1.25 there is also has support for using NPM specifiers](https://deno.com/blog/v1.25#experimental-npm-support):_
 
 ```ts
 import { rollup } from "npm:rollup";
